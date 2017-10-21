@@ -1,6 +1,5 @@
 package com.fastfooddelivery.web.rest;
 import com.fastfooddelivery.config.Constants;
-
 import com.fastfooddelivery.FastFoodDeliveryApp;
 import com.fastfooddelivery.domain.Authority;
 import com.fastfooddelivery.domain.User;
@@ -8,10 +7,11 @@ import com.fastfooddelivery.repository.AuthorityRepository;
 import com.fastfooddelivery.repository.UserRepository;
 import com.fastfooddelivery.security.AuthoritiesConstants;
 import com.fastfooddelivery.service.MailService;
-import com.fastfooddelivery.service.UserService;
 import com.fastfooddelivery.service.dto.UserDTO;
+import com.fastfooddelivery.web.rest.errors.ExceptionTranslator;
 import com.fastfooddelivery.web.rest.vm.KeyAndPasswordVM;
 import com.fastfooddelivery.web.rest.vm.ManagedUserVM;
+import com.fastfooddelivery.service.UserService;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.junit.Before;
 import org.junit.Test;
@@ -32,15 +32,12 @@ import org.springframework.transaction.annotation.Transactional;
 import java.time.Instant;
 import java.time.LocalDate;
 import java.util.*;
-
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
 import static org.mockito.Matchers.anyObject;
 import static org.mockito.Mockito.doNothing;
 import static org.mockito.Mockito.when;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 /**
@@ -67,15 +64,18 @@ public class AccountResourceIntTest {
     @Autowired
     private HttpMessageConverter[] httpMessageConverters;
 
+    @Autowired
+    private ExceptionTranslator exceptionTranslator;
+
     @Mock
     private UserService mockUserService;
 
     @Mock
     private MailService mockMailService;
 
-    private MockMvc restUserMockMvc;
-
     private MockMvc restMvc;
+
+    private MockMvc restUserMockMvc;
 
     @Before
     public void setup() {
@@ -84,14 +84,15 @@ public class AccountResourceIntTest {
 
         AccountResource accountResource =
             new AccountResource(userRepository, userService, mockMailService);
-
         AccountResource accountUserMockResource =
             new AccountResource(userRepository, mockUserService, mockMailService);
-
         this.restMvc = MockMvcBuilders.standaloneSetup(accountResource)
             .setMessageConverters(httpMessageConverters)
+            .setControllerAdvice(exceptionTranslator)
             .build();
-        this.restUserMockMvc = MockMvcBuilders.standaloneSetup(accountUserMockResource).build();
+        this.restUserMockMvc = MockMvcBuilders.standaloneSetup(accountUserMockResource)
+            .setControllerAdvice(exceptionTranslator)
+            .build();
     }
 
     @Test

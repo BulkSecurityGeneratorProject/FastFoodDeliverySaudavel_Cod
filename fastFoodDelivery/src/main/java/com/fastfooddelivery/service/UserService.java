@@ -1,17 +1,18 @@
 package com.fastfooddelivery.service;
 
-import java.time.Instant;
-import java.time.temporal.ChronoUnit;
-import java.util.Date;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Optional;
-import java.util.Set;
-import java.util.stream.Collectors;
+import com.fastfooddelivery.domain.Authority;
+import com.fastfooddelivery.domain.User;
+import com.fastfooddelivery.repository.AuthorityRepository;
+import com.fastfooddelivery.config.Constants;
+import com.fastfooddelivery.repository.UserRepository;
+import com.fastfooddelivery.security.AuthoritiesConstants;
+import com.fastfooddelivery.security.SecurityUtils;
+import com.fastfooddelivery.service.util.RandomUtil;
+import com.fastfooddelivery.service.dto.UserDTO;
+import com.fastfooddelivery.web.rest.vm.ManagedUserVM;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.CacheManager;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -20,17 +21,10 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.fastfooddelivery.config.Constants;
-import com.fastfooddelivery.domain.Authority;
-import com.fastfooddelivery.domain.Cliente;
-import com.fastfooddelivery.domain.User;
-import com.fastfooddelivery.repository.AuthorityRepository;
-import com.fastfooddelivery.repository.ClienteRepository;
-import com.fastfooddelivery.repository.UserRepository;
-import com.fastfooddelivery.security.AuthoritiesConstants;
-import com.fastfooddelivery.security.SecurityUtils;
-import com.fastfooddelivery.service.dto.UserDTO;
-import com.fastfooddelivery.service.util.RandomUtil;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
+import java.util.*;
+import java.util.stream.Collectors;
 
 /**
  * Service class for managing users.
@@ -41,9 +35,8 @@ public class UserService {
 
     private final Logger log = LoggerFactory.getLogger(UserService.class);
 
-    @Autowired
-    private ClienteRepository clienteRepository;
-    
+    private static final String USERS_CACHE = "users";
+
     private final UserRepository userRepository;
 
     private final PasswordEncoder passwordEncoder;
@@ -66,7 +59,7 @@ public class UserService {
                 // activate given user for the registration key.
                 user.setActivated(true);
                 user.setActivationKey(null);
-                cacheManager.getCache("users").evict(user.getLogin());
+                cacheManager.getCache(USERS_CACHE).evict(user.getLogin());
                 log.debug("Activated user: {}", user);
                 return user;
             });
@@ -81,7 +74,7 @@ public class UserService {
                 user.setPassword(passwordEncoder.encode(newPassword));
                 user.setResetKey(null);
                 user.setResetDate(null);
-                cacheManager.getCache("users").evict(user.getLogin());
+                cacheManager.getCache(USERS_CACHE).evict(user.getLogin());
                 return user;
            });
     }
@@ -92,26 +85,25 @@ public class UserService {
             .map(user -> {
                 user.setResetKey(RandomUtil.generateResetKey());
                 user.setResetDate(Instant.now());
-                cacheManager.getCache("users").evict(user.getLogin());
+                cacheManager.getCache(USERS_CACHE).evict(user.getLogin());
                 return user;
             });
     }
 
-    public User createUser(String login, String password, String firstName, String lastName, String email,
-        String imageUrl, String langKey, String nome, Date dataNascimento, String celular) {
+    public User registerUser(ManagedUserVM userDTO) {
 
         User newUser = new User();
         Authority authority = authorityRepository.findOne(AuthoritiesConstants.USER);
         Set<Authority> authorities = new HashSet<>();
-        String encryptedPassword = passwordEncoder.encode(password);
-        newUser.setLogin(login);
+        String encryptedPassword = passwordEncoder.encode(userDTO.getPassword());
+        newUser.setLogin(userDTO.getLogin());
         // new user gets initially a generated password
         newUser.setPassword(encryptedPassword);
-        newUser.setFirstName(firstName);
-        newUser.setLastName(lastName);
-        newUser.setEmail(email);
-        newUser.setImageUrl(imageUrl);
-        newUser.setLangKey(langKey);
+        newUser.setFirstName(userDTO.getFirstName());
+        newUser.setLastName(userDTO.getLastName());
+        newUser.setEmail(userDTO.getEmail());
+        newUser.setImageUrl(userDTO.getImageUrl());
+        newUser.setLangKey(userDTO.getLangKey());
         // new user is not active
         newUser.setActivated(false);
         // new user gets registration key
@@ -120,14 +112,6 @@ public class UserService {
         newUser.setAuthorities(authorities);
         userRepository.save(newUser);
         log.debug("Created Information for User: {}", newUser);
-        
-     // Create and save the cliente entity
-        Cliente cliente = new Cliente();
-        cliente.setUser(newUser);
-        cliente.setNome(nome);
-        cliente.setDataNascimento(dataNascimento);
-        cliente.setCelular(celular);
-        clienteRepository.save(cliente);
         return newUser;
     }
 
@@ -144,10 +128,9 @@ public class UserService {
             user.setLangKey(userDTO.getLangKey());
         }
         if (userDTO.getAuthorities() != null) {
-            Set<Authority> authorities = new HashSet<>();
-            userDTO.getAuthorities().forEach(
-                authority -> authorities.add(authorityRepository.findOne(authority))
-            );
+            Set<Authority> authorities = userDTO.getAuthorities().stream()
+                .map(authorityRepository::findOne)
+                .collect(Collectors.toSet());
             user.setAuthorities(authorities);
         }
         String encryptedPassword = passwordEncoder.encode(RandomUtil.generatePassword());
@@ -176,7 +159,7 @@ public class UserService {
             user.setEmail(email);
             user.setLangKey(langKey);
             user.setImageUrl(imageUrl);
-            cacheManager.getCache("users").evict(user.getLogin());
+            cacheManager.getCache(USERS_CACHE).evict(user.getLogin());
             log.debug("Changed Information for User: {}", user);
         });
     }
@@ -203,7 +186,7 @@ public class UserService {
                 userDTO.getAuthorities().stream()
                     .map(authorityRepository::findOne)
                     .forEach(managedAuthorities::add);
-                cacheManager.getCache("users").evict(user.getLogin());
+                cacheManager.getCache(USERS_CACHE).evict(user.getLogin());
                 log.debug("Changed Information for User: {}", user);
                 return user;
             })
@@ -213,7 +196,7 @@ public class UserService {
     public void deleteUser(String login) {
         userRepository.findOneByLogin(login).ifPresent(user -> {
             userRepository.delete(user);
-            cacheManager.getCache("users").evict(login);
+            cacheManager.getCache(USERS_CACHE).evict(login);
             log.debug("Deleted User: {}", user);
         });
     }
@@ -222,7 +205,7 @@ public class UserService {
         userRepository.findOneByLogin(SecurityUtils.getCurrentUserLogin()).ifPresent(user -> {
             String encryptedPassword = passwordEncoder.encode(password);
             user.setPassword(encryptedPassword);
-            cacheManager.getCache("users").evict(user.getLogin());
+            cacheManager.getCache(USERS_CACHE).evict(user.getLogin());
             log.debug("Changed password for User: {}", user);
         });
     }
@@ -258,7 +241,7 @@ public class UserService {
         for (User user : users) {
             log.debug("Deleting not activated user {}", user.getLogin());
             userRepository.delete(user);
-            cacheManager.getCache("users").evict(user.getLogin());
+            cacheManager.getCache(USERS_CACHE).evict(user.getLogin());
         }
     }
 

@@ -10,19 +10,10 @@
                     "required": "O usuário é obrigatório.",
                     "minlength": "O usuário deve ter pelo menos 1 caractere",
                     "maxlength": "O usuário não pode ter mais de 50 caracteres",
-                    "pattern": "Seu login s&#243; pode conter letras min&#250;sculas e d&#237;gitos"
-                },
-                "nome": {
-		            "required": "O nome é obrigatório."
-                },
-                "celular": {
-		            "required": "O n&#250;mero do celular &#233; obrigat&#243;rio."
-                },
-                "dataNascimento": {
-		         	"required": "A data de nascimento &#233; obrigat&#243;rio."
+                    "pattern": "Your login can only contain lower-case letters and digits"
                 }
             },
-            "success": "<strong>Cadastro salvo com sucesso!</strong> Favor verificar seu email para confirmar a conta.",
+            "success": "<strong>Cadstro salvo com sucesso!</strong> Favor verificar seu email para confirmar a conta.",
             "error": {
                 "fail": "<strong>Erro ao realizar o cadastro!</strong> Favor tentar novamente mais tarde.",
                 "userexists": "<strong>Usuário já registrado!</strong> Favor escolher outro.",

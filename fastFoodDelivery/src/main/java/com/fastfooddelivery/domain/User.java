@@ -20,6 +20,9 @@ import java.util.Objects;
 import java.util.Set;
 import java.time.Instant;
 
+/**
+ * A user.
+ */
 @Entity
 @Table(name = "jhi_user")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -61,8 +64,8 @@ public class User extends AbstractAuditingEntity implements Serializable {
     @Column(nullable = false)
     private boolean activated = false;
 
-    @Size(min = 2, max = 5)
-    @Column(name = "lang_key", length = 5)
+    @Size(min = 2, max = 6)
+    @Column(name = "lang_key", length = 6)
     private String langKey;
 
     @Size(max = 256)
@@ -180,6 +183,7 @@ public class User extends AbstractAuditingEntity implements Serializable {
     public void setResetDate(Instant resetDate) {
        this.resetDate = resetDate;
     }
+
     public String getLangKey() {
         return langKey;
     }

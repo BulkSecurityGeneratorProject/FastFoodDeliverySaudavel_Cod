@@ -1,12 +1,10 @@
 package com.fastfooddelivery.web.rest.vm;
 
-import java.time.Instant;
-import java.util.Date;
-import java.util.Set;
-
+import com.fastfooddelivery.service.dto.UserDTO;
 import javax.validation.constraints.Size;
 
-import com.fastfooddelivery.service.dto.UserDTO;
+import java.time.Instant;
+import java.util.Set;
 
 /**
  * View Model extending the UserDTO, which is meant to be used in the user management UI.
@@ -19,12 +17,6 @@ public class ManagedUserVM extends UserDTO {
 
     @Size(min = PASSWORD_MIN_LENGTH, max = PASSWORD_MAX_LENGTH)
     private String password;
-    
-    private String nome;
-    
-    private Date dataNascimento;
-    
-    private String celular;
 
     public ManagedUserVM() {
         // Empty constructor needed for Jackson.
@@ -37,7 +29,6 @@ public class ManagedUserVM extends UserDTO {
 
         super(id, login, firstName, lastName, email, activated, imageUrl, langKey,
             createdBy, createdDate, lastModifiedBy, lastModifiedDate,  authorities);
-
         this.password = password;
     }
 
@@ -50,28 +41,4 @@ public class ManagedUserVM extends UserDTO {
         return "ManagedUserVM{" +
             "} " + super.toString();
     }
-
-	public String getNome() {
-		return nome;
-	}
-
-	public void setNome(String nome) {
-		this.nome = nome;
-	}
-
-	public Date getDataNascimento() {
-		return dataNascimento;
-	}
-
-	public void setDataNascimento(Date dataNascimento) {
-		this.dataNascimento = dataNascimento;
-	}
-
-	public String getCelular() {
-		return celular;
-	}
-
-	public void setCelular(String celular) {
-		this.celular = celular;
-	}
 }
