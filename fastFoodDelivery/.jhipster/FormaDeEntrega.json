@@ -1,0 +1,16 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "formaDeEntrega",
+            "fieldType": "Integer"
+        }
+    ],
+    "changelogDate": "20171026020937",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "forma_de_entrega",
+    "jpaMetamodelFiltering": false,
+    "pagination": "no"
+}

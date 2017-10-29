@@ -1,0 +1,33 @@
+
+<div>
+    <h2><span data-translate="fastFoodDeliveryApp.refeicao.detail.title">Refeicao</span> {{vm.refeicao.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="fastFoodDeliveryApp.refeicao.refeicao">Refeicao</span></dt>
+        <dd>
+            <span>{{vm.refeicao.refeicao}}</span>
+        </dd>
+        <dt><span data-translate="fastFoodDeliveryApp.refeicao.valorRefeicao">Valor Refeicao</span></dt>
+        <dd>
+            <a ui-sref="valor-refeicao-detail({id:vm.refeicao.valorRefeicao.id})">{{vm.refeicao.valorRefeicao.id}}</a>
+        </dd>
+        <dt><span data-translate="fastFoodDeliveryApp.refeicao.tipoAlimento">Tipo Alimento</span></dt>
+        <dd>
+            <span ng-repeat="tipoAlimento in vm.refeicao.tipoAlimentos">
+                <a ui-sref="tipo-alimento-detail({id: tipoAlimento.id})">{{tipoAlimento.id}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="refeicao-detail.edit({id:vm.refeicao.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

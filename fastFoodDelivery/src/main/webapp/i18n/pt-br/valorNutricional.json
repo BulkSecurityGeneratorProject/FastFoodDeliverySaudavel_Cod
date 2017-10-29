@@ -1,0 +1,27 @@
+{
+    "fastFoodDeliveryApp": {
+        "valorNutricional" : {
+            "home": {
+                "title": "Valor Nutricionals",
+                "createLabel": "Criar novo Valor Nutricional",
+                "createOrEditLabel": "Criar ou editar Valor Nutricional"
+            },
+            "created": "Um novo Valor Nutricional foi criado com o identificador {{ param }}",
+            "updated": "Um Valor Nutricional foi atualizado com o identificador {{ param }}",
+            "deleted": "Um Valor Nutricional foi deletado com o identificador {{ param }}",
+            "delete": {
+                "question": "Tem certeza de que deseja excluir Valor Nutricional {{ id }}?"
+            },
+            "detail": {
+                "title": "Valor Nutricional"
+            },
+            "caloria": "Caloria",
+            "proteina": "Proteina",
+            "carboidrato": "Carboidrato",
+            "acucar": "Acucar",
+            "gordurasSaturadas": "Gorduras Saturadas",
+            "gordurasTotais": "Gorduras Totais",
+            "sodio": "Sodio"
+        }
+    }
+}

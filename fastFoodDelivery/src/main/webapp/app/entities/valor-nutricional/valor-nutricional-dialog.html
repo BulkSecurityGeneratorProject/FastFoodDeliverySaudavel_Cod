@@ -1,0 +1,68 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myValorNutricionalLabel" data-translate="fastFoodDeliveryApp.valorNutricional.home.createOrEditLabel">Create or edit a Valor Nutricional</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.valorNutricional.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.valorNutricional.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="fastFoodDeliveryApp.valorNutricional.caloria" for="field_caloria">Caloria</label>
+            <input type="number" class="form-control" name="caloria" id="field_caloria"
+                    ng-model="vm.valorNutricional.caloria"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="fastFoodDeliveryApp.valorNutricional.proteina" for="field_proteina">Proteina</label>
+            <input type="number" class="form-control" name="proteina" id="field_proteina"
+                    ng-model="vm.valorNutricional.proteina"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="fastFoodDeliveryApp.valorNutricional.carboidrato" for="field_carboidrato">Carboidrato</label>
+            <input type="number" class="form-control" name="carboidrato" id="field_carboidrato"
+                    ng-model="vm.valorNutricional.carboidrato"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="fastFoodDeliveryApp.valorNutricional.acucar" for="field_acucar">Acucar</label>
+            <input type="number" class="form-control" name="acucar" id="field_acucar"
+                    ng-model="vm.valorNutricional.acucar"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="fastFoodDeliveryApp.valorNutricional.gordurasSaturadas" for="field_gordurasSaturadas">Gorduras Saturadas</label>
+            <input type="number" class="form-control" name="gordurasSaturadas" id="field_gordurasSaturadas"
+                    ng-model="vm.valorNutricional.gordurasSaturadas"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="fastFoodDeliveryApp.valorNutricional.gordurasTotais" for="field_gordurasTotais">Gorduras Totais</label>
+            <input type="number" class="form-control" name="gordurasTotais" id="field_gordurasTotais"
+                    ng-model="vm.valorNutricional.gordurasTotais"
+                    />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="fastFoodDeliveryApp.valorNutricional.sodio" for="field_sodio">Sodio</label>
+            <input type="number" class="form-control" name="sodio" id="field_sodio"
+                    ng-model="vm.valorNutricional.sodio"
+                    />
+        </div>
+
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

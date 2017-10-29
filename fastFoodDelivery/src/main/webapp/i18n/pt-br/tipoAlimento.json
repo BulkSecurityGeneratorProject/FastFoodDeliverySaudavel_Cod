@@ -1,0 +1,21 @@
+{
+    "fastFoodDeliveryApp": {
+        "tipoAlimento" : {
+            "home": {
+                "title": "Tipo Alimentos",
+                "createLabel": "Criar novo Tipo Alimento",
+                "createOrEditLabel": "Criar ou editar Tipo Alimento"
+            },
+            "created": "Um novo Tipo Alimento foi criado com o identificador {{ param }}",
+            "updated": "Um Tipo Alimento foi atualizado com o identificador {{ param }}",
+            "deleted": "Um Tipo Alimento foi deletado com o identificador {{ param }}",
+            "delete": {
+                "question": "Tem certeza de que deseja excluir Tipo Alimento {{ id }}?"
+            },
+            "detail": {
+                "title": "Tipo Alimento"
+            },
+            "tipoAlimento": "Tipo Alimento"
+        }
+    }
+}

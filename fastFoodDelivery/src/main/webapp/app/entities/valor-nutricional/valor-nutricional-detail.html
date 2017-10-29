@@ -1,0 +1,47 @@
+
+<div>
+    <h2><span data-translate="fastFoodDeliveryApp.valorNutricional.detail.title">Valor Nutricional</span> {{vm.valorNutricional.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="fastFoodDeliveryApp.valorNutricional.caloria">Caloria</span></dt>
+        <dd>
+            <span>{{vm.valorNutricional.caloria}}</span>
+        </dd>
+        <dt><span data-translate="fastFoodDeliveryApp.valorNutricional.proteina">Proteina</span></dt>
+        <dd>
+            <span>{{vm.valorNutricional.proteina}}</span>
+        </dd>
+        <dt><span data-translate="fastFoodDeliveryApp.valorNutricional.carboidrato">Carboidrato</span></dt>
+        <dd>
+            <span>{{vm.valorNutricional.carboidrato}}</span>
+        </dd>
+        <dt><span data-translate="fastFoodDeliveryApp.valorNutricional.acucar">Acucar</span></dt>
+        <dd>
+            <span>{{vm.valorNutricional.acucar}}</span>
+        </dd>
+        <dt><span data-translate="fastFoodDeliveryApp.valorNutricional.gordurasSaturadas">Gorduras Saturadas</span></dt>
+        <dd>
+            <span>{{vm.valorNutricional.gordurasSaturadas}}</span>
+        </dd>
+        <dt><span data-translate="fastFoodDeliveryApp.valorNutricional.gordurasTotais">Gorduras Totais</span></dt>
+        <dd>
+            <span>{{vm.valorNutricional.gordurasTotais}}</span>
+        </dd>
+        <dt><span data-translate="fastFoodDeliveryApp.valorNutricional.sodio">Sodio</span></dt>
+        <dd>
+            <span>{{vm.valorNutricional.sodio}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="valor-nutricional-detail.edit({id:vm.valorNutricional.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

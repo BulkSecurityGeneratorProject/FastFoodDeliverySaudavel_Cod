@@ -7,6 +7,21 @@
             "jhipster-needle-menu-add-element": "JHipster will add additional menu entries here (do not translate!)",
             "entities": {
                 "main": "Entidades",
+                "endereco": "Endereco",
+                "cartao": "Cartao",
+                "pais": "Pais",
+                "pedido": "Pedido",
+                "formaDeEntrega": "Forma De Entrega",
+                "bebida": "Bebida",
+                "preparo": "Preparo",
+                "alimento": "Alimento",
+                "tipoAlimento": "Tipo Alimento",
+                "refeicao": "Refeicao",
+                "valorRefeicao": "Valor Refeicao",
+                "doce": "Doce",
+                "valorNutricional": "Valor Nutricional",
+                "tempero": "Tempero",
+                "cliente": "Cliente",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },
             "account": {

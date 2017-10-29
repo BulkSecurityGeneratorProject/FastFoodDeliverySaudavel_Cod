@@ -1,0 +1,24 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "cartao",
+            "otherEntityName": "cartao",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "pais"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "pais",
+            "fieldType": "String",
+            "fieldValidateRules": []
+        }
+    ],
+    "changelogDate": "20171026020517",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "pais",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pager"
+}

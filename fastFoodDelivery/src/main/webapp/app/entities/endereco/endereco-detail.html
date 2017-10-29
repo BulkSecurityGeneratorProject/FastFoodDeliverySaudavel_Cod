@@ -1,0 +1,35 @@
+
+<div>
+    <h2><span data-translate="fastFoodDeliveryApp.endereco.detail.title">Endereco</span> {{vm.endereco.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="fastFoodDeliveryApp.endereco.cep">Cep</span></dt>
+        <dd>
+            <span>{{vm.endereco.cep}}</span>
+        </dd>
+        <dt><span data-translate="fastFoodDeliveryApp.endereco.endereco">Endereco</span></dt>
+        <dd>
+            <span>{{vm.endereco.endereco}}</span>
+        </dd>
+        <dt><span data-translate="fastFoodDeliveryApp.endereco.numero">Numero</span></dt>
+        <dd>
+            <span>{{vm.endereco.numero}}</span>
+        </dd>
+        <dt><span data-translate="fastFoodDeliveryApp.endereco.complemento">Complemento</span></dt>
+        <dd>
+            <span>{{vm.endereco.complemento}}</span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="endereco-detail.edit({id:vm.endereco.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

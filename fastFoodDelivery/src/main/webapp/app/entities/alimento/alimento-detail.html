@@ -1,0 +1,43 @@
+
+<div>
+    <h2><span data-translate="fastFoodDeliveryApp.alimento.detail.title">Alimento</span> {{vm.alimento.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="fastFoodDeliveryApp.alimento.alimentoCol">Alimento Col</span></dt>
+        <dd>
+            <span>{{vm.alimento.alimentoCol}}</span>
+        </dd>
+        <dt><span data-translate="fastFoodDeliveryApp.alimento.preparo">Preparo</span></dt>
+        <dd>
+            <span ng-repeat="preparo in vm.alimento.preparos">
+                <a ui-sref="preparo-detail({id: preparo.id})">{{preparo.id}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
+        <dt><span data-translate="fastFoodDeliveryApp.alimento.tempero">Tempero</span></dt>
+        <dd>
+            <span ng-repeat="tempero in vm.alimento.temperos">
+                <a ui-sref="tempero-detail({id: tempero.id})">{{tempero.id}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
+        <dt><span data-translate="fastFoodDeliveryApp.alimento.valorNutricional">Valor Nutricional</span></dt>
+        <dd>
+            <a ui-sref="valor-nutricional-detail({id:vm.alimento.valorNutricional.id})">{{vm.alimento.valorNutricional.id}}</a>
+        </dd>
+        <dt><span data-translate="fastFoodDeliveryApp.alimento.tipoAlimento">Tipo Alimento</span></dt>
+        <dd>
+            <a ui-sref="tipo-alimento-detail({id:vm.alimento.tipoAlimento.id})">{{vm.alimento.tipoAlimento.id}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="alimento-detail.edit({id:vm.alimento.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

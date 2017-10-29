@@ -1,0 +1,42 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myRefeicaoLabel" data-translate="fastFoodDeliveryApp.refeicao.home.createOrEditLabel">Create or edit a Refeicao</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.refeicao.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.refeicao.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="fastFoodDeliveryApp.refeicao.refeicao" for="field_refeicao">Refeicao</label>
+            <input type="text" class="form-control" name="refeicao" id="field_refeicao"
+                    ng-model="vm.refeicao.refeicao"
+                    />
+        </div>
+
+        <div class="form-group">
+            <label data-translate="fastFoodDeliveryApp.refeicao.valorRefeicao" for="field_valorRefeicao">Valor Refeicao</label>
+            <select class="form-control" id="field_valorRefeicao" name="valorRefeicao" ng-model="vm.refeicao.valorRefeicao" ng-options="valorRefeicao as valorRefeicao.id for valorRefeicao in vm.valorrefeicaos track by valorRefeicao.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label data-translate="fastFoodDeliveryApp.refeicao.tipoAlimento" for="field_tipoAlimento">Tipo Alimento</label>
+            <select class="form-control" id="field_tipoAlimento" multiple name="tipoAlimento" ng-model="vm.refeicao.tipoAlimentos" ng-options="tipoAlimento as tipoAlimento.id for tipoAlimento in vm.tipoalimentos track by tipoAlimento.id"></select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity Bebida.
+    -->
+    <changeSet id="20171026021110-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="bebidas_id"
+                                 baseTableName="bebida_doce"
+                                 constraintName="fk_bebida_doce_bebidas_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="bebida"/>
+        <addForeignKeyConstraint baseColumnNames="doces_id"
+                                 baseTableName="bebida_doce"
+                                 constraintName="fk_bebida_doce_doces_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="doce"/>
+        
+        <addForeignKeyConstraint baseColumnNames="valor_nutricional_id"
+                                 baseTableName="bebida"
+                                 constraintName="fk_bebida_valor_nutricional_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="valor_nutricional"/>
+
+        <addForeignKeyConstraint baseColumnNames="valor_refeicao_id"
+                                 baseTableName="bebida"
+                                 constraintName="fk_bebida_valor_refeicao_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="valor_refeicao"/>
+
+    </changeSet>
+</databaseChangeLog>

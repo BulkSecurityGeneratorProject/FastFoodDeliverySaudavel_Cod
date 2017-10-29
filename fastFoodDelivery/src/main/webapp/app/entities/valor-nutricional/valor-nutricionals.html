@@ -1,0 +1,72 @@
+<div>
+    <h2 data-translate="fastFoodDeliveryApp.valorNutricional.home.title">Valor Nutricionals</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="valor-nutricional.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="fastFoodDeliveryApp.valorNutricional.home.createLabel">
+                        Create new Valor Nutricional
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                    <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="caloria"><span data-translate="fastFoodDeliveryApp.valorNutricional.caloria">Caloria</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="proteina"><span data-translate="fastFoodDeliveryApp.valorNutricional.proteina">Proteina</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="carboidrato"><span data-translate="fastFoodDeliveryApp.valorNutricional.carboidrato">Carboidrato</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="acucar"><span data-translate="fastFoodDeliveryApp.valorNutricional.acucar">Acucar</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="gordurasSaturadas"><span data-translate="fastFoodDeliveryApp.valorNutricional.gordurasSaturadas">Gorduras Saturadas</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="gordurasTotais"><span data-translate="fastFoodDeliveryApp.valorNutricional.gordurasTotais">Gorduras Totais</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="sodio"><span data-translate="fastFoodDeliveryApp.valorNutricional.sodio">Sodio</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="valorNutricional in vm.valorNutricionals track by valorNutricional.id">
+                    <td><a ui-sref="valor-nutricional-detail({id:valorNutricional.id})">{{valorNutricional.id}}</a></td>
+                    <td>{{valorNutricional.caloria}}</td>
+                    <td>{{valorNutricional.proteina}}</td>
+                    <td>{{valorNutricional.carboidrato}}</td>
+                    <td>{{valorNutricional.acucar}}</td>
+                    <td>{{valorNutricional.gordurasSaturadas}}</td>
+                    <td>{{valorNutricional.gordurasTotais}}</td>
+                    <td>{{valorNutricional.sodio}}</td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="valor-nutricional-detail({id:valorNutricional.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="valor-nutricional.edit({id:valorNutricional.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="valor-nutricional.delete({id:valorNutricional.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="text-center">
+        <jhi-item-count page="vm.page" total="vm.queryCount" items-per-page="vm.itemsPerPage"></jhi-item-count>
+    </div>
+    <uib-pager total-items="vm.totalItems" ng-model="vm.page" ng-change="vm.transition()"></uib-pager>
+</div>

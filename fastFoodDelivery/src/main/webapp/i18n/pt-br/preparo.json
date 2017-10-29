@@ -1,0 +1,21 @@
+{
+    "fastFoodDeliveryApp": {
+        "preparo" : {
+            "home": {
+                "title": "Preparos",
+                "createLabel": "Criar novo Preparo",
+                "createOrEditLabel": "Criar ou editar Preparo"
+            },
+            "created": "Um novo Preparo foi criado com o identificador {{ param }}",
+            "updated": "Um Preparo foi atualizado com o identificador {{ param }}",
+            "deleted": "Um Preparo foi deletado com o identificador {{ param }}",
+            "delete": {
+                "question": "Tem certeza de que deseja excluir Preparo {{ id }}?"
+            },
+            "detail": {
+                "title": "Preparo"
+            },
+            "preparo": "Preparo"
+        }
+    }
+}

@@ -5,6 +5,25 @@
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
 
     <include file="config/liquibase/changelog/00000000000000_initial_schema.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171026015233_added_entity_Endereco.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171026020359_added_entity_Cartao.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171026020517_added_entity_Pais.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171026020722_added_entity_Pedido.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171026020937_added_entity_FormaDeEntrega.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171026021110_added_entity_Bebida.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171026021213_added_entity_Preparo.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171026021316_added_entity_Alimento.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171026021428_added_entity_TipoAlimento.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171026021523_added_entity_Refeicao.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171026021625_added_entity_ValorRefeicao.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171026021718_added_entity_Doce.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171026022206_added_entity_ValorNutricional.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171026022252_added_entity_Tempero.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171026022444_added_entity_Cliente.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
+    <include file="config/liquibase/changelog/20171026020722_added_entity_constraints_Pedido.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171026021110_added_entity_constraints_Bebida.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171026021316_added_entity_constraints_Alimento.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171026021523_added_entity_constraints_Refeicao.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>

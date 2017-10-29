@@ -1,0 +1,21 @@
+{
+    "fastFoodDeliveryApp": {
+        "valorRefeicao" : {
+            "home": {
+                "title": "Valor Refeicaos",
+                "createLabel": "Criar novo Valor Refeicao",
+                "createOrEditLabel": "Criar ou editar Valor Refeicao"
+            },
+            "created": "Um novo Valor Refeicao foi criado com o identificador {{ param }}",
+            "updated": "Um Valor Refeicao foi atualizado com o identificador {{ param }}",
+            "deleted": "Um Valor Refeicao foi deletado com o identificador {{ param }}",
+            "delete": {
+                "question": "Tem certeza de que deseja excluir Valor Refeicao {{ id }}?"
+            },
+            "detail": {
+                "title": "Valor Refeicao"
+            },
+            "valor": "Valor"
+        }
+    }
+}

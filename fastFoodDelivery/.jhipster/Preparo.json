@@ -1,0 +1,17 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "preparo",
+            "fieldType": "String",
+            "fieldValidateRules": []
+        }
+    ],
+    "changelogDate": "20171026021213",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "preparo",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pager"
+}

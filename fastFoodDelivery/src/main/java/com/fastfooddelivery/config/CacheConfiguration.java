@@ -41,6 +41,28 @@ public class CacheConfiguration {
             cm.createCache(com.fastfooddelivery.domain.User.class.getName(), jcacheConfiguration);
             cm.createCache(com.fastfooddelivery.domain.Authority.class.getName(), jcacheConfiguration);
             cm.createCache(com.fastfooddelivery.domain.User.class.getName() + ".authorities", jcacheConfiguration);
+            cm.createCache(com.fastfooddelivery.domain.Endereco.class.getName(), jcacheConfiguration);
+            cm.createCache(com.fastfooddelivery.domain.Cartao.class.getName(), jcacheConfiguration);
+            cm.createCache(com.fastfooddelivery.domain.Pais.class.getName(), jcacheConfiguration);
+            cm.createCache(com.fastfooddelivery.domain.Pedido.class.getName(), jcacheConfiguration);
+            cm.createCache(com.fastfooddelivery.domain.FormaDeEntrega.class.getName(), jcacheConfiguration);
+            cm.createCache(com.fastfooddelivery.domain.Bebida.class.getName(), jcacheConfiguration);
+            cm.createCache(com.fastfooddelivery.domain.Preparo.class.getName(), jcacheConfiguration);
+            cm.createCache(com.fastfooddelivery.domain.Alimento.class.getName(), jcacheConfiguration);
+            cm.createCache(com.fastfooddelivery.domain.TipoAlimento.class.getName(), jcacheConfiguration);
+            cm.createCache(com.fastfooddelivery.domain.Refeicao.class.getName(), jcacheConfiguration);
+            cm.createCache(com.fastfooddelivery.domain.ValorRefeicao.class.getName(), jcacheConfiguration);
+            cm.createCache(com.fastfooddelivery.domain.Doce.class.getName(), jcacheConfiguration);
+            cm.createCache(com.fastfooddelivery.domain.ValorNutricional.class.getName(), jcacheConfiguration);
+            cm.createCache(com.fastfooddelivery.domain.Tempero.class.getName(), jcacheConfiguration);
+            cm.createCache(com.fastfooddelivery.domain.Cliente.class.getName(), jcacheConfiguration);
+            cm.createCache(com.fastfooddelivery.domain.Pais.class.getName() + ".cartaos", jcacheConfiguration);
+            cm.createCache(com.fastfooddelivery.domain.Pedido.class.getName() + ".bebidas", jcacheConfiguration);
+            cm.createCache(com.fastfooddelivery.domain.Pedido.class.getName() + ".alimentos", jcacheConfiguration);
+            cm.createCache(com.fastfooddelivery.domain.Bebida.class.getName() + ".doces", jcacheConfiguration);
+            cm.createCache(com.fastfooddelivery.domain.Alimento.class.getName() + ".preparos", jcacheConfiguration);
+            cm.createCache(com.fastfooddelivery.domain.Alimento.class.getName() + ".temperos", jcacheConfiguration);
+            cm.createCache(com.fastfooddelivery.domain.Refeicao.class.getName() + ".tipoAlimentos", jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

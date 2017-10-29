@@ -1,0 +1,56 @@
+
+<form name="editForm" role="form" novalidate ng-submit="vm.save()">
+
+    <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
+                ng-click="vm.clear()">&times;</button>
+        <h4 class="modal-title" id="myPedidoLabel" data-translate="fastFoodDeliveryApp.pedido.home.createOrEditLabel">Create or edit a Pedido</h4>
+    </div>
+    <div class="modal-body">
+        <jhi-alert-error></jhi-alert-error>
+        <div class="form-group" ng-show="vm.pedido.id">
+            <label for="id" data-translate="global.field.id">ID</label>
+            <input type="text" class="form-control" id="id" name="id"
+                    ng-model="vm.pedido.id" readonly />
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="fastFoodDeliveryApp.pedido.horarioDeRetirada" for="field_horarioDeRetirada">Horario De Retirada</label>
+                <div class="input-group">
+                    <input id="field_horarioDeRetirada" type="text" class="form-control" name="horarioDeRetirada" datetime-picker="{{dateformat}}" ng-model="vm.pedido.horarioDeRetirada" is-open="vm.datePickerOpenStatus.horarioDeRetirada"
+                    />
+                    <span class="input-group-btn">
+                        <button type="button" class="btn btn-default" ng-click="vm.openCalendar('horarioDeRetirada')"><i class="glyphicon glyphicon-calendar"></i></button>
+                    </span>
+                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label" data-translate="fastFoodDeliveryApp.pedido.valorTotal" for="field_valorTotal">Valor Total</label>
+            <input type="text" class="form-control" name="valorTotal" id="field_valorTotal"
+                    ng-model="vm.pedido.valorTotal"
+                    />
+        </div>
+
+        <div class="form-group">
+            <label data-translate="fastFoodDeliveryApp.pedido.bebida" for="field_bebida">Bebida</label>
+            <select class="form-control" id="field_bebida" multiple name="bebida" ng-model="vm.pedido.bebidas" ng-options="bebida as bebida.id for bebida in vm.bebidas track by bebida.id"></select>
+        </div>
+        <div class="form-group">
+            <label data-translate="fastFoodDeliveryApp.pedido.formaDeEntrega" for="field_formaDeEntrega">Forma De Entrega</label>
+            <select class="form-control" id="field_formaDeEntrega" name="formaDeEntrega" ng-model="vm.pedido.formaDeEntrega" ng-options="formaDeEntrega as formaDeEntrega.id for formaDeEntrega in vm.formadeentregas track by formaDeEntrega.id">
+                <option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label data-translate="fastFoodDeliveryApp.pedido.alimento" for="field_alimento">Alimento</label>
+            <select class="form-control" id="field_alimento" multiple name="alimento" ng-model="vm.pedido.alimentos" ng-options="alimento as alimento.id for alimento in vm.alimentos track by alimento.id"></select>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+        </button>
+        <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+        </button>
+    </div>
+</form>

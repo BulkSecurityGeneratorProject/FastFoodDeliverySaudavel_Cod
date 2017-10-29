@@ -1,0 +1,17 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "valor",
+            "fieldType": "BigDecimal",
+            "fieldValidateRules": []
+        }
+    ],
+    "changelogDate": "20171026021625",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "valor_refeicao",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pager"
+}

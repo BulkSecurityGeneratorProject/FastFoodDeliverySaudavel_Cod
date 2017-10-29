@@ -1,0 +1,21 @@
+{
+    "fastFoodDeliveryApp": {
+        "formaDeEntrega" : {
+            "home": {
+                "title": "Forma De Entregas",
+                "createLabel": "Criar novo Forma De Entrega",
+                "createOrEditLabel": "Criar ou editar Forma De Entrega"
+            },
+            "created": "Um novo Forma De Entrega foi criado com o identificador {{ param }}",
+            "updated": "Um Forma De Entrega foi atualizado com o identificador {{ param }}",
+            "deleted": "Um Forma De Entrega foi deletado com o identificador {{ param }}",
+            "delete": {
+                "question": "Tem certeza de que deseja excluir Forma De Entrega {{ id }}?"
+            },
+            "detail": {
+                "title": "Forma De Entrega"
+            },
+            "formaDeEntrega": "Forma De Entrega"
+        }
+    }
+}

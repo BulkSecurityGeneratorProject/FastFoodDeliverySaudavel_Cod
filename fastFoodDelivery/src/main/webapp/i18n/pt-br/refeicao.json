@@ -1,0 +1,23 @@
+{
+    "fastFoodDeliveryApp": {
+        "refeicao" : {
+            "home": {
+                "title": "Refeicaos",
+                "createLabel": "Criar novo Refeicao",
+                "createOrEditLabel": "Criar ou editar Refeicao"
+            },
+            "created": "Um novo Refeicao foi criado com o identificador {{ param }}",
+            "updated": "Um Refeicao foi atualizado com o identificador {{ param }}",
+            "deleted": "Um Refeicao foi deletado com o identificador {{ param }}",
+            "delete": {
+                "question": "Tem certeza de que deseja excluir Refeicao {{ id }}?"
+            },
+            "detail": {
+                "title": "Refeicao"
+            },
+            "refeicao": "Refeicao",
+            "valorRefeicao": "Valor Refeicao",
+            "tipoAlimento": "Tipo Alimento"
+        }
+    }
+}

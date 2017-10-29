@@ -1,0 +1,43 @@
+
+<div>
+    <h2><span data-translate="fastFoodDeliveryApp.pedido.detail.title">Pedido</span> {{vm.pedido.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="fastFoodDeliveryApp.pedido.horarioDeRetirada">Horario De Retirada</span></dt>
+        <dd>
+            <span>{{vm.pedido.horarioDeRetirada | date:'medium'}}</span>
+        </dd>
+        <dt><span data-translate="fastFoodDeliveryApp.pedido.valorTotal">Valor Total</span></dt>
+        <dd>
+            <span>{{vm.pedido.valorTotal}}</span>
+        </dd>
+        <dt><span data-translate="fastFoodDeliveryApp.pedido.bebida">Bebida</span></dt>
+        <dd>
+            <span ng-repeat="bebida in vm.pedido.bebidas">
+                <a ui-sref="bebida-detail({id: bebida.id})">{{bebida.id}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
+        <dt><span data-translate="fastFoodDeliveryApp.pedido.formaDeEntrega">Forma De Entrega</span></dt>
+        <dd>
+            <a ui-sref="forma-de-entrega-detail({id:vm.pedido.formaDeEntrega.id})">{{vm.pedido.formaDeEntrega.id}}</a>
+        </dd>
+        <dt><span data-translate="fastFoodDeliveryApp.pedido.alimento">Alimento</span></dt>
+        <dd>
+            <span ng-repeat="alimento in vm.pedido.alimentos">
+                <a ui-sref="alimento-detail({id: alimento.id})">{{alimento.id}}</a>{{$last ? '' : ', '}}
+            </span>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="pedido-detail.edit({id:vm.pedido.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

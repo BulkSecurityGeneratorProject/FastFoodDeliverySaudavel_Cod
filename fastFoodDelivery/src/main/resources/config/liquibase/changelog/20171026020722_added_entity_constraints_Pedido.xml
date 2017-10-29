@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity Pedido.
+    -->
+    <changeSet id="20171026020722-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="pedidos_id"
+                                 baseTableName="pedido_bebida"
+                                 constraintName="fk_pedido_bebida_pedidos_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="pedido"/>
+        <addForeignKeyConstraint baseColumnNames="bebidas_id"
+                                 baseTableName="pedido_bebida"
+                                 constraintName="fk_pedido_bebida_bebidas_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="bebida"/>
+        
+        <addForeignKeyConstraint baseColumnNames="forma_de_entrega_id"
+                                 baseTableName="pedido"
+                                 constraintName="fk_pedido_forma_de_entrega_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="forma_de_entrega"/>
+
+        <addForeignKeyConstraint baseColumnNames="pedidos_id"
+                                 baseTableName="pedido_alimento"
+                                 constraintName="fk_pedido_alimento_pedidos_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="pedido"/>
+        <addForeignKeyConstraint baseColumnNames="alimentos_id"
+                                 baseTableName="pedido_alimento"
+                                 constraintName="fk_pedido_alimento_alimentos_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="alimento"/>
+        
+    </changeSet>
+</databaseChangeLog>

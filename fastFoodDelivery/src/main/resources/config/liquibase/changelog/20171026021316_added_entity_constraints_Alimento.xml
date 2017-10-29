@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity Alimento.
+    -->
+    <changeSet id="20171026021316-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="alimentos_id"
+                                 baseTableName="alimento_preparo"
+                                 constraintName="fk_alimento_preparo_alimentos_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="alimento"/>
+        <addForeignKeyConstraint baseColumnNames="preparos_id"
+                                 baseTableName="alimento_preparo"
+                                 constraintName="fk_alimento_preparo_preparos_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="preparo"/>
+        
+        <addForeignKeyConstraint baseColumnNames="alimentos_id"
+                                 baseTableName="alimento_tempero"
+                                 constraintName="fk_alimento_tempero_alimentos_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="alimento"/>
+        <addForeignKeyConstraint baseColumnNames="temperos_id"
+                                 baseTableName="alimento_tempero"
+                                 constraintName="fk_alimento_tempero_temperos_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tempero"/>
+        
+        <addForeignKeyConstraint baseColumnNames="valor_nutricional_id"
+                                 baseTableName="alimento"
+                                 constraintName="fk_alimento_valor_nutricional_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="valor_nutricional"/>
+
+        <addForeignKeyConstraint baseColumnNames="tipo_alimento_id"
+                                 baseTableName="alimento"
+                                 constraintName="fk_alimento_tipo_alimento_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tipo_alimento"/>
+
+    </changeSet>
+</databaseChangeLog>

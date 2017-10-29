@@ -1,0 +1,45 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "bebida",
+            "otherEntityName": "bebida",
+            "relationshipType": "many-to-many",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "pedido"
+        },
+        {
+            "relationshipName": "formaDeEntrega",
+            "otherEntityName": "formaDeEntrega",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "alimento",
+            "otherEntityName": "alimento",
+            "relationshipType": "many-to-many",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "pedido"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "horarioDeRetirada",
+            "fieldType": "Instant",
+            "fieldValidateRules": []
+        },
+        {
+            "fieldName": "valorTotal",
+            "fieldType": "String",
+            "fieldValidateRules": []
+        }
+    ],
+    "changelogDate": "20171026020722",
+    "dto": "no",
+    "service": "serviceClass",
+    "entityTableName": "pedido",
+    "jpaMetamodelFiltering": true,
+    "pagination": "pager"
+}

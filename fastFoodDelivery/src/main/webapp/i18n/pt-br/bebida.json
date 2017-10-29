@@ -1,0 +1,24 @@
+{
+    "fastFoodDeliveryApp": {
+        "bebida" : {
+            "home": {
+                "title": "Bebidas",
+                "createLabel": "Criar novo Bebida",
+                "createOrEditLabel": "Criar ou editar Bebida"
+            },
+            "created": "Um novo Bebida foi criado com o identificador {{ param }}",
+            "updated": "Um Bebida foi atualizado com o identificador {{ param }}",
+            "deleted": "Um Bebida foi deletado com o identificador {{ param }}",
+            "delete": {
+                "question": "Tem certeza de que deseja excluir Bebida {{ id }}?"
+            },
+            "detail": {
+                "title": "Bebida"
+            },
+            "bebida": "Bebida",
+            "doce": "Doce",
+            "valorNutricional": "Valor Nutricional",
+            "valorRefeicao": "Valor Refeicao"
+        }
+    }
+}

@@ -1,0 +1,17 @@
+{
+    "fluentMethods": true,
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "doce",
+            "fieldType": "String",
+            "fieldValidateRules": []
+        }
+    ],
+    "changelogDate": "20171026021718",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "doce",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pager"
+}

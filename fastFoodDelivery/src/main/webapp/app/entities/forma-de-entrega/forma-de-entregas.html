@@ -1,0 +1,56 @@
+<div>
+    <h2 data-translate="fastFoodDeliveryApp.formaDeEntrega.home.title">Forma De Entregas</h2>
+    <jhi-alert></jhi-alert>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-xs-4 no-padding-left">
+                <button class="btn btn-primary" ui-sref="forma-de-entrega.new" >
+                    <span class="glyphicon glyphicon-plus"></span>
+                    <span  data-translate="fastFoodDeliveryApp.formaDeEntrega.home.createLabel">
+                        Create new Forma De Entrega
+                    </span>
+                </button>
+            </div>
+        </div>
+    </div>
+    <br/>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr>
+                    <th><span data-translate="global.field.id">ID</span></th>
+                    <th><span data-translate="fastFoodDeliveryApp.formaDeEntrega.formaDeEntrega">Forma De Entrega</span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="formaDeEntrega in vm.formaDeEntregas track by formaDeEntrega.id">
+                    <td><a ui-sref="forma-de-entrega-detail({id:formaDeEntrega.id})">{{formaDeEntrega.id}}</a></td>
+                    <td>{{formaDeEntrega.formaDeEntrega}}</td>
+                    <td class="text-right">
+                        <div class="btn-group flex-btn-group-container">
+                            <button type="submit"
+                                    ui-sref="forma-de-entrega-detail({id:formaDeEntrega.id})"
+                                    class="btn btn-info btn-sm">
+                                <span class="glyphicon glyphicon-eye-open"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.view"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="forma-de-entrega.edit({id:formaDeEntrega.id})"
+                                    class="btn btn-primary btn-sm">
+                                <span class="glyphicon glyphicon-pencil"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.edit"></span>
+                            </button>
+                            <button type="submit"
+                                    ui-sref="forma-de-entrega.delete({id:formaDeEntrega.id})"
+                                    class="btn btn-danger btn-sm">
+                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                <span class="hidden-sm-down" data-translate="entity.action.delete"></span>
+                            </button>
+                        </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

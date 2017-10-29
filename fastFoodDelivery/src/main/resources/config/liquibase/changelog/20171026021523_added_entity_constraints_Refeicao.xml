@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
+    <!--
+        Added the constraints for entity Refeicao.
+    -->
+    <changeSet id="20171026021523-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="valor_refeicao_id"
+                                 baseTableName="refeicao"
+                                 constraintName="fk_refeicao_valor_refeicao_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="valor_refeicao"/>
+
+        <addForeignKeyConstraint baseColumnNames="refeicaos_id"
+                                 baseTableName="refeicao_tipo_alimento"
+                                 constraintName="fk_refeicao_tipo_alimento_refeicaos_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="refeicao"/>
+        <addForeignKeyConstraint baseColumnNames="tipo_alimentos_id"
+                                 baseTableName="refeicao_tipo_alimento"
+                                 constraintName="fk_refeicao_tipo_alimento_tipo_alimentos_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="tipo_alimento"/>
+        
+    </changeSet>
+</databaseChangeLog>

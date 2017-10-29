@@ -1,0 +1,21 @@
+{
+    "fastFoodDeliveryApp": {
+        "doce" : {
+            "home": {
+                "title": "Doces",
+                "createLabel": "Criar novo Doce",
+                "createOrEditLabel": "Criar ou editar Doce"
+            },
+            "created": "Um novo Doce foi criado com o identificador {{ param }}",
+            "updated": "Um Doce foi atualizado com o identificador {{ param }}",
+            "deleted": "Um Doce foi deletado com o identificador {{ param }}",
+            "delete": {
+                "question": "Tem certeza de que deseja excluir Doce {{ id }}?"
+            },
+            "detail": {
+                "title": "Doce"
+            },
+            "doce": "Doce"
+        }
+    }
+}

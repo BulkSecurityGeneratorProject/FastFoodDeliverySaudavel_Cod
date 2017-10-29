@@ -1,0 +1,48 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "preparo",
+            "otherEntityName": "preparo",
+            "relationshipType": "many-to-many",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "alimento"
+        },
+        {
+            "relationshipName": "tempero",
+            "otherEntityName": "tempero",
+            "relationshipType": "many-to-many",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "alimento"
+        },
+        {
+            "relationshipName": "valorNutricional",
+            "otherEntityName": "valorNutricional",
+            "relationshipType": "one-to-one",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "alimento"
+        },
+        {
+            "relationshipName": "tipoAlimento",
+            "otherEntityName": "tipoAlimento",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "alimentoCol",
+            "fieldType": "String",
+            "fieldValidateRules": []
+        }
+    ],
+    "changelogDate": "20171026021316",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "alimento",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pager"
+}

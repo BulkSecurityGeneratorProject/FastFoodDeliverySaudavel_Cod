@@ -1,0 +1,21 @@
+{
+    "fastFoodDeliveryApp": {
+        "tempero" : {
+            "home": {
+                "title": "Temperos",
+                "createLabel": "Criar novo Tempero",
+                "createOrEditLabel": "Criar ou editar Tempero"
+            },
+            "created": "Um novo Tempero foi criado com o identificador {{ param }}",
+            "updated": "Um Tempero foi atualizado com o identificador {{ param }}",
+            "deleted": "Um Tempero foi deletado com o identificador {{ param }}",
+            "delete": {
+                "question": "Tem certeza de que deseja excluir Tempero {{ id }}?"
+            },
+            "detail": {
+                "title": "Tempero"
+            },
+            "tempero": "Tempero"
+        }
+    }
+}

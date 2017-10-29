@@ -1,0 +1,40 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "doce",
+            "otherEntityName": "doce",
+            "relationshipType": "many-to-many",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "bebida"
+        },
+        {
+            "relationshipName": "valorNutricional",
+            "otherEntityName": "valorNutricional",
+            "relationshipType": "one-to-one",
+            "otherEntityField": "id",
+            "ownerSide": true,
+            "otherEntityRelationshipName": "bebida"
+        },
+        {
+            "relationshipName": "valorRefeicao",
+            "otherEntityName": "valorRefeicao",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "bebida",
+            "fieldType": "String",
+            "fieldValidateRules": []
+        }
+    ],
+    "changelogDate": "20171026021110",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "bebida",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pager"
+}
