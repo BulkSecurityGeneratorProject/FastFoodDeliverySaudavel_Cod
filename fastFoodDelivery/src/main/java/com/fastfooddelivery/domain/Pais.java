@@ -66,7 +66,6 @@ public class Pais implements Serializable {
     public void setCartaos(Set<Cartao> cartaos) {
         this.cartaos = cartaos;
     }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
     public boolean equals(Object o) {
