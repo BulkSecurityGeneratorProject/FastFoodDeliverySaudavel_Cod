@@ -48,7 +48,6 @@ public class Alimento implements Serializable {
     @ManyToOne
     private TipoAlimento tipoAlimento;
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
     }

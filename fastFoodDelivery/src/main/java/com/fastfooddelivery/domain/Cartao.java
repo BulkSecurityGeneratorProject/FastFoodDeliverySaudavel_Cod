@@ -38,7 +38,6 @@ public class Cartao implements Serializable {
     @ManyToOne
     private Pais pais;
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
     }
