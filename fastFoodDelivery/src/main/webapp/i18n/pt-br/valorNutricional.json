@@ -2,7 +2,7 @@
     "fastFoodDeliveryApp": {
         "valorNutricional" : {
             "home": {
-                "title": "Valor Nutricionals",
+                "title": "Valor Nutricional",
                 "createLabel": "Criar novo Valor Nutricional",
                 "createOrEditLabel": "Criar ou editar Valor Nutricional"
             },

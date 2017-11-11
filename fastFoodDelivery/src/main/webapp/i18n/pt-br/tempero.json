@@ -2,7 +2,7 @@
     "fastFoodDeliveryApp": {
         "tempero" : {
             "home": {
-                "title": "Temperos",
+                "title": "Tempero",
                 "createLabel": "Criar novo Tempero",
                 "createOrEditLabel": "Criar ou editar Tempero"
             },

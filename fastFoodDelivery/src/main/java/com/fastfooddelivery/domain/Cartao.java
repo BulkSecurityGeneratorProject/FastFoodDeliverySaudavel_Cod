@@ -97,7 +97,14 @@ public class Cartao implements Serializable {
     public void setCartaoCol(String cartaoCol) {
         this.cartaoCol = cartaoCol;
     }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
+    
+    public Pais getPais() {
+    	return pais;
+    }
+    
+    public void setPais(Pais pais) {
+    	this.pais = pais;
+    }
 
     @Override
     public boolean equals(Object o) {
@@ -130,12 +137,5 @@ public class Cartao implements Serializable {
             "}";
     }
     
-    public Pais getPais() {
-		return pais;
-	}
-    
-    public void setPais(Pais pais) {
-		this.pais = pais;
-	}
     
 }

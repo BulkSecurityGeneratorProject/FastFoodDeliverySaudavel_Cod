@@ -2,7 +2,7 @@
     "fastFoodDeliveryApp": {
         "bebida" : {
             "home": {
-                "title": "Bebidas",
+                "title": "Bebida",
                 "createLabel": "Criar novo Bebida",
                 "createOrEditLabel": "Criar ou editar Bebida"
             },
@@ -18,7 +18,7 @@
             "bebida": "Bebida",
             "doce": "Doce",
             "valorNutricional": "Valor Nutricional",
-            "valorRefeicao": "Valor Refeicao"
+            "valorRefeicao": "Valor Refeição"
         }
     }
 }

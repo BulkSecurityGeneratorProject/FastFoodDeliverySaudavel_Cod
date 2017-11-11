@@ -2,7 +2,7 @@
     "fastFoodDeliveryApp": {
         "formaDeEntrega" : {
             "home": {
-                "title": "Forma De Entregas",
+                "title": "Forma de entrega",
                 "createLabel": "Criar novo Forma De Entrega",
                 "createOrEditLabel": "Criar ou editar Forma De Entrega"
             },
@@ -13,7 +13,7 @@
                 "question": "Tem certeza de que deseja excluir Forma De Entrega {{ id }}?"
             },
             "detail": {
-                "title": "Forma De Entrega"
+                "title": "Forma de entrega"
             },
             "formaDeEntrega": "Forma De Entrega"
         }

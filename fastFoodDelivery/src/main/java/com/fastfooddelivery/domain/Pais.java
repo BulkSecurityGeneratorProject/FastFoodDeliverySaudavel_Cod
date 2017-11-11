@@ -66,6 +66,10 @@ public class Pais implements Serializable {
     public void setCartaos(Set<Cartao> cartaos) {
         this.cartaos = cartaos;
     }
+    
+    private void getCartaoTotais() {
+    	this.cartaos = cartaos;
+	}
 
     @Override
     public boolean equals(Object o) {

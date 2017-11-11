@@ -2,7 +2,7 @@
     "fastFoodDeliveryApp": {
         "tipoAlimento" : {
             "home": {
-                "title": "Tipo Alimentos",
+                "title": "Tipo Alimento",
                 "createLabel": "Criar novo Tipo Alimento",
                 "createOrEditLabel": "Criar ou editar Tipo Alimento"
             },

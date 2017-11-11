@@ -2,7 +2,7 @@
     "fastFoodDeliveryApp": {
         "cliente" : {
             "home": {
-                "title": "Clientes",
+                "title": "Cliente",
                 "createLabel": "Criar novo Cliente",
                 "createOrEditLabel": "Criar ou editar Cliente"
             },

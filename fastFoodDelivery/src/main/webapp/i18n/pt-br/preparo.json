@@ -2,7 +2,7 @@
     "fastFoodDeliveryApp": {
         "preparo" : {
             "home": {
-                "title": "Preparos",
+                "title": "Preparo",
                 "createLabel": "Criar novo Preparo",
                 "createOrEditLabel": "Criar ou editar Preparo"
             },

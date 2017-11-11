@@ -2,7 +2,7 @@
     "fastFoodDeliveryApp": {
         "endereco" : {
             "home": {
-                "title": "Enderecos",
+                "title": "Endereço",
                 "createLabel": "Criar novo Endereco",
                 "createOrEditLabel": "Criar ou editar Endereco"
             },
@@ -13,11 +13,11 @@
                 "question": "Tem certeza de que deseja excluir Endereco {{ id }}?"
             },
             "detail": {
-                "title": "Endereco"
+                "title": "Endereço"
             },
             "cep": "Cep",
-            "endereco": "Endereco",
-            "numero": "Numero",
+            "endereco": "Endereço",
+            "numero": "Número",
             "complemento": "Complemento"
         }
     }
