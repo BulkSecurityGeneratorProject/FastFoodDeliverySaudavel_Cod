@@ -99,6 +99,20 @@ public class RefeicaoResource {
     }
 
     /**
+     * GET  /refeicaos : get all the refeicaos.
+     *
+     * @return the ResponseEntity with status 200 (OK) and the list of refeicaos in body
+     */
+    @GetMapping("/refeicaos/all")
+    @Timed
+    public ResponseEntity<List<Refeicao>> getAllRefeicoes() {
+        log.debug("REST request to get a page of Refeicoes");
+        List<Refeicao> refeicoes = refeicaoRepository.findAll();
+//        HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/refeicaos");
+        return new ResponseEntity<>(refeicoes, HttpStatus.OK);
+    }
+
+    /**
      * GET  /refeicaos/:id : get the "id" refeicao.
      *
      * @param id the id of the refeicao to retrieve
