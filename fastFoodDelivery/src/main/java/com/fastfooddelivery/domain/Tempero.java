@@ -6,6 +6,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * A Tempero.
@@ -25,7 +26,6 @@ public class Tempero implements Serializable {
     @Column(name = "tempero")
     private String tempero;
 
-    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
     }
@@ -46,7 +46,6 @@ public class Tempero implements Serializable {
     public void setTempero(String tempero) {
         this.tempero = tempero;
     }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
     public boolean equals(Object o) {
@@ -75,4 +74,8 @@ public class Tempero implements Serializable {
             ", tempero='" + getTempero() + "'" +
             "}";
     }
+
+	public Set<Preparo> getAlimentos() {
+		return null;
+	}
 }

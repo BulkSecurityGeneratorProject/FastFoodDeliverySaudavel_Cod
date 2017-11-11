@@ -32,6 +32,7 @@ public class Cliente implements Serializable {
     @Column(name = "calorias", precision=10, scale=2)
     private BigDecimal calorias;
 
+    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
     }
@@ -78,6 +79,7 @@ public class Cliente implements Serializable {
     public void setCalorias(BigDecimal calorias) {
         this.calorias = calorias;
     }
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
     public boolean equals(Object o) {

@@ -6,6 +6,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 import javax.persistence.*;
 import java.io.Serializable;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * A Preparo.
@@ -45,7 +46,6 @@ public class Preparo implements Serializable {
     public void setPreparo(String preparo) {
         this.preparo = preparo;
     }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
     public boolean equals(Object o) {
@@ -74,4 +74,8 @@ public class Preparo implements Serializable {
             ", preparo='" + getPreparo() + "'" +
             "}";
     }
+
+	public Set<Preparo> getAlimentos() {
+		return null;
+	}
 }

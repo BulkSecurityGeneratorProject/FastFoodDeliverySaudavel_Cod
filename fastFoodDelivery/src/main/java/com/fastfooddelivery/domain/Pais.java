@@ -1,15 +1,14 @@
 package com.fastfooddelivery.domain;
 
-import java.io.Serializable;
-import java.util.Objects;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.Objects;
 
 /**
  * A Pais.
@@ -22,11 +21,17 @@ public class Pais implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @Column(name="PAISID")
+    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "sequenceGenerator")
+    @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
     @Column(name = "pais")
     private String pais;
+
+    @OneToMany(mappedBy = "pais")
+    @JsonIgnore
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<Cartao> cartaos = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -48,6 +53,20 @@ public class Pais implements Serializable {
     public void setPais(String pais) {
         this.pais = pais;
     }
+
+    public Set<Cartao> getCartaos() {
+        return cartaos;
+    }
+
+    public Pais cartaos(Set<Cartao> cartaos) {
+        this.cartaos = cartaos;
+        return this;
+    }
+
+    public void setCartaos(Set<Cartao> cartaos) {
+        this.cartaos = cartaos;
+    }
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
     public boolean equals(Object o) {

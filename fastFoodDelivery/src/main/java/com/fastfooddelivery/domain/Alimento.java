@@ -48,6 +48,7 @@ public class Alimento implements Serializable {
     @ManyToOne
     private TipoAlimento tipoAlimento;
 
+    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
     }
@@ -78,6 +79,12 @@ public class Alimento implements Serializable {
         return this;
     }
 
+    public Alimento removePreparo(Preparo preparo) {
+        this.preparos.remove(preparo);
+        preparo.getAlimentos().remove(this);
+        return this;
+    }
+
     public void setPreparos(Set<Preparo> preparos) {
         this.preparos = preparos;
     }
@@ -88,6 +95,12 @@ public class Alimento implements Serializable {
 
     public Alimento temperos(Set<Tempero> temperos) {
         this.temperos = temperos;
+        return this;
+    }
+
+    public Alimento removeTempero(Tempero tempero) {
+        this.temperos.remove(tempero);
+        tempero.getAlimentos().remove(this);
         return this;
     }
 

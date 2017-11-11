@@ -27,7 +27,7 @@ spring:
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
         url: jdbc:postgresql://localhost:5432/fastfooddelivery
-        username: postgres  
+        username: postgres
         password: 123
     jpa:
         database-platform: io.github.jhipster.domain.util.FixedPostgreSQL82Dialect
@@ -40,8 +40,8 @@ spring:
             hibernate.generate_statistics: true
             hibernate.cache.region.factory_class: io.github.jhipster.config.jcache.NoDefaultJCacheRegionFactory
     mail:
-        host: smtp.gmail.com
-        port: 587
+        host: localhost
+        port: 25
         username: fastfooddeliveryapp@gmail.com
         password: Fastfood@321
     messages:

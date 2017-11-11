@@ -48,6 +48,7 @@ public class Pedido implements Serializable {
                inverseJoinColumns = @JoinColumn(name="alimentos_id", referencedColumnName="id"))
     private Set<Alimento> alimentos = new HashSet<>();
 
+    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
     }

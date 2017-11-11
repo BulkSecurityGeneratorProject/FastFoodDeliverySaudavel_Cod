@@ -24,6 +24,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.codahale.metrics.annotation.Timed;
 import com.fastfooddelivery.domain.Pedido;
 import com.fastfooddelivery.repository.PedidoRepository;
+import com.fastfooddelivery.service.dto.PedidoCriteria;
 import com.fastfooddelivery.web.rest.errors.BadRequestAlertException;
 import com.fastfooddelivery.web.rest.util.HeaderUtil;
 import com.fastfooddelivery.web.rest.util.PaginationUtil;
@@ -41,7 +42,7 @@ public class PedidoResource {
     private final Logger log = LoggerFactory.getLogger(PedidoResource.class);
 
     private static final String ENTITY_NAME = "pedido";
-
+    
     private final PedidoRepository pedidoRepository;
 
     public PedidoResource(PedidoRepository pedidoRepository) {
@@ -99,8 +100,8 @@ public class PedidoResource {
      */
     @GetMapping("/pedidos")
     @Timed
-    public ResponseEntity<List<Pedido>> getAllPedidos(@ApiParam Pageable pageable) {
-    	log.debug("REST request to get a page of Pedidos");
+    public ResponseEntity<List<Pedido>> getAllPedidos(PedidoCriteria criteria,@ApiParam Pageable pageable) {
+        log.debug("REST request to get Pedidos by criteria: {}", criteria);
         Page<Pedido> page = pedidoRepository.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/pedidos");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
