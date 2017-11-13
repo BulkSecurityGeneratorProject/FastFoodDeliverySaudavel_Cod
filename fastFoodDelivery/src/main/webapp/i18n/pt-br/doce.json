@@ -2,7 +2,7 @@
     "fastFoodDeliveryApp": {
         "doce" : {
             "home": {
-                "title": "Doces",
+                "title": "Doce",
                 "createLabel": "Criar novo Doce",
                 "createOrEditLabel": "Criar ou editar Doce"
             },

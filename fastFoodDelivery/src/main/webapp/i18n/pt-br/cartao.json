@@ -2,7 +2,7 @@
     "fastFoodDeliveryApp": {
         "cartao" : {
             "home": {
-                "title": "Cartão",
+                "title": "Cartao",
                 "createLabel": "Criar novo Cartao",
                 "createOrEditLabel": "Criar ou editar Cartao"
             },
@@ -13,12 +13,12 @@
                 "question": "Tem certeza de que deseja excluir Cartao {{ id }}?"
             },
             "detail": {
-                "title": "Cartão"
+                "title": "Cartao"
             },
-            "numero": "Número",
+            "numero": "Numero",
             "dataVencimento": "Data Vencimento",
             "cvv": "Cvv",
-            "cartaoCol": "Cartão"
+            "cartaoCol": "Cartao"
         }
     }
 }

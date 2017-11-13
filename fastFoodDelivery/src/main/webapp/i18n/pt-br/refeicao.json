@@ -2,7 +2,7 @@
     "fastFoodDeliveryApp": {
         "refeicao" : {
             "home": {
-                "title": "Refeição",
+                "title": "Refeicao",
                 "createLabel": "Criar novo Refeicao",
                 "createOrEditLabel": "Criar ou editar Refeicao"
             },
@@ -13,10 +13,10 @@
                 "question": "Tem certeza de que deseja excluir Refeicao {{ id }}?"
             },
             "detail": {
-                "title": "Refeição"
+                "title": "Refeicao"
             },
-            "refeicao": "Refeição",
-            "valorRefeicao": "Valor Refeição",
+            "refeicao": "Refeicao",
+            "valorRefeicao": "Valor Refeicao",
             "tipoAlimento": "Tipo Alimento"
         }
     }
