@@ -5,73 +5,62 @@
         .module('fastFoodDeliveryApp')
         .controller('RealizacaoPedidoController', PedidoController);
 
-    PedidoController.$inject = ['$state', 'Pedido', 'ParseLinks', 'AlertService', 'Refeicao'];
+    PedidoController.$inject = ['$state', 'Pedido', 'ParseLinks', 'AlertService', 'Refeicao', 'TipoAlimento', 'Alimento', 'Preparo', 'Tempero'];
 
-    function PedidoController($state, Pedido, ParseLinks, AlertService, Refeicao) {
+    function PedidoController($state, Pedido, ParseLinks, AlertService, Refeicao, TipoAlimento, Alimento, Preparo, Tempero) {
 
         var vm = this;
+        vm.selecionarRefeicao = selecionarRefeicao;
+        vm.consultarAlimentos = consultarAlimentos;
+        vm.adicionarAlimentoEscolhido = adicionarAlimentoEscolhido;
+        vm.excluirAlimentoEscolhido = excluirAlimentoEscolhido;
 
-        // vm.loadPage = loadPage;
-        // vm.predicate = pagingParams.predicate;
-        // vm.reverse = pagingParams.ascending;
-        // vm.transition = transition;
-        // vm.itemsPerPage = paginationConstants.itemsPerPage;
+        vm.refeicoes = Refeicao.query();
+        vm.tiposAlimento = TipoAlimento.query();
+        vm.preparos = Preparo.query();
+        vm.temperos = Tempero.query();
+        vm.alimentoEscolhido = {};
+        vm.alimentosEscolhidos = [];
 
         loadAll();
 
         function loadAll () {
-            // Pedido.query({
-            //     page: pagingParams.page - 1,
-            //     size: vm.itemsPerPage,
-            //     sort: sort()
-            // }, onSuccess, onError);
-            // function sort() {
-            //     var result = [vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc')];
-            //     if (vm.predicate !== 'id') {
-            //         result.push('id');
-            //     }
-            //     return result;
-            // }
-            // function onSuccess(data, headers) {
-            //     vm.links = ParseLinks.parse(headers('link'));
-            //     vm.totalItems = headers('X-Total-Count');
-            //     vm.queryCount = vm.totalItems;
-            //     vm.pedidos = data;
-            //     vm.page = pagingParams.page;
-            // }
-            // function onError(error) {
-            //     AlertService.error(error.data.message);
-            // }
-
-            Refeicao.findAll(onRefeicaoSuccess, onRefeicaoError);
-
-            function onRefeicaoSuccess(data, headers) {
-
-                vm.refeicoes = data;
-                console.log(data);
-            }
-            function onRefeicaoError(error) {
-                AlertService.error(error.data.message);
-            }
-
 
         }
 
-        // function loadPage(page) {
-        //     vm.page = page;
-        //     vm.transition();
-        // }
-        //
-        // function transition() {
-        //     $state.transitionTo($state.$current, {
-        //         page: vm.page,
-        //         sort: vm.predicate + ',' + (vm.reverse ? 'asc' : 'desc'),
-        //         search: vm.currentSearch
-        //     });
-        // }
-
-        vm.selecionarRefeicao = function (refeicao) {
+        function selecionarRefeicao(refeicao) {
             refeicao.selecionada = !refeicao.selecionada;
         }
+
+        function consultarAlimentos() {
+
+            if (!vm.alimentoEscolhido.tipoAlimento) {
+                return;
+            }
+
+            Alimento.getAllAlimentosByTipoAlimento({idTipoAlimento: vm.alimentoEscolhido.tipoAlimento.id}, onPesquisaAlimentoSuccess, onPesquisaAlimentoError);
+
+        }
+
+        function onPesquisaAlimentoSuccess(data, headers) {
+            vm.alimentos = data;
+        }
+
+        function onPesquisaAlimentoError(error) {
+            AlertService.error("Não foi possível pesquisar os tipos de alimento. Aguarde alguns instantes ou entre em contato com o nosso suporte.");
+        }
+
+        function adicionarAlimentoEscolhido() {
+
+            vm.alimentosEscolhidos.push(vm.alimentoEscolhido);
+
+            vm.alimentoEscolhido = {};
+
+        }
+
+        function excluirAlimentoEscolhido(index) {
+            vm.alimentosEscolhidos.splice(index, 1);
+        }
+
     }
 })();

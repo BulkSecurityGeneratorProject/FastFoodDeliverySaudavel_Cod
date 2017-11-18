@@ -3,6 +3,7 @@ package com.fastfooddelivery.web.rest;
 import com.codahale.metrics.annotation.Timed;
 import com.fastfooddelivery.domain.Alimento;
 
+import com.fastfooddelivery.domain.TipoAlimento;
 import com.fastfooddelivery.repository.AlimentoRepository;
 import com.fastfooddelivery.web.rest.errors.BadRequestAlertException;
 import com.fastfooddelivery.web.rest.util.HeaderUtil;
@@ -96,6 +97,25 @@ public class AlimentoResource {
         Page<Alimento> page = alimentoRepository.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/alimentos");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+
+    /**
+     * GET  /alimentos/tipoAlimento/:idTipoAlimento: get all the alimentos by tipo.
+     *
+     * @param idTipoAlimento
+     * @return the ResponseEntity with status 200 (OK) and the list of alimentos in body
+     */
+    @GetMapping("/alimentos/tipoAlimento/{idTipoAlimento}")
+    @Timed
+    public ResponseEntity<List<Alimento>> getAllAlimentosByTipoAlimento(@PathVariable Long idTipoAlimento) {
+        log.debug("REST request to get a list of Alimentos by tipo alimento");
+
+        TipoAlimento tipoAlimento = new TipoAlimento();
+        tipoAlimento.setId(idTipoAlimento);
+
+        List<Alimento> alimentos = alimentoRepository.findByTipoAlimento(tipoAlimento);
+
+        return new ResponseEntity<>(alimentos, HttpStatus.OK);
     }
 
     /**
