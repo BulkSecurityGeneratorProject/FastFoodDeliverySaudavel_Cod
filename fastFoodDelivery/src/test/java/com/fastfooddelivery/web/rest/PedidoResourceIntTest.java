@@ -16,6 +16,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
+import com.fastfooddelivery.repository.AlimentoRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -54,6 +55,9 @@ public class PedidoResourceIntTest {
     private PedidoRepository pedidoRepository;
 
     @Autowired
+    private AlimentoRepository alimentoRepository;
+
+    @Autowired
     private MappingJackson2HttpMessageConverter jacksonMessageConverter;
 
     @Autowired
@@ -72,7 +76,7 @@ public class PedidoResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final PedidoResource pedidoResource = new PedidoResource(pedidoRepository);
+        final PedidoResource pedidoResource = new PedidoResource(pedidoRepository, alimentoRepository);
         this.restPedidoMockMvc = MockMvcBuilders.standaloneSetup(pedidoResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)

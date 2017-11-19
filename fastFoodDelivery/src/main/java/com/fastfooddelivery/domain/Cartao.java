@@ -3,7 +3,13 @@ package com.fastfooddelivery.domain;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.Objects;
@@ -35,8 +41,8 @@ public class Cartao implements Serializable {
     @Column(name = "cartao_col")
     private String cartaoCol;
     
-    @ManyToOne
-    private Pais pais;
+//    @ManyToOne
+//    private Pais pais;
 
     public Long getId() {
         return id;
@@ -98,13 +104,13 @@ public class Cartao implements Serializable {
         this.cartaoCol = cartaoCol;
     }
     
-    public Pais getPais() {
-    	return pais;
-    }
-    
-    public void setPais(Pais pais) {
-    	this.pais = pais;
-    }
+//    public Pais getPais() {
+//    	return pais;
+//    }
+//
+//    public void setPais(Pais pais) {
+//    	this.pais = pais;
+//    }
 
     @Override
     public boolean equals(Object o) {

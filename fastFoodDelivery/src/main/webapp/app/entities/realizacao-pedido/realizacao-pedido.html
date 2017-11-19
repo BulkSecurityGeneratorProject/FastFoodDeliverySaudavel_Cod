@@ -66,7 +66,10 @@
                             </div>
 
                             <div class="col-md-2">
-                                <input type="text" class="form-control" placeholder="Valor" ng-model="vm.alimentoEscolhido.valor">
+                                <div class="input-group">
+                                    <input type="number" class="form-control" ng-model="vm.alimentoEscolhido.valorEmGramas">
+                                    <span class="input-group-addon">g</span>
+                                </div>
                             </div>
 
                             <div class="col-md-2">
@@ -82,25 +85,26 @@
                                     <tr>
                                         <th>Tipo</th>
                                         <th>Alimento</th>
-                                        <th>Kg</th>
+                                        <th>Gramas</th>
                                         <th>Calorias por Kg</th>
                                         <th>Total calorias</th>
                                         <th>Ação</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                <tr ng-repeat="alimentoEscolhido in vm.alimentosEscolhidos track by $index">
-                                    <td>{{alimentoEscolhido.tipoAlimento.tipoAlimento}}</td>
-                                    <td>{{alimentoEscolhido.alimento.alimentoCol}}</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                    <td>0</td>
-                                    <td>
-                                        <button type="button" ng-click="vm.excluirAlimentoEscolhido($index)" class="btn btn-danger btn-sm">
-                                            <span class="glyphicon glyphicon-remove-circle"></span>
-                                            <span class="hidden-sm-down" data-translate="entity.action.delete">Excluir</span>
-                                        </button>
-                                    </td>
+                                    <tr ng-repeat="alimentoEscolhido in vm.pedido.alimentos track by $index">
+                                        <td>{{alimentoEscolhido.tipoAlimento.tipoAlimento}}</td>
+                                        <td>{{alimentoEscolhido.alimento.alimentoCol}}</td>
+                                        <td>{{alimentoEscolhido.valorEmGramas}}</td>
+                                        <td>{{alimentoEscolhido.alimento.valorNutricional.caloria}}</td>
+                                        <td>{{alimentoEscolhido.alimento.valorNutricional.caloria}}</td>
+                                        <td>
+                                            <button type="button" ng-click="vm.excluirAlimentoEscolhido($index)" class="btn btn-danger btn-sm">
+                                                <span class="glyphicon glyphicon-remove-circle"></span>
+                                                <span class="hidden-sm-down">Excluir</span>
+                                            </button>
+                                        </td>
+                                    </tr>
                                 </tbody>
                             </table>
 
@@ -114,45 +118,61 @@
                         <div class="row">
 
                             <div class="col-md-2">
-                                <select class="form-control">
-                                    <option>Sabor</option>
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
+                                <select class="form-control" name="tempero" ng-model="vm.alimentoEscolhido.bebida" ng-options="bebida as bebida.bebida for bebida in vm.bebidas track by bebida.id">
+                                    <option value="">Bebida</option>
                                 </select>
                             </div>
 
                             <div class="col-md-2">
-                                <select class="form-control">
-                                    <option>Adoçado</option>
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
+                                <select class="form-control" name="tempero" ng-model="vm.alimentoEscolhido.bebida.doce" ng-options="doce as doce.doce for doce in vm.alimentoEscolhido.bebida.doces track by doce.id">
+                                    <option value="">Forma de adoçar</option>
                                 </select>
                             </div>
 
                             <div class="col-md-2">
-                                <select class="form-control">
-                                    <option>ML</option>
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
+                                <select class="form-control" ng-model="vm.alimentoEscolhido.bebida.capacidade">
+                                    <option value="">Capacidade</option>
+                                    <option value="300">300 ML</option>
+                                    <option value="500">500 ML</option>
+                                    <option value="700">700 ML</option>
                                 </select>
                             </div>
 
                             <div class="col-md-4">
-                                <input type="text" class="form-control" placeholder="Valor">
+                                <input type="number" class="form-control" placeholder="Quantidade">
                             </div>
 
                             <div class="col-md-2">
-                                <button class="btn btn-primary" type="submit">Adicionar</button>
+                                <button class="btn btn-primary" type="button" ng-click="vm.adicionarBebidaEscolhida()">Adicionar</button>
                             </div>
+
+                        </div>
+
+                        <div class="row">
+
+                            <table class="table table-striped table-hover">
+                                <thead>
+                                <tr>
+                                    <th>Bebida</th>
+                                    <th>Doce</th>
+                                    <th>Capacidade</th>
+                                    <th>Ação</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr ng-repeat="bebida in vm.pedido.bebidas track by $index">
+                                    <td>{{bebida.bebida}}</td>
+                                    <td>{{bebida.doce.doce}}</td>
+                                    <td>{{bebida.capacidade}}</td>
+                                    <td>
+                                        <button type="button" ng-click="vm.excluirBebidaEscolhida($index)" class="btn btn-danger btn-sm">
+                                            <span class="glyphicon glyphicon-remove-circle"></span>
+                                            <span class="hidden-sm-down">Excluir</span>
+                                        </button>
+                                    </td>
+                                </tr>
+                                </tbody>
+                            </table>
 
                         </div>
                     </uib-tab>
@@ -163,7 +183,6 @@
                         <table class="table table-striped table-hover">
                             <thead>
                                 <tr>
-                                    <th>#</th>
                                     <th>Calorias</th>
                                     <th>Proteínas</th>
                                     <th>Carboidrato</th>
@@ -174,35 +193,23 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>115</td>
-                                    <td>115</td>
-                                    <td>115</td>
-                                    <td>115</td>
-                                    <td>115</td>
-                                    <td>115</td>
-                                    <td>115</td>
+                                <tr ng-repeat="alimento in vm.pedido.alimentos track by $index">
+                                    <td>{{alimento.valorNutricional.caloria}}</td>
+                                    <td>{{alimento.valorNutricional.proteina}}</td>
+                                    <td>{{alimento.valorNutricional.carboidrato}}</td>
+                                    <td>{{alimento.valorNutricional.acucar}}</td>
+                                    <td>{{alimento.valorNutricional.gordurasTotais}}</td>
+                                    <td>{{alimento.valorNutricional.gordurasSaturadas}}</td>
+                                    <td>{{alimento.valorNutricional.sodio}}</td>
                                 </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>115</td>
-                                    <td>115</td>
-                                    <td>115</td>
-                                    <td>115</td>
-                                    <td>115</td>
-                                    <td>115</td>
-                                    <td>115</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>115</td>
-                                    <td>115</td>
-                                    <td>115</td>
-                                    <td>115</td>
-                                    <td>115</td>
-                                    <td>115</td>
-                                    <td>115</td>
+                                <tr ng-repeat="bebida in vm.pedido.bebidas track by $index">
+                                    <td>{{bebida.valorNutricional.caloria}}</td>
+                                    <td>{{bebida.valorNutricional.proteina}}</td>
+                                    <td>{{bebida.valorNutricional.carboidrato}}</td>
+                                    <td>{{bebida.valorNutricional.acucar}}</td>
+                                    <td>{{bebida.valorNutricional.gordurasTotais}}</td>
+                                    <td>{{bebida.valorNutricional.gordurasSaturadas}}</td>
+                                    <td>{{bebida.valorNutricional.sodio}}</td>
                                 </tr>
                             </tbody>
                         </table>
@@ -218,32 +225,18 @@
                             <div class="panel-body">
                                 <table class="table table-striped table-hover">
                                     <thead>
-                                    <tr>
-                                        <th>#</th>
-                                        <th>Quantidade</th>
-                                        <th>Valor Kg</th>
-                                        <th>Valor Toral</th>
-                                    </tr>
+                                        <tr>
+                                            <th>Item</th>
+                                            <th>Quantidade</th>
+                                            <th>Valor Total</th>
+                                        </tr>
                                     </thead>
                                     <tbody>
-                                    <tr>
-                                        <th scope="row">1</th>
-                                        <td>2</td>
-                                        <td>100</td>
-                                        <td>200</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">2</th>
-                                        <td>2</td>
-                                        <td>100</td>
-                                        <td>200</td>
-                                    </tr>
-                                    <tr>
-                                        <th scope="row">3</th>
-                                        <td>2</td>
-                                        <td>100</td>
-                                        <td>200</td>
-                                    </tr>
+                                        <tr ng-repeat="item in vm.itensTotalizados">
+                                            <td>{{item.nome}}</td>
+                                            <td>{{item.quantidade}}</td>
+                                            <td>{{item.total}}</td>
+                                        </tr>
                                     </tbody>
                                 </table>
                             </div>
@@ -273,20 +266,16 @@
 
                                     <div class="col-md-6">
 
-                                        <select class="form-control">
-                                            <option>Cartão de crédito</option>
-                                            <option>XXXX XXXX XXXX 2334</option>
-                                            <option>XXXX XXXX XXXX 4938</option>
+                                        <select class="form-control" name="cartao" ng-model="vm.pedido.cartao" ng-options="cartao as cartao.numero for cartao in vm.cartoes track by cartao.id">
+                                            <option value="">Cartão de crédito</option>
                                         </select>
 
                                     </div>
 
                                     <div class="col-md-6">
 
-                                        <select class="form-control">
-                                            <option>Endereço</option>
-                                            <option>Rua meu ovo</option>
-                                            <option>Avenida pepeca</option>
+                                        <select class="form-control" name="endereco" ng-model="vm.pedido.endereco" ng-options="endereco as endereco.endereco for endereco in vm.enderecos track by endereco.id">
+                                            <option value="">Endereço</option>
                                         </select>
 
                                     </div>
@@ -301,21 +290,20 @@
 
                 <ul class="pager">
                     <li class="previous">
-                        <a href="javascript:void(0)" ng-click="active = active - 1" ng-show="active != 0">← Voltar</a>
+                        <a ng-click="active = active - 1" ng-show="active !== 0">← Voltar</a>
                     </li>
 
                     <li class="next">
-                        <a class="withripple" href="javascript:void(0)" ng-click="active = active + 1" ng-show="active != 5">
+                        <a class="withripple" ng-click="active = active + 1" ng-show="active !== 4">
                             Avançar →<div class="ripple-container"></div>
+                        </a>
+
+                        <a class="withripple" ng-click="vm.enviarPedido()" ng-show="active === 4">
+                            Enviar<div class="ripple-container"></div>
                         </a>
                     </li>
                 </ul>
 
-                <div class="text-center">
-                    <button type="button" ng-disabled="vm.isSaving" class="btn btn-primary" ng-click="vm.enviar()" ng-show="active == 5">
-                        <span class="glyphicon glyphicon-send"></span>&nbsp;<span>Enviar</span>
-                    </button>
-                </div>
             </div>
         </form>
     </div>

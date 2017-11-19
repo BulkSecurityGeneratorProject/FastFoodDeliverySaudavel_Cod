@@ -1,10 +1,15 @@
 package com.fastfooddelivery.web.rest;
 
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.List;
-import java.util.Optional;
-
+import com.codahale.metrics.annotation.Timed;
+import com.fastfooddelivery.domain.Alimento;
+import com.fastfooddelivery.domain.Pedido;
+import com.fastfooddelivery.repository.AlimentoRepository;
+import com.fastfooddelivery.repository.PedidoRepository;
+import com.fastfooddelivery.web.rest.errors.BadRequestAlertException;
+import com.fastfooddelivery.web.rest.util.HeaderUtil;
+import com.fastfooddelivery.web.rest.util.PaginationUtil;
+import io.github.jhipster.web.util.ResponseUtil;
+import io.swagger.annotations.ApiParam;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -21,15 +26,10 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.codahale.metrics.annotation.Timed;
-import com.fastfooddelivery.domain.Pedido;
-import com.fastfooddelivery.repository.PedidoRepository;
-import com.fastfooddelivery.web.rest.errors.BadRequestAlertException;
-import com.fastfooddelivery.web.rest.util.HeaderUtil;
-import com.fastfooddelivery.web.rest.util.PaginationUtil;
-
-import io.github.jhipster.web.util.ResponseUtil;
-import io.swagger.annotations.ApiParam;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.List;
+import java.util.Optional;
 
 /**
  * REST controller for managing Pedido.
@@ -44,8 +44,11 @@ public class PedidoResource {
     
     private final PedidoRepository pedidoRepository;
 
-    public PedidoResource(PedidoRepository pedidoRepository) {
+	private final AlimentoRepository alimentoRepository;
+
+    public PedidoResource(PedidoRepository pedidoRepository, AlimentoRepository alimentoRepository) {
         this.pedidoRepository = pedidoRepository;
+        this.alimentoRepository = alimentoRepository;
     }
 
     /**
@@ -62,6 +65,12 @@ public class PedidoResource {
         if (pedido.getId() != null) {
             throw new BadRequestAlertException("A new pedido cannot already have an ID", ENTITY_NAME, "idexists");
         }
+
+        // TODO temporario, rever com os responsaveis como cadastrar um alimento
+	    Alimento alimento = alimentoRepository.findAll().stream().findFirst().get();
+        pedido.getAlimentos().clear();
+        pedido.getAlimentos().add(alimento);
+
         Pedido result = pedidoRepository.save(pedido);
         return ResponseEntity.created(new URI("/api/pedidos/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
@@ -94,7 +103,6 @@ public class PedidoResource {
      * GET  /pedidos : get all the pedidos.
      *
      * @param pageable the pagination information
-     * @param criteria the criterias which the requested entities should match
      * @return the ResponseEntity with status 200 (OK) and the list of pedidos in body
      */
     @GetMapping("/pedidos")

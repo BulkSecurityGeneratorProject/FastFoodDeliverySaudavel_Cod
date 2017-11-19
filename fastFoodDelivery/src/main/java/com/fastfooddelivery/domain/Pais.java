@@ -1,13 +1,16 @@
 package com.fastfooddelivery.domain;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -28,10 +31,10 @@ public class Pais implements Serializable {
     @Column(name = "pais")
     private String pais;
 
-    @OneToMany(mappedBy = "pais")
-    @JsonIgnore
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<Cartao> cartaos = new HashSet<>();
+//    @OneToMany(mappedBy = "pais")
+//    @JsonIgnore
+//    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+//    private Set<Cartao> cartaos = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -54,22 +57,22 @@ public class Pais implements Serializable {
         this.pais = pais;
     }
 
-    public Set<Cartao> getCartaos() {
-        return cartaos;
-    }
-
-    public Pais cartaos(Set<Cartao> cartaos) {
-        this.cartaos = cartaos;
-        return this;
-    }
-
-    public void setCartaos(Set<Cartao> cartaos) {
-        this.cartaos = cartaos;
-    }
-    
-    private void getCartaoTotais() {
-    	this.cartaos = cartaos;
-	}
+//    public Set<Cartao> getCartaos() {
+//        return cartaos;
+//    }
+//
+//    public Pais cartaos(Set<Cartao> cartaos) {
+//        this.cartaos = cartaos;
+//        return this;
+//    }
+//
+//    public void setCartaos(Set<Cartao> cartaos) {
+//        this.cartaos = cartaos;
+//    }
+//
+//    private void getCartaoTotais() {
+//    	this.cartaos = cartaos;
+//	}
 
     @Override
     public boolean equals(Object o) {

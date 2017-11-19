@@ -30,6 +30,23 @@
                     return $translate.refresh();
                 }]
             }
+        })
+        .state('sucesso-realizacao-pedido', {
+            parent: 'entity',
+            url: '/sucesso-cadastro-pedido',
+            data: {
+                authorities: [],
+                pageTitle: 'Sucesso no Cadastro da Pedido'
+            },
+            views: {
+                'content@': {
+                    templateUrl: 'app/entities/realizacao-pedido/sucesso-realizacao-pedido.html',
+                    controller: 'SucessoRealizacaoPedidoController',
+                    controllerAs: 'vm'
+                }
+            },
+            resolve: {
+            }
         });
     }
 

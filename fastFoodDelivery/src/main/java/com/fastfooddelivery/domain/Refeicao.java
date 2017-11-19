@@ -30,7 +30,9 @@ public class Refeicao implements Serializable {
     @ManyToOne
     private ValorRefeicao valorRefeicao;
 
-    @ManyToMany
+    // atencao: alterado para eager para acelerar o desenvolvimeto
+    // o ideal eh refatorar para recuperar os tipos de alimento de uma refeicao atraves de uma consulta especifica
+    @ManyToMany(fetch = FetchType.EAGER)
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @JoinTable(name = "refeicao_tipo_alimento",
                joinColumns = @JoinColumn(name="refeicaos_id", referencedColumnName="id"),

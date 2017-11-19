@@ -20,12 +20,7 @@
                     return data;
                 }
             },
-            'update': { method:'PUT' },
-            'findAll': {
-                method: 'GET',
-                url: 'api/refeicaos/all',
-                isArray: true
-            }
+            'update': { method:'PUT' }
         });
     }
 })();

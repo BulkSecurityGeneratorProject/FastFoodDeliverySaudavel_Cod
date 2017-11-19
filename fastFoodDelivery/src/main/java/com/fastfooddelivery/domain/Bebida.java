@@ -27,7 +27,9 @@ public class Bebida implements Serializable {
     @Column(name = "bebida")
     private String bebida;
 
-    @ManyToMany
+    // atencao: alterado para eager para acelerar o desenvolvimeto
+    // o ideal eh refatorar para recuperar os tipos de alimento de uma refeicao atraves de uma consulta especifica
+    @ManyToMany(fetch = FetchType.EAGER)
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @JoinTable(name = "bebida_doce",
                joinColumns = @JoinColumn(name="bebidas_id", referencedColumnName="id"),
