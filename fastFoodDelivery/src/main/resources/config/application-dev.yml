@@ -40,8 +40,8 @@ spring:
             hibernate.generate_statistics: true
             hibernate.cache.region.factory_class: io.github.jhipster.config.jcache.NoDefaultJCacheRegionFactory
     mail:
-        host: localhost
-        port: 25
+        host: smtp.gmail.com
+        port: 587
         username: fastfooddeliveryapp@gmail.com
         password: Fastfood@321
     messages:

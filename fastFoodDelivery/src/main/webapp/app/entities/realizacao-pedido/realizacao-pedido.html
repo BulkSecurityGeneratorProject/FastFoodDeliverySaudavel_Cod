@@ -11,33 +11,23 @@
 
                 <uib-tabset active="active">
                     <uib-tab index="0" heading="1. Refeição">
-                        <h2>Refeição <small>Escolha a sua refeição</small></h2>
+                        <h2><small>Escolha a sua refeição</small></h2>
 
                         <div class="list-group">
-
-                            <li class="list-group-item">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Filtre aqui..."
-                                           ng-model="vm.filtroFuncionalidade">
-                                    <span class="input-group-btn">
-                                <button class="btn btn-default" type="button" ng-click="vm.filtroRefeicao = ''">Limpar</button>
-                            </span>
-                                </div>
-                            </li>
 
                             <a href="" class="list-group-item"
                                ng-repeat="refeicao in vm.refeicoes | filter: vm.filtroRefeicao"
                                ng-click="vm.selecionarRefeicao(refeicao)"
                                ng-class="{'active': refeicao.selecionada}">
 
-                                {{refeicao.refeicao}}
+                                {{refeicao.tipoAlimento}}
                             </a>
 
                         </div>
                     </uib-tab>
 
                     <uib-tab index="1" heading="2. Escolha de alimentos">
-                        <h2>Alimentos <small>Escolha de alimentos</small></h2>
+                        <h2><small>Escolha o seu alimento</small></h2>
 
                         <div class="row">
 
@@ -77,43 +67,46 @@
                             </div>
 
                         </div>
+                        </br>
+                        </br>
 
                         <div class="row">
 
-                            <table class="table table-striped table-hover">
-                                <thead>
-                                    <tr>
-                                        <th>Tipo</th>
-                                        <th>Alimento</th>
-                                        <th>Gramas</th>
-                                        <th>Calorias por Kg</th>
-                                        <th>Total calorias</th>
-                                        <th>Ação</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr ng-repeat="alimentoEscolhido in vm.pedido.alimentos track by $index">
-                                        <td>{{alimentoEscolhido.tipoAlimento.tipoAlimento}}</td>
-                                        <td>{{alimentoEscolhido.alimento.alimentoCol}}</td>
-                                        <td>{{alimentoEscolhido.valorEmGramas}}</td>
-                                        <td>{{alimentoEscolhido.alimento.valorNutricional.caloria}}</td>
-                                        <td>{{alimentoEscolhido.alimento.valorNutricional.caloria}}</td>
-                                        <td>
-                                            <button type="button" ng-click="vm.excluirAlimentoEscolhido($index)" class="btn btn-danger btn-sm">
-                                                <span class="glyphicon glyphicon-remove-circle"></span>
-                                                <span class="hidden-sm-down">Excluir</span>
-                                            </button>
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-
+							<div class="table-responsive">
+	                            <table class="table table-striped table-hover table-responsive">
+	                                <thead>
+	                                    <tr>
+	                                        <th>Tipo</th>
+	                                        <th>Alimento</th>
+	                                        <th>Gramas</th>
+	                                        <th>Calorias por Kg</th>
+	                                        <th>Total calorias</th>
+	                                        <th>Ação</th>
+	                                    </tr>
+	                                </thead>
+	                                <tbody>
+	                                    <tr ng-repeat="alimentoEscolhido in vm.pedido.alimentos track by $index">
+	                                        <td>{{alimentoEscolhido.tipoAlimento.tipoAlimento}}</td>
+	                                        <td>{{alimentoEscolhido.alimento.alimentoCol}}</td>
+	                                        <td>{{alimentoEscolhido.valorEmGramas}}</td>
+	                                        <td>{{alimentoEscolhido.alimento.valorNutricional.caloria}}</td>
+	                                        <td>{{alimentoEscolhido.alimento.valorNutricional.caloria}}</td>
+	                                        <td>
+	                                            <button type="button" ng-click="vm.excluirAlimentoEscolhido($index)" class="btn btn-danger btn-sm">
+	                                                <span class="glyphicon glyphicon-remove-circle"></span>
+	                                                <span class="hidden-sm-down">Excluir</span>
+	                                            </button>
+	                                        </td>
+	                                    </tr>
+	                                </tbody>
+	                            </table>
+							</div>
                         </div>
 
                     </uib-tab>
 
                     <uib-tab index="2" heading="3. Escolha de bebidas">
-                        <h2>Bebidas <small>Escolha as bebidas</small></h2>
+                        <h2><small>Escolha a sua bebida</small></h2>
 
                         <div class="row">
 
@@ -124,7 +117,7 @@
                             </div>
 
                             <div class="col-md-2">
-                                <select class="form-control" name="tempero" ng-model="vm.alimentoEscolhido.bebida.doce" ng-options="doce as doce.doce for doce in vm.alimentoEscolhido.bebida.doces track by doce.id">
+                                <select class="form-control" name="tempero" ng-model="vm.alimentoEscolhido.bebida.doce" ng-options="doce as doce.doce for doce in vm.doces track by doce.id">
                                     <option value="">Forma de adoçar</option>
                                 </select>
                             </div>
@@ -139,7 +132,7 @@
                             </div>
 
                             <div class="col-md-4">
-                                <input type="number" class="form-control" placeholder="Quantidade">
+                                <input type="number" ng-model="vm.alimentoEscolhido.bebida.quantidade" class="form-control" placeholder="Quantidade">
                             </div>
 
                             <div class="col-md-2">
@@ -147,76 +140,82 @@
                             </div>
 
                         </div>
+                        </br>
+                        </br>
 
                         <div class="row">
-
-                            <table class="table table-striped table-hover">
-                                <thead>
-                                <tr>
-                                    <th>Bebida</th>
-                                    <th>Doce</th>
-                                    <th>Capacidade</th>
-                                    <th>Ação</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr ng-repeat="bebida in vm.pedido.bebidas track by $index">
-                                    <td>{{bebida.bebida}}</td>
-                                    <td>{{bebida.doce.doce}}</td>
-                                    <td>{{bebida.capacidade}}</td>
-                                    <td>
-                                        <button type="button" ng-click="vm.excluirBebidaEscolhida($index)" class="btn btn-danger btn-sm">
-                                            <span class="glyphicon glyphicon-remove-circle"></span>
-                                            <span class="hidden-sm-down">Excluir</span>
-                                        </button>
-                                    </td>
-                                </tr>
-                                </tbody>
-                            </table>
-
+							<div class="table-responsive">
+	                            <table class="table table-striped table-hover">
+	                                <thead>
+	                                <tr>
+	                                    <th>Bebida</th>
+	                                    <th>Doce</th>
+	                                    <th>Capacidade</th>
+	                                    <th>Ação</th>
+	                                </tr>
+	                                </thead>
+	                                <tbody>
+	                                <tr ng-repeat="bebida in vm.pedido.bebidas track by $index">
+	                                    <td>{{bebida.bebida}}</td>
+	                                    <td>{{bebida.doce.doce}}</td>
+	                                    <td>{{bebida.capacidade * bebida.quantidade}}</td>
+	                                    <td>
+	                                        <button type="button" ng-click="vm.excluirBebidaEscolhida($index)" class="btn btn-danger btn-sm">
+	                                            <span class="glyphicon glyphicon-remove-circle"></span>
+	                                            <span class="hidden-sm-down">Excluir</span>
+	                                        </button>
+	                                    </td>
+	                                </tr>
+	                                </tbody>
+	                            </table>
+							</div>
                         </div>
                     </uib-tab>
 
                     <uib-tab index="3" heading="4. Resumo">
-                        <h2>Resumo <small>Revise as informações</small></h2>
-
-                        <table class="table table-striped table-hover">
-                            <thead>
-                                <tr>
-                                    <th>Calorias</th>
-                                    <th>Proteínas</th>
-                                    <th>Carboidrato</th>
-                                    <th>Açúcares</th>
-                                    <th>Gorduras Totais</th>
-                                    <th>Gorduras Saturadas</th>
-                                    <th>Sódio</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr ng-repeat="alimento in vm.pedido.alimentos track by $index">
-                                    <td>{{alimento.valorNutricional.caloria}}</td>
-                                    <td>{{alimento.valorNutricional.proteina}}</td>
-                                    <td>{{alimento.valorNutricional.carboidrato}}</td>
-                                    <td>{{alimento.valorNutricional.acucar}}</td>
-                                    <td>{{alimento.valorNutricional.gordurasTotais}}</td>
-                                    <td>{{alimento.valorNutricional.gordurasSaturadas}}</td>
-                                    <td>{{alimento.valorNutricional.sodio}}</td>
-                                </tr>
-                                <tr ng-repeat="bebida in vm.pedido.bebidas track by $index">
-                                    <td>{{bebida.valorNutricional.caloria}}</td>
-                                    <td>{{bebida.valorNutricional.proteina}}</td>
-                                    <td>{{bebida.valorNutricional.carboidrato}}</td>
-                                    <td>{{bebida.valorNutricional.acucar}}</td>
-                                    <td>{{bebida.valorNutricional.gordurasTotais}}</td>
-                                    <td>{{bebida.valorNutricional.gordurasSaturadas}}</td>
-                                    <td>{{bebida.valorNutricional.sodio}}</td>
-                                </tr>
-                            </tbody>
-                        </table>
+                        <h2><small>Revise as suas informações</small></h2>
+                        </br>
+                        </br>
+						
+						<div class="table-responsive">
+	                        <table class="table table-striped table-hover">
+	                            <thead>
+	                                <tr>
+	                                    <th>Calorias</th>
+	                                    <th>Proteínas</th>
+	                                    <th>Carboidrato</th>
+	                                    <th>Açúcares</th>
+	                                    <th>Gorduras Totais</th>
+	                                    <th>Gorduras Saturadas</th>
+	                                    <th>Sódio</th>
+	                                </tr>
+	                            </thead>
+	                            <tbody>
+	                                <tr ng-repeat="alimento in vm.pedido.alimentos track by $index">
+	                                    <td>{{alimento.valorNutricional.caloria}}</td>
+	                                    <td>{{alimento.valorNutricional.proteina}}</td>
+	                                    <td>{{alimento.valorNutricional.carboidrato}}</td>
+	                                    <td>{{alimento.valorNutricional.acucar}}</td>
+	                                    <td>{{alimento.valorNutricional.gordurasTotais}}</td>
+	                                    <td>{{alimento.valorNutricional.gordurasSaturadas}}</td>
+	                                    <td>{{alimento.valorNutricional.sodio}}</td>
+	                                </tr>
+	                                <tr ng-repeat="bebida in vm.pedido.bebidas track by $index">
+	                                    <td>{{bebida.valorNutricional.caloria}}</td>
+	                                    <td>{{bebida.valorNutricional.proteina}}</td>
+	                                    <td>{{bebida.valorNutricional.carboidrato}}</td>
+	                                    <td>{{bebida.valorNutricional.acucar}}</td>
+	                                    <td>{{bebida.valorNutricional.gordurasTotais}}</td>
+	                                    <td>{{bebida.valorNutricional.gordurasSaturadas}}</td>
+	                                    <td>{{bebida.valorNutricional.sodio}}</td>
+	                                </tr>
+	                            </tbody>
+	                        </table>
+                 		</div>
                     </uib-tab>
 
                     <uib-tab index="4" heading="5. Pagamento e entrega">
-                        <h2>Pagamento e entrega</h2>
+                        <h2><small>Pagamento e entrega</small></h2>
 
                         <div class="panel panel-default">
                             <div class="panel-heading">
@@ -259,8 +258,15 @@
                                         </select>
 
                                     </div>
+                                    <div class="col-md-3">
+										<button class="btn btn-primary" >
+						                    <span class="glyphicon glyphicon-plus"></span>
+						                    <span>Incluir cartão</span>
+						                </button>
+                                    </div>
 
                                 </div>
+                                </br>
 
                                 <div class="row">
 
@@ -290,17 +296,13 @@
 
                 <ul class="pager">
                     <li class="previous">
-                        <a ng-click="active = active - 1" ng-show="active !== 0">← Voltar</a>
+                        <button type="button" ng-click="active = active - 1" ng-show="active !== 0" class="btn btn-primary next-step btn pull-left"> << Voltar</button>
                     </li>
 
                     <li class="next">
-                        <a class="withripple" ng-click="active = active + 1" ng-show="active !== 4">
-                            Avançar →<div class="ripple-container"></div>
-                        </a>
-
-                        <a class="withripple" ng-click="vm.enviarPedido()" ng-show="active === 4">
-                            Enviar<div class="ripple-container"></div>
-                        </a>
+                    	<button type="button" ng-click="active = active + 1" ng-show="active !== 4" class="btn btn-primary next-step btn pull-right">Avançar >></button>
+                    	
+                    	<button type="button" ng-click="vm.enviarPedido()" ng-show="active === 4" class="btn btn-primary next-step btn pull-right">Enviar</button>
                     </li>
                 </ul>
 

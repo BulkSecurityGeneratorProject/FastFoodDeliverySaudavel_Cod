@@ -5,9 +5,9 @@
         .module('fastFoodDeliveryApp')
         .controller('RealizacaoPedidoController', PedidoController);
 
-    PedidoController.$inject = ['$state', 'Pedido', 'ParseLinks', 'AlertService', 'Refeicao', 'TipoAlimento', 'Alimento', 'Preparo', 'Tempero', 'Bebida', 'Cartao', 'Endereco'];
+    PedidoController.$inject = ['$state', 'Pedido', 'ParseLinks', 'AlertService', 'Refeicao', 'TipoAlimento', 'Alimento', 'Preparo', 'Tempero', 'Bebida', 'Cartao', 'Endereco', 'Doce'];
 
-    function PedidoController($state, Pedido, ParseLinks, AlertService, Refeicao, TipoAlimento, Alimento, Preparo, Tempero, Bebida, Cartao, Endereco) {
+    function PedidoController($state, Pedido, ParseLinks, AlertService, Refeicao, TipoAlimento, Alimento, Preparo, Tempero, Bebida, Cartao, Endereco, Doce) {
 
         var vm = this;
         vm.selecionarRefeicao = selecionarRefeicao;
@@ -19,7 +19,7 @@
         vm.enviarPedido = enviarPedido;
 
         // aba: refeicao
-        vm.refeicoes = Refeicao.query();
+        vm.refeicoes = TipoAlimento.query();
 
         // aba: escolha de alimentos
         vm.tiposAlimento = TipoAlimento.query();
@@ -28,6 +28,7 @@
 
         // aba: escolha de bebidas
         vm.bebidas = Bebida.query();
+        vm.doces = Doce.query();
 
         // aba: pagamento e entrega
         vm.cartoes = Cartao.query();
@@ -58,6 +59,10 @@
             // vm.tiposAlimento = refeicao.tiposAlimento;
 
             vm.alimentoEscolhido.refeicao = refeicao;
+            
+            vm.alimentoEscolhido.tipoAlimento = refeicao;
+            
+            consultarAlimentos();
 
         }
 
@@ -106,7 +111,7 @@
         function excluirBebidaEscolhida(index) {
             vm.pedido.bebidas.splice(index, 1);
         }
-
+        
         function atualizarItensTotalizados() {
 
             vm.itensTotalizados = [];
