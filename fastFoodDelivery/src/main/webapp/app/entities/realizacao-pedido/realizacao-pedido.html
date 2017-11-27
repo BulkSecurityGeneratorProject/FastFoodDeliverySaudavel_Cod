@@ -158,7 +158,7 @@
 	                                <tr ng-repeat="bebida in vm.pedido.bebidas track by $index">
 	                                    <td>{{bebida.bebida}}</td>
 	                                    <td>{{bebida.doce.doce}}</td>
-	                                    <td>{{bebida.capacidade * bebida.quantidade}}</td>
+	                                    <td>{{bebida.capacidade}}</td>
 	                                    <td>
 	                                        <button type="button" ng-click="vm.excluirBebidaEscolhida($index)" class="btn btn-danger btn-sm">
 	                                            <span class="glyphicon glyphicon-remove-circle"></span>
