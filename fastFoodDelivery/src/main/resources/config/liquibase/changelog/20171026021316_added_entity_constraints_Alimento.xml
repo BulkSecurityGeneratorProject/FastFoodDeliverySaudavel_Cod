@@ -13,6 +13,7 @@
                                  constraintName="fk_alimento_preparo_alimentos_id"
                                  referencedColumnNames="id"
                                  referencedTableName="alimento"/>
+                                 
         <addForeignKeyConstraint baseColumnNames="preparos_id"
                                  baseTableName="alimento_preparo"
                                  constraintName="fk_alimento_preparo_preparos_id"

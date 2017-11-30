@@ -47,6 +47,12 @@ public class Pedido implements Serializable {
                joinColumns = @JoinColumn(name="pedidos_id", referencedColumnName="id"),
                inverseJoinColumns = @JoinColumn(name="alimentos_id", referencedColumnName="id"))
     private Set<Alimento> alimentos = new HashSet<>();
+    
+    @ManyToOne
+    private Status status;
+    
+    @ManyToOne
+    private Pessoa pessoa;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -121,6 +127,23 @@ public class Pedido implements Serializable {
     public void setAlimentos(Set<Alimento> alimentos) {
         this.alimentos = alimentos;
     }
+    
+    public Status getStatus() {
+		return status;
+	}
+    
+    public Pessoa getPessoa() {
+		return pessoa;
+	}
+    
+    public void setPessoa(Pessoa pessoa) {
+		this.pessoa = pessoa;
+	}
+    
+    public void setStatus(Status status) {
+		this.status = status;
+	}
+    
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override

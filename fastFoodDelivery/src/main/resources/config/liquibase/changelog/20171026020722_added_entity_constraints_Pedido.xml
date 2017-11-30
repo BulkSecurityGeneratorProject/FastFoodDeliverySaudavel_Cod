@@ -13,6 +13,7 @@
                                  constraintName="fk_pedido_bebida_pedidos_id"
                                  referencedColumnNames="id"
                                  referencedTableName="pedido"/>
+                                 
         <addForeignKeyConstraint baseColumnNames="bebidas_id"
                                  baseTableName="pedido_bebida"
                                  constraintName="fk_pedido_bebida_bebidas_id"
@@ -30,11 +31,24 @@
                                  constraintName="fk_pedido_alimento_pedidos_id"
                                  referencedColumnNames="id"
                                  referencedTableName="pedido"/>
+                                 
         <addForeignKeyConstraint baseColumnNames="alimentos_id"
                                  baseTableName="pedido_alimento"
                                  constraintName="fk_pedido_alimento_alimentos_id"
                                  referencedColumnNames="id"
                                  referencedTableName="alimento"/>
+                                 
+		<addForeignKeyConstraint baseColumnNames="pessoa_id"
+                                 baseTableName="pedido"
+                                 constraintName="fk_pedido_pessoa_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="pessoa"/>
+                                 
+       	<addForeignKeyConstraint baseColumnNames="status_id"
+                                 baseTableName="pedido"
+                                 constraintName="fk_pedido_status_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="status"/>
         
     </changeSet>
 </databaseChangeLog>

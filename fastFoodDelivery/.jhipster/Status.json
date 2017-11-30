@@ -1,0 +1,23 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "pedido",
+            "otherEntityName": "pedido",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "status"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "descricao",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20171130181515",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "status",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pager"
+}

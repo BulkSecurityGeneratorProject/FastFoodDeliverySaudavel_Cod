@@ -1,0 +1,51 @@
+
+<div>
+    <h2><span data-translate="fastFoodDeliveryApp.pessoa.detail.title">Pessoa</span> {{vm.pessoa.id}}</h2>
+    <hr>
+    <jhi-alert-error></jhi-alert-error>
+    <dl class="dl-horizontal jh-entity-details">
+        <dt><span data-translate="fastFoodDeliveryApp.pessoa.celular">Celular</span></dt>
+        <dd>
+            <span>{{vm.pessoa.celular}}</span>
+        </dd>
+        <dt><span data-translate="fastFoodDeliveryApp.pessoa.dataNascimento">Data Nascimento</span></dt>
+        <dd>
+            <span>{{vm.pessoa.dataNascimento | date:'mediumDate'}}</span>
+        </dd>
+        <dt><span data-translate="fastFoodDeliveryApp.pessoa.sexo">Sexo</span></dt>
+        <dd>
+            <span>{{vm.pessoa.sexo}}</span>
+        </dd>
+        <dt><span data-translate="fastFoodDeliveryApp.pessoa.peso">Peso</span></dt>
+        <dd>
+            <span>{{vm.pessoa.peso}}</span>
+        </dd>
+        <dt><span data-translate="fastFoodDeliveryApp.pessoa.altura">Altura</span></dt>
+        <dd>
+            <span>{{vm.pessoa.altura}}</span>
+        </dd>
+        <dt><span data-translate="fastFoodDeliveryApp.pessoa.endereco">Endereco</span></dt>
+        <dd>
+            <a ui-sref="endereco-detail({id:vm.pessoa.endereco.id})">{{vm.pessoa.endereco.id}}</a>
+        </dd>
+        <dt><span data-translate="fastFoodDeliveryApp.pessoa.cartao">Cartao</span></dt>
+        <dd>
+            <a ui-sref="cartao-detail({id:vm.pessoa.cartao.id})">{{vm.pessoa.cartao.id}}</a>
+        </dd>
+        <dt><span data-translate="fastFoodDeliveryApp.pessoa.cliente">Cliente</span></dt>
+        <dd>
+            <a ui-sref="cliente-detail({id:vm.pessoa.cliente.id})">{{vm.pessoa.cliente.id}}</a>
+        </dd>
+    </dl>
+
+    <button type="submit"
+            ui-sref="{{ vm.previousState }}"
+            class="btn btn-info">
+        <span class="glyphicon glyphicon-arrow-left"></span>&nbsp;<span data-translate="entity.action.back"> Back</span>
+    </button>
+
+    <button type="button" ui-sref="pessoa-detail.edit({id:vm.pessoa.id})" class="btn btn-primary">
+        <span class="glyphicon glyphicon-pencil"></span>
+        <span class="hidden-sm-down" data-translate="entity.action.edit"> Edit</span>
+    </button>
+</div>

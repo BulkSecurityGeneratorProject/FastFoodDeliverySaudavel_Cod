@@ -1,0 +1,22 @@
+{
+    "fastFoodDeliveryApp": {
+        "status" : {
+            "home": {
+                "title": "Statuses",
+                "createLabel": "Criar novo Status",
+                "createOrEditLabel": "Criar ou editar Status"
+            },
+            "created": "Um novo Status foi criado com o identificador {{ param }}",
+            "updated": "Um Status foi atualizado com o identificador {{ param }}",
+            "deleted": "Um Status foi deletado com o identificador {{ param }}",
+            "delete": {
+                "question": "Tem certeza de que deseja excluir Status {{ id }}?"
+            },
+            "detail": {
+                "title": "Status"
+            },
+            "descricao": "Descricao",
+            "pedido": "Pedido"
+        }
+    }
+}

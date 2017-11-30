@@ -63,6 +63,10 @@ public class CacheConfiguration {
             cm.createCache(com.fastfooddelivery.domain.ValorNutricional.class.getName(), jcacheConfiguration);
             cm.createCache(com.fastfooddelivery.domain.Tempero.class.getName(), jcacheConfiguration);
             cm.createCache(com.fastfooddelivery.domain.Cliente.class.getName(), jcacheConfiguration);
+            cm.createCache(com.fastfooddelivery.domain.Status.class.getName(), jcacheConfiguration);
+            cm.createCache(com.fastfooddelivery.domain.Status.class.getName() + ".pedidos", jcacheConfiguration);
+            cm.createCache(com.fastfooddelivery.domain.Pessoa.class.getName(), jcacheConfiguration);
+            cm.createCache(com.fastfooddelivery.domain.Pessoa.class.getName() + ".pedidos", jcacheConfiguration);
             // jhipster-needle-ehcache-add-entry
         };
     }

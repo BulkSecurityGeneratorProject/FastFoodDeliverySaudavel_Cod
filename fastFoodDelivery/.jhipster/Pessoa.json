@@ -1,0 +1,57 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "endereco",
+            "otherEntityName": "endereco",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "cartao",
+            "otherEntityName": "cartao",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "pedido",
+            "otherEntityName": "pedido",
+            "relationshipType": "one-to-many",
+            "otherEntityRelationshipName": "pessoa"
+        },
+        {
+            "relationshipName": "cliente",
+            "otherEntityName": "cliente",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "celular",
+            "fieldType": "Long"
+        },
+        {
+            "fieldName": "dataNascimento",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "sexo",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "peso",
+            "fieldType": "BigDecimal"
+        },
+        {
+            "fieldName": "altura",
+            "fieldType": "BigDecimal"
+        }
+    ],
+    "changelogDate": "20171130201729",
+    "dto": "no",
+    "service": "no",
+    "entityTableName": "pessoa",
+    "jpaMetamodelFiltering": false,
+    "pagination": "pager"
+}

@@ -20,10 +20,13 @@
     <include file="config/liquibase/changelog/20171026022206_added_entity_ValorNutricional.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20171026022252_added_entity_Tempero.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20171026022444_added_entity_Cliente.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171130181515_added_entity_Status.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171130201729_added_entity_Pessoa.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20171026020722_added_entity_constraints_Pedido.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20171026021110_added_entity_constraints_Bebida.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20171026021316_added_entity_constraints_Alimento.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20171026021523_added_entity_constraints_Refeicao.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20171130201729_added_entity_constraints_Pessoa.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-constraints-changelog - JHipster will add liquibase constraints changelogs here -->
 </databaseChangeLog>
