@@ -38,9 +38,14 @@
                             </div>
 
                             <div class="col-md-2">
-                                <select class="form-control" name="alimento" ng-model="vm.alimentoEscolhido.alimento" ng-options="alimento as alimento.alimentoCol for alimento in vm.alimentos track by alimento.id">
+                                <select class="form-control" name="alimento" ng-model="vm.alimentoEscolhido.alimento" ng-options="alimento as alimento.alimentoCol for alimento in vm.alimentos track by alimento.id" required>
                                     <option value="">Alimento</option>
                                 </select>
+                                <div ng-show="realizarPedidoForm.alimento.$dirty && realizarPedidoForm.alimento.$invalid">
+			                        <p class="help-block" ng-show="realizarPedidoForm.alimento.$error.required">
+			                            O alimento é obrigatório
+			                        </p>
+			                    </div>
                             </div>
 
                             <div class="col-md-2">
@@ -57,13 +62,18 @@
 
                             <div class="col-md-2">
                                 <div class="input-group">
-                                    <input type="number" class="form-control" ng-model="vm.alimentoEscolhido.valorEmGramas">
+                                    <input type="number" class="form-control" name="valorEmGramas" ng-model="vm.alimentoEscolhido.valorEmGramas" required>
                                     <span class="input-group-addon">g</span>
                                 </div>
+                                <div ng-show="realizarPedidoForm.valorEmGramas.$dirty && realizarPedidoForm.valorEmGramas.$invalid">
+			                        <p class="help-block" ng-show="realizarPedidoForm.valorEmGramas.$error.required">
+			                            A quantidade de grama é obrigatório
+			                        </p>
+			                    </div>
                             </div>
 
                             <div class="col-md-2">
-                                <button class="btn btn-primary" type="submit" ng-click="vm.adicionarAlimentoEscolhido()">Adicionar</button>
+                                <button class="btn btn-primary" type="submit" ng-disabled="realizarPedidoForm.$invalid" ng-click="vm.adicionarAlimentoEscolhido()">Adicionar</button>
                             </div>
 
                         </div>
@@ -151,6 +161,7 @@
 	                                    <th>Bebida</th>
 	                                    <th>Doce</th>
 	                                    <th>Capacidade</th>
+	                                    <th>Quantidade</th>
 	                                    <th>Ação</th>
 	                                </tr>
 	                                </thead>
@@ -159,6 +170,7 @@
 	                                    <td>{{bebida.bebida}}</td>
 	                                    <td>{{bebida.doce.doce}}</td>
 	                                    <td>{{bebida.capacidade}}</td>
+	                                    <td>{{bebida.quantidade}}</td>
 	                                    <td>
 	                                        <button type="button" ng-click="vm.excluirBebidaEscolhida($index)" class="btn btn-danger btn-sm">
 	                                            <span class="glyphicon glyphicon-remove-circle"></span>
@@ -181,33 +193,24 @@
 	                        <table class="table table-striped table-hover">
 	                            <thead>
 	                                <tr>
-	                                    <th>Calorias</th>
-	                                    <th>Proteínas</th>
-	                                    <th>Carboidrato</th>
-	                                    <th>Açúcares</th>
-	                                    <th>Gorduras Totais</th>
-	                                    <th>Gorduras Saturadas</th>
-	                                    <th>Sódio</th>
+	                                    <th>Total de calorias</th>
+	                                    <th>Total de proteínas</th>
+	                                    <th>Total de carboidrato</th>
+	                                    <th>Total de açúcares</th>
+	                                    <th>Total de gorduras totais</th>
+	                                    <th>Total de gorduras saturadas</th>
+	                                    <th>Total de sódio</th>
 	                                </tr>
 	                            </thead>
-	                            <tbody>
-	                                <tr ng-repeat="alimento in vm.pedido.alimentos track by $index">
-	                                    <td>{{alimento.valorNutricional.caloria}}</td>
-	                                    <td>{{alimento.valorNutricional.proteina}}</td>
-	                                    <td>{{alimento.valorNutricional.carboidrato}}</td>
-	                                    <td>{{alimento.valorNutricional.acucar}}</td>
-	                                    <td>{{alimento.valorNutricional.gordurasTotais}}</td>
-	                                    <td>{{alimento.valorNutricional.gordurasSaturadas}}</td>
-	                                    <td>{{alimento.valorNutricional.sodio}}</td>
-	                                </tr>
+	                            <tbody ng-repeat="alimento in vm.pedido.alimentos track by $index">
 	                                <tr ng-repeat="bebida in vm.pedido.bebidas track by $index">
-	                                    <td>{{bebida.valorNutricional.caloria}}</td>
-	                                    <td>{{bebida.valorNutricional.proteina}}</td>
-	                                    <td>{{bebida.valorNutricional.carboidrato}}</td>
-	                                    <td>{{bebida.valorNutricional.acucar}}</td>
-	                                    <td>{{bebida.valorNutricional.gordurasTotais}}</td>
-	                                    <td>{{bebida.valorNutricional.gordurasSaturadas}}</td>
-	                                    <td>{{bebida.valorNutricional.sodio}}</td>
+	                                    <td>{{alimento.alimento.valorNutricional.caloria + bebida.valorNutricional.caloria}}</td>
+	                                    <td>{{alimento.alimento.valorNutricional.proteina + bebida.valorNutricional.proteina}}</td>
+	                                    <td>{{alimento.alimento.valorNutricional.carboidrato + bebida.valorNutricional.carboidrato}}</td>
+	                                    <td>{{alimento.alimento.valorNutricional.acucar + bebida.valorNutricional.acucar}}</td>
+	                                    <td>{{alimento.alimento.valorNutricional.gordurasTotais + bebida.valorNutricional.gordurasTotais}}</td>
+	                                    <td>{{alimento.alimento.valorNutricional.gordurasSaturadas + bebida.valorNutricional.gordurasSaturadas}}</td>
+	                                    <td>{{alimento.alimento.valorNutricional.sodio + bebida.valorNutricional.sodio}}</td>
 	                                </tr>
 	                            </tbody>
 	                        </table>

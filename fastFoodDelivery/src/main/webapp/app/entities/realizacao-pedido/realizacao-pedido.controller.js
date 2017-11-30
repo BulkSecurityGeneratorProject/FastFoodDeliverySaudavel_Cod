@@ -22,7 +22,7 @@
         vm.refeicoes = TipoAlimento.query();
 
         // aba: escolha de alimentos
-        vm.tiposAlimento = TipoAlimento.query();
+//        vm.tiposAlimento = TipoAlimento.query();
         vm.preparos = Preparo.query();
         vm.temperos = Tempero.query();
 
@@ -42,7 +42,8 @@
         };
 
         vm.alimentoEscolhido = {};
-
+        vm.tiposAlimento = [];
+        
         function selecionarRefeicao(refeicao) {
 
             vm.refeicoes.forEach(function (refeicaoCadastrada) {
@@ -52,7 +53,7 @@
                 }
 
             });
-
+            
             refeicao.selecionada = !refeicao.selecionada;
 
             // TODO ajustar cadastro de bebidas
@@ -61,6 +62,8 @@
             vm.alimentoEscolhido.refeicao = refeicao;
             
             vm.alimentoEscolhido.tipoAlimento = refeicao;
+            
+            vm.tiposAlimento.push(refeicao);
             
             consultarAlimentos();
 

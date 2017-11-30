@@ -20,13 +20,13 @@
 
         <div class="form-group">
             <label data-translate="fastFoodDeliveryApp.refeicao.valorRefeicao" for="field_valorRefeicao">Valor Refeicao</label>
-            <select class="form-control" id="field_valorRefeicao" name="valorRefeicao" ng-model="vm.refeicao.valorRefeicao" ng-options="valorRefeicao as valorRefeicao.valor for valorRefeicao in vm.valorrefeicaos track by valorRefeicao.id">
+            <select class="form-control" id="field_valorRefeicao" name="valorRefeicao" ng-model="vm.refeicao.valorRefeicao" ng-options="valorRefeicao as valorRefeicao.valor for valorRefeicao in vm.valorRefeicaos track by valorRefeicao.id">
                 <option value=""></option>
             </select>
         </div>
         <div class="form-group">
             <label data-translate="fastFoodDeliveryApp.refeicao.tipoAlimento" for="field_tipoAlimento">Tipo Alimento</label>
-            <select class="form-control" id="field_tipoAlimento" name="tipoAlimento" ng-model="vm.refeicao.tipoAlimento" ng-options="tipoAlimento as tipoAlimento.tipoAlimento for tipoAlimento in vm.tipoalimentos track by tipoAlimento.id">
+            <select class="form-control" id="field_tipoAlimento" name="tipoAlimento" ng-model="vm.tipoAlimento" ng-options="tipoAlimento as tipoAlimento.tipoAlimento for tipoAlimento in vm.tipoAlimentos track by tipoAlimento.id">
             	<option value=""></option>
             </select>
         </div>

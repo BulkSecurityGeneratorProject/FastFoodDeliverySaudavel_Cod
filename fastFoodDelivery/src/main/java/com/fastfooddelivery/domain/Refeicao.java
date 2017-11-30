@@ -1,13 +1,26 @@
 package com.fastfooddelivery.domain;
 
-import org.hibernate.annotations.Cache;
-import org.hibernate.annotations.CacheConcurrencyStrategy;
-
-import javax.persistence.*;
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
+import java.util.Set;
+
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+import org.hibernate.annotations.Cache;
+import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 /**
  * A Refeicao.
@@ -32,7 +45,7 @@ public class Refeicao implements Serializable {
 
     // atencao: alterado para eager para acelerar o desenvolvimeto
     // o ideal eh refatorar para recuperar os tipos de alimento de uma refeicao atraves de uma consulta especifica
-    @ManyToMany(fetch = FetchType.EAGER)
+    @ManyToMany(fetch = FetchType.EAGER, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REMOVE, CascadeType.REFRESH})
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @JoinTable(name = "refeicao_tipo_alimento",
                joinColumns = @JoinColumn(name="refeicaos_id", referencedColumnName="id"),
@@ -43,7 +56,7 @@ public class Refeicao implements Serializable {
     public Long getId() {
         return id;
     }
-
+    
     public void setId(Long id) {
         this.id = id;
     }
@@ -86,6 +99,7 @@ public class Refeicao implements Serializable {
     public void setTipoAlimentos(Set<TipoAlimento> tipoAlimentos) {
         this.tipoAlimentos = tipoAlimentos;
     }
+    
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override

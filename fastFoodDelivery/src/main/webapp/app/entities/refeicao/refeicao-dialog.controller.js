@@ -13,8 +13,8 @@
         vm.refeicao = entity;
         vm.clear = clear;
         vm.save = save;
-        vm.valorrefeicaos = ValorRefeicao.query();
-        vm.tipoalimentos = TipoAlimento.query();
+        vm.valorRefeicaos = ValorRefeicao.query();
+        vm.tipoAlimentos = TipoAlimento.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();
