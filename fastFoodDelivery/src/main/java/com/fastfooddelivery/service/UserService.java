@@ -228,11 +228,24 @@ public class UserService {
     }
 
     public void deleteUser(String login) {
-        userRepository.findOneByLogin(login).ifPresent(user -> {
-            userRepository.delete(user);
-            cacheManager.getCache(USERS_CACHE).evict(login);
-            log.debug("Deleted User: {}", user);
-        });
+    	
+    	Optional<User> usuario = userRepository.findOneByLogin(login);
+    	Optional<Pessoa> pessoa = Optional.empty();
+    	
+    	if(usuario.isPresent()) {
+    		
+    		pessoa = pessoaRepository.findOneByUser(usuario.get());
+    		pessoaRepository.delete(pessoa.get());
+    		
+    		if(pessoa.get().getEndereco() != null) {
+    			enderecoRepository.delete(pessoa.get().getEndereco());
+    		}
+    		
+    		userRepository.delete(usuario.get());
+    		cacheManager.getCache(USERS_CACHE).evict(login);
+    		log.debug("Deleted User: {}", usuario);
+    	}
+    	
     }
 
     public void changePassword(String password) {

@@ -1,9 +1,12 @@
 package com.fastfooddelivery.repository;
 
-import com.fastfooddelivery.domain.Pessoa;
+import java.util.Optional;
+
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import org.springframework.data.jpa.repository.*;
+import com.fastfooddelivery.domain.Pessoa;
+import com.fastfooddelivery.domain.User;
 
 
 /**
@@ -12,5 +15,7 @@ import org.springframework.data.jpa.repository.*;
 @SuppressWarnings("unused")
 @Repository
 public interface PessoaRepository extends JpaRepository<Pessoa, Long> {
+	
+	Optional<Pessoa> findOneByUser(User user);
 
 }
