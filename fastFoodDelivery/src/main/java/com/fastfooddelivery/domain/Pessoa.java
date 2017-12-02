@@ -57,7 +57,6 @@ public class Pessoa implements Serializable {
     private Cliente cliente;
     
     @OneToOne
-    @MapsId("id")
     private User user;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove

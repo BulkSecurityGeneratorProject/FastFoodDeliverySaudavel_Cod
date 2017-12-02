@@ -44,6 +44,12 @@ spring:
         port: 587
         username: fastfooddeliveryapp@gmail.com
         password: Fastfood@321
+        protocol: smtp
+        tls: true
+        properties.mail.smtp:
+            auth: true
+            starttls.enable: true
+            ssl.trust: smtp.gmail.com
     messages:
         cache-seconds: 1
     thymeleaf:
