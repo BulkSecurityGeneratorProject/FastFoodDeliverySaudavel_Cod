@@ -22,7 +22,7 @@
                 "valorNutricional": "Valor Nutricional",
                 "tempero": "Tempero",
                 "cliente": "Cliente",
-                "status": "Status",
+                "status": "Situação",
                 "pessoa": "Pessoa",
                 "jhipster-needle-menu-add-entry": "JHipster will add additional entities here (do not translate!)"
             },

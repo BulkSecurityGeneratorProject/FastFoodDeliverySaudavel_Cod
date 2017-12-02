@@ -2,18 +2,18 @@
     "fastFoodDeliveryApp": {
         "status" : {
             "home": {
-                "title": "Statuses",
-                "createLabel": "Criar novo Status",
-                "createOrEditLabel": "Criar ou editar Status"
+                "title": "Situação",
+                "createLabel": "Criar nova Situação",
+                "createOrEditLabel": "Criar ou editar Situação"
             },
-            "created": "Um novo Status foi criado com o identificador {{ param }}",
-            "updated": "Um Status foi atualizado com o identificador {{ param }}",
-            "deleted": "Um Status foi deletado com o identificador {{ param }}",
+            "created": "Uma nova Situação foi criada com o identificador {{ param }}",
+            "updated": "Uma Situação foi atualizada com o identificador {{ param }}",
+            "deleted": "Uma Situação foi deletada com o identificador {{ param }}",
             "delete": {
-                "question": "Tem certeza de que deseja excluir Status {{ id }}?"
+                "question": "Tem certeza de que deseja excluir Situação {{ id }}?"
             },
             "detail": {
-                "title": "Status"
+                "title": "Situação"
             },
             "descricao": "Descricao",
             "pedido": "Pedido"

@@ -37,8 +37,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = FastFoodDeliveryApp.class)
 public class FormaDeEntregaResourceIntTest {
 
-    private static final Integer DEFAULT_FORMA_DE_ENTREGA = 1;
-    private static final Integer UPDATED_FORMA_DE_ENTREGA = 2;
+    private static final String DEFAULT_DESCRICAO = "AAAAAAAAAA";
+    private static final String UPDATED_DESCRICAO = "BBBBBBBBBB";
 
     @Autowired
     private FormaDeEntregaRepository formaDeEntregaRepository;
@@ -77,7 +77,7 @@ public class FormaDeEntregaResourceIntTest {
      */
     public static FormaDeEntrega createEntity(EntityManager em) {
         FormaDeEntrega formaDeEntrega = new FormaDeEntrega()
-            .formaDeEntrega(DEFAULT_FORMA_DE_ENTREGA);
+            .descricao(DEFAULT_DESCRICAO);
         return formaDeEntrega;
     }
 
@@ -101,7 +101,7 @@ public class FormaDeEntregaResourceIntTest {
         List<FormaDeEntrega> formaDeEntregaList = formaDeEntregaRepository.findAll();
         assertThat(formaDeEntregaList).hasSize(databaseSizeBeforeCreate + 1);
         FormaDeEntrega testFormaDeEntrega = formaDeEntregaList.get(formaDeEntregaList.size() - 1);
-        assertThat(testFormaDeEntrega.getFormaDeEntrega()).isEqualTo(DEFAULT_FORMA_DE_ENTREGA);
+        assertThat(testFormaDeEntrega.getDescricao()).isEqualTo(DEFAULT_DESCRICAO);
     }
 
     @Test
@@ -134,7 +134,7 @@ public class FormaDeEntregaResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(formaDeEntrega.getId().intValue())))
-            .andExpect(jsonPath("$.[*].formaDeEntrega").value(hasItem(DEFAULT_FORMA_DE_ENTREGA)));
+            .andExpect(jsonPath("$.[*].descricao").value(hasItem(DEFAULT_DESCRICAO.toString())));
     }
 
     @Test
@@ -148,7 +148,7 @@ public class FormaDeEntregaResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(formaDeEntrega.getId().intValue()))
-            .andExpect(jsonPath("$.formaDeEntrega").value(DEFAULT_FORMA_DE_ENTREGA));
+            .andExpect(jsonPath("$.descricao").value(DEFAULT_DESCRICAO.toString()));
     }
 
     @Test
@@ -169,7 +169,7 @@ public class FormaDeEntregaResourceIntTest {
         // Update the formaDeEntrega
         FormaDeEntrega updatedFormaDeEntrega = formaDeEntregaRepository.findOne(formaDeEntrega.getId());
         updatedFormaDeEntrega
-            .formaDeEntrega(UPDATED_FORMA_DE_ENTREGA);
+            .descricao(UPDATED_DESCRICAO);
 
         restFormaDeEntregaMockMvc.perform(put("/api/forma-de-entregas")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -180,7 +180,7 @@ public class FormaDeEntregaResourceIntTest {
         List<FormaDeEntrega> formaDeEntregaList = formaDeEntregaRepository.findAll();
         assertThat(formaDeEntregaList).hasSize(databaseSizeBeforeUpdate);
         FormaDeEntrega testFormaDeEntrega = formaDeEntregaList.get(formaDeEntregaList.size() - 1);
-        assertThat(testFormaDeEntrega.getFormaDeEntrega()).isEqualTo(UPDATED_FORMA_DE_ENTREGA);
+        assertThat(testFormaDeEntrega.getDescricao()).isEqualTo(UPDATED_DESCRICAO);
     }
 
     @Test

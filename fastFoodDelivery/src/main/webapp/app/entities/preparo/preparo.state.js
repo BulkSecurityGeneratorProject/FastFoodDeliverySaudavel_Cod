@@ -125,6 +125,7 @@
                         entity: function () {
                             return {
                                 preparo: null,
+                                tempoPreparo: null,
                                 id: null
                             };
                         }

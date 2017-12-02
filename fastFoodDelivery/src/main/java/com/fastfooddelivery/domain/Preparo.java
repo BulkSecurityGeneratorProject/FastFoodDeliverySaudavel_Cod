@@ -5,6 +5,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
@@ -26,10 +27,14 @@ public class Preparo implements Serializable {
 
     @Column(name = "preparo")
     private String preparo;
+
+    @Column(name = "tempo_preparo", precision=10, scale=2)
+    private BigDecimal tempoPreparo;
     
     @ManyToMany(mappedBy = "preparos", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REMOVE, CascadeType.REFRESH})
     private Set<Alimento> alimentos = new HashSet<>();
 
+    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
     }
@@ -50,14 +55,28 @@ public class Preparo implements Serializable {
     public void setPreparo(String preparo) {
         this.preparo = preparo;
     }
+
+    public BigDecimal getTempoPreparo() {
+        return tempoPreparo;
+    }
+
+    public Preparo tempoPreparo(BigDecimal tempoPreparo) {
+        this.tempoPreparo = tempoPreparo;
+        return this;
+    }
+
+    public void setTempoPreparo(BigDecimal tempoPreparo) {
+        this.tempoPreparo = tempoPreparo;
+    }
+    
+    public Set<Alimento> getAlimentos() {
+		return alimentos;
+	}
     
     public void setAlimentos(Set<Alimento> alimentos) {
 		this.alimentos = alimentos;
 	}
-    
-    public Set<Alimento> getAlimentos() {
-    	return alimentos;
-    }
+    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
     public boolean equals(Object o) {
@@ -84,7 +103,7 @@ public class Preparo implements Serializable {
         return "Preparo{" +
             "id=" + getId() +
             ", preparo='" + getPreparo() + "'" +
+            ", tempoPreparo='" + getTempoPreparo() + "'" +
             "}";
     }
-
 }

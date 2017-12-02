@@ -1,5 +1,5 @@
 <div>
-    <h2 data-translate="fastFoodDeliveryApp.formaDeEntrega.home.title">Forma De Entrega</h2>
+    <h2 data-translate="fastFoodDeliveryApp.formaDeEntrega.home.title">Forma De Entregas</h2>
     <jhi-alert></jhi-alert>
     <div class="container-fluid">
         <div class="row">
@@ -19,14 +19,14 @@
             <thead>
                 <tr>
                     <th><span data-translate="global.field.id">ID</span></th>
-                    <th><span data-translate="fastFoodDeliveryApp.formaDeEntrega.formaDeEntrega">Forma De Entrega</span></th>
+                    <th><span data-translate="fastFoodDeliveryApp.formaDeEntrega.descricao">Descricao</span></th>
                     <th></th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="formaDeEntrega in vm.formaDeEntregas track by formaDeEntrega.id">
                     <td><a ui-sref="forma-de-entrega-detail({id:formaDeEntrega.id})">{{formaDeEntrega.id}}</a></td>
-                    <td>{{formaDeEntrega.formaDeEntrega}}</td>
+                    <td>{{formaDeEntrega.descricao}}</td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"

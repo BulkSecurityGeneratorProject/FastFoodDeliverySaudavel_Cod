@@ -1,5 +1,5 @@
 <div>
-    <h2 data-translate="fastFoodDeliveryApp.preparo.home.title">Preparo</h2>
+    <h2 data-translate="fastFoodDeliveryApp.preparo.home.title">Preparos</h2>
     <jhi-alert></jhi-alert>
     <div class="container-fluid">
         <div class="row">
@@ -20,6 +20,7 @@
                 <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
                     <th jh-sort-by="id"><span data-translate="global.field.id">ID</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="preparo"><span data-translate="fastFoodDeliveryApp.preparo.preparo">Preparo</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="tempoPreparo"><span data-translate="fastFoodDeliveryApp.preparo.tempoPreparo">Tempo Preparo</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
@@ -27,6 +28,7 @@
                 <tr ng-repeat="preparo in vm.preparos track by preparo.id">
                     <td><a ui-sref="preparo-detail({id:preparo.id})">{{preparo.id}}</a></td>
                     <td>{{preparo.preparo}}</td>
+                    <td>{{preparo.tempoPreparo}}</td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"

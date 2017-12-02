@@ -21,6 +21,7 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
+import java.math.BigDecimal;
 import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -39,6 +40,9 @@ public class PreparoResourceIntTest {
 
     private static final String DEFAULT_PREPARO = "AAAAAAAAAA";
     private static final String UPDATED_PREPARO = "BBBBBBBBBB";
+
+    private static final BigDecimal DEFAULT_TEMPO_PREPARO = new BigDecimal(1);
+    private static final BigDecimal UPDATED_TEMPO_PREPARO = new BigDecimal(2);
 
     @Autowired
     private PreparoRepository preparoRepository;
@@ -77,7 +81,8 @@ public class PreparoResourceIntTest {
      */
     public static Preparo createEntity(EntityManager em) {
         Preparo preparo = new Preparo()
-            .preparo(DEFAULT_PREPARO);
+            .preparo(DEFAULT_PREPARO)
+            .tempoPreparo(DEFAULT_TEMPO_PREPARO);
         return preparo;
     }
 
@@ -102,6 +107,7 @@ public class PreparoResourceIntTest {
         assertThat(preparoList).hasSize(databaseSizeBeforeCreate + 1);
         Preparo testPreparo = preparoList.get(preparoList.size() - 1);
         assertThat(testPreparo.getPreparo()).isEqualTo(DEFAULT_PREPARO);
+        assertThat(testPreparo.getTempoPreparo()).isEqualTo(DEFAULT_TEMPO_PREPARO);
     }
 
     @Test
@@ -134,7 +140,8 @@ public class PreparoResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(preparo.getId().intValue())))
-            .andExpect(jsonPath("$.[*].preparo").value(hasItem(DEFAULT_PREPARO.toString())));
+            .andExpect(jsonPath("$.[*].preparo").value(hasItem(DEFAULT_PREPARO.toString())))
+            .andExpect(jsonPath("$.[*].tempoPreparo").value(hasItem(DEFAULT_TEMPO_PREPARO.intValue())));
     }
 
     @Test
@@ -148,7 +155,8 @@ public class PreparoResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(preparo.getId().intValue()))
-            .andExpect(jsonPath("$.preparo").value(DEFAULT_PREPARO.toString()));
+            .andExpect(jsonPath("$.preparo").value(DEFAULT_PREPARO.toString()))
+            .andExpect(jsonPath("$.tempoPreparo").value(DEFAULT_TEMPO_PREPARO.intValue()));
     }
 
     @Test
@@ -169,7 +177,8 @@ public class PreparoResourceIntTest {
         // Update the preparo
         Preparo updatedPreparo = preparoRepository.findOne(preparo.getId());
         updatedPreparo
-            .preparo(UPDATED_PREPARO);
+            .preparo(UPDATED_PREPARO)
+            .tempoPreparo(UPDATED_TEMPO_PREPARO);
 
         restPreparoMockMvc.perform(put("/api/preparos")
             .contentType(TestUtil.APPLICATION_JSON_UTF8)
@@ -181,6 +190,7 @@ public class PreparoResourceIntTest {
         assertThat(preparoList).hasSize(databaseSizeBeforeUpdate);
         Preparo testPreparo = preparoList.get(preparoList.size() - 1);
         assertThat(testPreparo.getPreparo()).isEqualTo(UPDATED_PREPARO);
+        assertThat(testPreparo.getTempoPreparo()).isEqualTo(UPDATED_TEMPO_PREPARO);
     }
 
     @Test

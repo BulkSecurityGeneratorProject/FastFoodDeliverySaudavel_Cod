@@ -6,6 +6,10 @@
             "fieldName": "preparo",
             "fieldType": "String",
             "fieldValidateRules": []
+        },
+        {
+            "fieldName": "tempoPreparo",
+            "fieldType": "BigDecimal"
         }
     ],
     "changelogDate": "20171026021213",

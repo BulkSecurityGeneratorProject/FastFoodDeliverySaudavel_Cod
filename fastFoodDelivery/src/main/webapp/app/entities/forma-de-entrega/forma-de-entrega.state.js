@@ -104,7 +104,7 @@
                     resolve: {
                         entity: function () {
                             return {
-                                formaDeEntrega: null,
+                                descricao: null,
                                 id: null
                             };
                         }

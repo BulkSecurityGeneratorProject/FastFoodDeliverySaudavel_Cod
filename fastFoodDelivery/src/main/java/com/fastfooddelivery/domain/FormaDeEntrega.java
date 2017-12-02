@@ -22,8 +22,8 @@ public class FormaDeEntrega implements Serializable {
     @SequenceGenerator(name = "sequenceGenerator")
     private Long id;
 
-    @Column(name = "forma_de_entrega")
-    private Integer formaDeEntrega;
+    @Column(name = "descricao")
+    private String descricao;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -34,17 +34,17 @@ public class FormaDeEntrega implements Serializable {
         this.id = id;
     }
 
-    public Integer getFormaDeEntrega() {
-        return formaDeEntrega;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public FormaDeEntrega formaDeEntrega(Integer formaDeEntrega) {
-        this.formaDeEntrega = formaDeEntrega;
+    public FormaDeEntrega descricao(String descricao) {
+        this.descricao = descricao;
         return this;
     }
 
-    public void setFormaDeEntrega(Integer formaDeEntrega) {
-        this.formaDeEntrega = formaDeEntrega;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -72,7 +72,7 @@ public class FormaDeEntrega implements Serializable {
     public String toString() {
         return "FormaDeEntrega{" +
             "id=" + getId() +
-            ", formaDeEntrega='" + getFormaDeEntrega() + "'" +
+            ", descricao='" + getDescricao() + "'" +
             "}";
     }
 }

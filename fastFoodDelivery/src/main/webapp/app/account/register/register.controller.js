@@ -18,13 +18,9 @@
         vm.register = register;
         vm.openCalendar = openCalendar;
         vm.datePickerOpenStatus = {};
-        vm.registerAccount = {
-        		email: 'teste@gmail.com',
-        		password: '123456'
-        };
-        vm.confirmPassword = '123456';
+        vm.registerAccount = {};
         vm.success = null;
-
+        
         $timeout(function (){angular.element('#login').focus();});
         
         function register () {

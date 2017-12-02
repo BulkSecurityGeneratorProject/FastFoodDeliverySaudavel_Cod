@@ -3,8 +3,8 @@
     "relationships": [],
     "fields": [
         {
-            "fieldName": "formaDeEntrega",
-            "fieldType": "Integer"
+            "fieldName": "descricao",
+            "fieldType": "String"
         }
     ],
     "changelogDate": "20171026020937",

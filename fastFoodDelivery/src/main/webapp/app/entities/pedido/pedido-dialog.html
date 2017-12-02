@@ -38,13 +38,19 @@
         </div>
         <div class="form-group">
             <label data-translate="fastFoodDeliveryApp.pedido.formaDeEntrega" for="field_formaDeEntrega">Forma De Entrega</label>
-            <select class="form-control" id="field_formaDeEntrega" name="formaDeEntrega" ng-model="vm.pedido.formaDeEntrega" ng-options="formaDeEntrega as formaDeEntrega.id for formaDeEntrega in vm.formadeentregas track by formaDeEntrega.id">
+            <select class="form-control" id="field_formaDeEntrega" name="formaDeEntrega" ng-model="vm.pedido.formaDeEntrega" ng-options="formaDeEntrega as formaDeEntrega.descricao for formaDeEntrega in vm.formadeentregas track by formaDeEntrega.id">
                 <option value=""></option>
             </select>
         </div>
         <div class="form-group">
             <label data-translate="fastFoodDeliveryApp.pedido.alimento" for="field_alimento">Alimento</label>
             <select class="form-control" id="field_alimento" name="alimento" ng-model="vm.pedido.alimentos" ng-options="alimento as alimento.id for alimento in vm.alimentos track by alimento.id" multiple>
+            	<option value=""></option>
+            </select>
+        </div>
+        <div class="form-group">
+            <label for="field_status">Status</label>
+            <select class="form-control" id="field_status" name="status" ng-model="vm.pedido.status" ng-options="status as status.descricao for status in vm.status track by status.id">
             	<option value=""></option>
             </select>
         </div>
