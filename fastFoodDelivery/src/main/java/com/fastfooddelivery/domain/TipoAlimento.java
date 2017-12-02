@@ -1,13 +1,17 @@
 package com.fastfooddelivery.domain;
 
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -32,8 +36,8 @@ public class TipoAlimento implements Serializable {
     @Column(name = "tipo_alimento")
     private String tipoAlimento;
     
-//    @ManyToMany(mappedBy = "tipoAlimentos", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REMOVE, CascadeType.REFRESH})
-//    private Set<Refeicao> refeicoes = new HashSet<>();
+    @ManyToMany(mappedBy = "tipoAlimentos", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REMOVE, CascadeType.REFRESH})
+    private Set<Refeicao> refeicoes = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -57,13 +61,13 @@ public class TipoAlimento implements Serializable {
         this.tipoAlimento = tipoAlimento;
     }
     
-//    public Set<Refeicao> getRefeicoes() {
-//		return refeicoes;
-//	}
-//    
-//    public void setRefeicoes(Set<Refeicao> refeicoes) {
-//		this.refeicoes = refeicoes;
-//	}
+    public Set<Refeicao> getRefeicoes() {
+		return refeicoes;
+	}
+    
+    public void setRefeicoes(Set<Refeicao> refeicoes) {
+		this.refeicoes = refeicoes;
+	}
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override

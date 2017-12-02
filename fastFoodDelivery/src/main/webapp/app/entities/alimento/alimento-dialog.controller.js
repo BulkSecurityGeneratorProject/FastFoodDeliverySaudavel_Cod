@@ -5,9 +5,9 @@
         .module('fastFoodDeliveryApp')
         .controller('AlimentoDialogController', AlimentoDialogController);
 
-    AlimentoDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', '$q', 'entity', 'Alimento', 'Preparo', 'Tempero', 'ValorNutricional', 'TipoAlimento'];
+    AlimentoDialogController.$inject = ['$timeout', '$scope', '$stateParams', '$uibModalInstance', '$q', 'entity', 'Alimento', 'Preparo', 'Tempero', 'ValorNutricional', 'TipoAlimento', 'ValorRefeicao'];
 
-    function AlimentoDialogController ($timeout, $scope, $stateParams, $uibModalInstance, $q, entity, Alimento, Preparo, Tempero, ValorNutricional, TipoAlimento) {
+    function AlimentoDialogController ($timeout, $scope, $stateParams, $uibModalInstance, $q, entity, Alimento, Preparo, Tempero, ValorNutricional, TipoAlimento, ValorRefeicao) {
         var vm = this;
 
         vm.alimento = entity;
@@ -25,6 +25,7 @@
             vm.valornutricionals.push(valorNutricional);
         });
         vm.tipoalimentos = TipoAlimento.query();
+        vm.valorrefeicaos = ValorRefeicao.query();
 
         $timeout(function (){
             angular.element('.form-group:eq(1)>input').focus();

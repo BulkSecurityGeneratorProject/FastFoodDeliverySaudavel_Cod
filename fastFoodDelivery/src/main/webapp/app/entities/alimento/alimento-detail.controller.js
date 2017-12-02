@@ -5,9 +5,9 @@
         .module('fastFoodDeliveryApp')
         .controller('AlimentoDetailController', AlimentoDetailController);
 
-    AlimentoDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Alimento', 'Preparo', 'Tempero', 'ValorNutricional', 'TipoAlimento'];
+    AlimentoDetailController.$inject = ['$scope', '$rootScope', '$stateParams', 'previousState', 'entity', 'Alimento', 'Preparo', 'Tempero', 'ValorNutricional', 'TipoAlimento', 'ValorRefeicao'];
 
-    function AlimentoDetailController($scope, $rootScope, $stateParams, previousState, entity, Alimento, Preparo, Tempero, ValorNutricional, TipoAlimento) {
+    function AlimentoDetailController($scope, $rootScope, $stateParams, previousState, entity, Alimento, Preparo, Tempero, ValorNutricional, TipoAlimento, ValorRefeicao) {
         var vm = this;
 
         vm.alimento = entity;

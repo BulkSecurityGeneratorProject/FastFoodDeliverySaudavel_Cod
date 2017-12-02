@@ -1,7 +1,6 @@
 package com.fastfooddelivery.repository;
 
 import com.fastfooddelivery.domain.Alimento;
-import com.fastfooddelivery.domain.TipoAlimento;
 import org.springframework.stereotype.Repository;
 
 import org.springframework.data.jpa.repository.*;
@@ -19,7 +18,5 @@ public interface AlimentoRepository extends JpaRepository<Alimento, Long> {
 
     @Query("select alimento from Alimento alimento left join fetch alimento.preparos left join fetch alimento.temperos where alimento.id =:id")
     Alimento findOneWithEagerRelationships(@Param("id") Long id);
-
-    List<Alimento> findByTipoAlimento(TipoAlimento tipoAlimento);
 
 }

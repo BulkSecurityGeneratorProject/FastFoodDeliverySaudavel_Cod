@@ -5,6 +5,7 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
 
@@ -25,6 +26,9 @@ public class Preparo implements Serializable {
 
     @Column(name = "preparo")
     private String preparo;
+    
+    @ManyToMany(mappedBy = "preparos", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REMOVE, CascadeType.REFRESH})
+    private Set<Alimento> alimentos = new HashSet<>();
 
     public Long getId() {
         return id;
@@ -45,6 +49,14 @@ public class Preparo implements Serializable {
 
     public void setPreparo(String preparo) {
         this.preparo = preparo;
+    }
+    
+    public void setAlimentos(Set<Alimento> alimentos) {
+		this.alimentos = alimentos;
+	}
+    
+    public Set<Alimento> getAlimentos() {
+    	return alimentos;
     }
 
     @Override
@@ -75,7 +87,4 @@ public class Preparo implements Serializable {
             "}";
     }
 
-	public Set<Preparo> getAlimentos() {
-		return null;
-	}
 }

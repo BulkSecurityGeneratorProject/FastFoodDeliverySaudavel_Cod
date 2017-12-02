@@ -1,24 +1,13 @@
 package com.fastfooddelivery.domain;
 
-import java.io.Serializable;
-import java.util.Objects;
-import java.util.Set;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
-import javax.persistence.SequenceGenerator;
-import javax.persistence.Table;
-
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
+
+import javax.persistence.*;
+import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
+import java.util.Objects;
 
 /**
  * A Alimento.
@@ -43,14 +32,14 @@ public class Alimento implements Serializable {
     @JoinTable(name = "alimento_preparo",
                joinColumns = @JoinColumn(name="alimentos_id", referencedColumnName="id"),
                inverseJoinColumns = @JoinColumn(name="preparos_id", referencedColumnName="id"))
-    private Set<Preparo> preparos;
+    private Set<Preparo> preparos = new HashSet<>();
 
     @ManyToMany
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     @JoinTable(name = "alimento_tempero",
                joinColumns = @JoinColumn(name="alimentos_id", referencedColumnName="id"),
                inverseJoinColumns = @JoinColumn(name="temperos_id", referencedColumnName="id"))
-    private Set<Tempero> temperos;
+    private Set<Tempero> temperos = new HashSet<>();
 
     @OneToOne
     @JoinColumn(unique = true)
@@ -59,6 +48,10 @@ public class Alimento implements Serializable {
     @ManyToOne
     private TipoAlimento tipoAlimento;
 
+    @ManyToOne
+    private ValorRefeicao valorRefeicao;
+
+    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
     }
@@ -89,6 +82,12 @@ public class Alimento implements Serializable {
         return this;
     }
 
+    public Alimento addPreparo(Preparo preparo) {
+        this.preparos.add(preparo);
+        preparo.getAlimentos().add(this);
+        return this;
+    }
+
     public Alimento removePreparo(Preparo preparo) {
         this.preparos.remove(preparo);
         preparo.getAlimentos().remove(this);
@@ -105,6 +104,12 @@ public class Alimento implements Serializable {
 
     public Alimento temperos(Set<Tempero> temperos) {
         this.temperos = temperos;
+        return this;
+    }
+
+    public Alimento addTempero(Tempero tempero) {
+        this.temperos.add(tempero);
+        tempero.getAlimentos().add(this);
         return this;
     }
 
@@ -142,6 +147,19 @@ public class Alimento implements Serializable {
 
     public void setTipoAlimento(TipoAlimento tipoAlimento) {
         this.tipoAlimento = tipoAlimento;
+    }
+
+    public ValorRefeicao getValorRefeicao() {
+        return valorRefeicao;
+    }
+
+    public Alimento valorRefeicao(ValorRefeicao valorRefeicao) {
+        this.valorRefeicao = valorRefeicao;
+        return this;
+    }
+
+    public void setValorRefeicao(ValorRefeicao valorRefeicao) {
+        this.valorRefeicao = valorRefeicao;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

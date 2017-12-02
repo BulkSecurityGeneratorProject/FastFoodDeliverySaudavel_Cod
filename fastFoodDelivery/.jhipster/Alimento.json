@@ -30,6 +30,12 @@
             "otherEntityName": "tipoAlimento",
             "relationshipType": "many-to-one",
             "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "valorRefeicao",
+            "otherEntityName": "valorRefeicao",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
         }
     ],
     "fields": [

@@ -2,7 +2,7 @@
     "fastFoodDeliveryApp": {
         "alimento" : {
             "home": {
-                "title": "Alimento",
+                "title": "Alimentos",
                 "createLabel": "Criar novo Alimento",
                 "createOrEditLabel": "Criar ou editar Alimento"
             },
@@ -15,11 +15,12 @@
             "detail": {
                 "title": "Alimento"
             },
-            "alimentoCol": "Alimento",
+            "alimentoCol": "Alimento Col",
             "preparo": "Preparo",
             "tempero": "Tempero",
             "valorNutricional": "Valor Nutricional",
-            "tipoAlimento": "Tipo Alimento"
+            "tipoAlimento": "Tipo Alimento",
+            "valorRefeicao": "Valor Refeicao"
         }
     }
 }

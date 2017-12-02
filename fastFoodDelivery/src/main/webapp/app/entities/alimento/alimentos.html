@@ -1,5 +1,5 @@
 <div>
-    <h2 data-translate="fastFoodDeliveryApp.alimento.home.title">Alimento</h2>
+    <h2 data-translate="fastFoodDeliveryApp.alimento.home.title">Alimentos</h2>
     <jhi-alert></jhi-alert>
     <div class="container-fluid">
         <div class="row">
@@ -22,6 +22,7 @@
                     <th jh-sort-by="alimentoCol"><span data-translate="fastFoodDeliveryApp.alimento.alimentoCol">Alimento Col</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="valorNutricional.id"><span data-translate="fastFoodDeliveryApp.alimento.valorNutricional">Valor Nutricional</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th jh-sort-by="tipoAlimento.id"><span data-translate="fastFoodDeliveryApp.alimento.tipoAlimento">Tipo Alimento</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="valorRefeicao.id"><span data-translate="fastFoodDeliveryApp.alimento.valorRefeicao">Valor Refeicao</span> <span class="glyphicon glyphicon-sort"></span></th>
                     <th></th>
                 </tr>
             </thead>
@@ -34,6 +35,9 @@
                     </td>
                     <td>
                         <a ui-sref="tipo-alimento-detail({id:alimento.tipoAlimento.id})">{{alimento.tipoAlimento.id}}</a>
+                    </td>
+                    <td>
+                        <a ui-sref="valor-refeicao-detail({id:alimento.valorRefeicao.id})">{{alimento.valorRefeicao.id}}</a>
                     </td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
