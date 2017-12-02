@@ -124,7 +124,7 @@
 
             var item = {};
             item.nome = 'Alimentos';
-            item.quantidade = vm.alimentos.length;
+            item.quantidade = vm.pedido.alimentos.length;
             item.total = totalAlimentos;
 
             vm.itensTotalizados.push(item);
@@ -139,7 +139,7 @@
 
             var item = {};
             item.nome = 'Bebidas';
-            item.quantidade = vm.bebidas.length;
+            item.quantidade = vm.pedido.bebidas.length;
             item.total = totalBebidas;
 
             vm.itensTotalizados.push(item);

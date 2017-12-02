@@ -40,8 +40,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = FastFoodDeliveryApp.class)
 public class PessoaResourceIntTest {
 
-    private static final Long DEFAULT_CELULAR = 1L;
-    private static final Long UPDATED_CELULAR = 2L;
+    private static final String DEFAULT_CELULAR = "AAAAAAAAAA";
+    private static final String UPDATED_CELULAR = "BBBBBBBBBB";
 
     private static final LocalDate DEFAULT_DATA_NASCIMENTO = LocalDate.ofEpochDay(0L);
     private static final LocalDate UPDATED_DATA_NASCIMENTO = LocalDate.now(ZoneId.systemDefault());
@@ -157,7 +157,7 @@ public class PessoaResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(pessoa.getId().intValue())))
-            .andExpect(jsonPath("$.[*].celular").value(hasItem(DEFAULT_CELULAR.intValue())))
+            .andExpect(jsonPath("$.[*].celular").value(hasItem(DEFAULT_CELULAR)))
             .andExpect(jsonPath("$.[*].dataNascimento").value(hasItem(DEFAULT_DATA_NASCIMENTO.toString())))
             .andExpect(jsonPath("$.[*].sexo").value(hasItem(DEFAULT_SEXO.toString())))
             .andExpect(jsonPath("$.[*].peso").value(hasItem(DEFAULT_PESO.intValue())))
@@ -175,7 +175,7 @@ public class PessoaResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(pessoa.getId().intValue()))
-            .andExpect(jsonPath("$.celular").value(DEFAULT_CELULAR.intValue()))
+            .andExpect(jsonPath("$.celular").value(DEFAULT_CELULAR))
             .andExpect(jsonPath("$.dataNascimento").value(DEFAULT_DATA_NASCIMENTO.toString()))
             .andExpect(jsonPath("$.sexo").value(DEFAULT_SEXO.toString()))
             .andExpect(jsonPath("$.peso").value(DEFAULT_PESO.intValue()))

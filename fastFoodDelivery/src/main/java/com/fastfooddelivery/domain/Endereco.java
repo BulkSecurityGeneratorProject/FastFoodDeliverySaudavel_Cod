@@ -23,7 +23,7 @@ public class Endereco implements Serializable {
     private Long id;
 
     @Column(name = "cep")
-    private Integer cep;
+    private String cep;
 
     @Column(name = "endereco")
     private String endereco;
@@ -43,16 +43,16 @@ public class Endereco implements Serializable {
         this.id = id;
     }
 
-    public Integer getCep() {
+    public String getCep() {
         return cep;
     }
 
-    public Endereco cep(Integer cep) {
+    public Endereco cep(String cep) {
         this.cep = cep;
         return this;
     }
 
-    public void setCep(Integer cep) {
+    public void setCep(String cep) {
         this.cep = cep;
     }
 

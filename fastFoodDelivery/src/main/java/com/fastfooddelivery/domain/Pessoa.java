@@ -28,7 +28,7 @@ public class Pessoa implements Serializable {
     private Long id;
 
     @Column(name = "celular")
-    private Long celular;
+    private String celular;
 
     @Column(name = "data_nascimento")
     private LocalDate dataNascimento;
@@ -55,6 +55,10 @@ public class Pessoa implements Serializable {
 
     @ManyToOne
     private Cliente cliente;
+    
+    @OneToOne
+    @MapsId("id")
+    private User user;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -65,16 +69,16 @@ public class Pessoa implements Serializable {
         this.id = id;
     }
 
-    public Long getCelular() {
+    public String getCelular() {
         return celular;
     }
 
-    public Pessoa celular(Long celular) {
+    public Pessoa celular(String celular) {
         this.celular = celular;
         return this;
     }
 
-    public void setCelular(Long celular) {
+    public void setCelular(String celular) {
         this.celular = celular;
     }
 
@@ -193,6 +197,14 @@ public class Pessoa implements Serializable {
     public void setCliente(Cliente cliente) {
         this.cliente = cliente;
     }
+    
+    public User getUser() {
+		return user;
+	}
+    
+    public void setUser(User user) {
+		this.user = user;
+	}
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override

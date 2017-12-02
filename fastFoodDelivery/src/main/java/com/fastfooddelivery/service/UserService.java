@@ -1,15 +1,12 @@
 package com.fastfooddelivery.service;
 
-import com.fastfooddelivery.domain.Authority;
-import com.fastfooddelivery.domain.User;
-import com.fastfooddelivery.repository.AuthorityRepository;
-import com.fastfooddelivery.config.Constants;
-import com.fastfooddelivery.repository.UserRepository;
-import com.fastfooddelivery.security.AuthoritiesConstants;
-import com.fastfooddelivery.security.SecurityUtils;
-import com.fastfooddelivery.service.util.RandomUtil;
-import com.fastfooddelivery.service.dto.UserDTO;
-import com.fastfooddelivery.web.rest.vm.ManagedUserVM;
+import java.time.Instant;
+import java.time.temporal.ChronoUnit;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Optional;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -21,10 +18,20 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.time.Instant;
-import java.time.temporal.ChronoUnit;
-import java.util.*;
-import java.util.stream.Collectors;
+import com.fastfooddelivery.config.Constants;
+import com.fastfooddelivery.domain.Authority;
+import com.fastfooddelivery.domain.Endereco;
+import com.fastfooddelivery.domain.Pessoa;
+import com.fastfooddelivery.domain.User;
+import com.fastfooddelivery.repository.AuthorityRepository;
+import com.fastfooddelivery.repository.EnderecoRepository;
+import com.fastfooddelivery.repository.PessoaRepository;
+import com.fastfooddelivery.repository.UserRepository;
+import com.fastfooddelivery.security.AuthoritiesConstants;
+import com.fastfooddelivery.security.SecurityUtils;
+import com.fastfooddelivery.service.dto.UserDTO;
+import com.fastfooddelivery.service.util.RandomUtil;
+import com.fastfooddelivery.web.rest.vm.ManagedUserVM;
 
 /**
  * Service class for managing users.
@@ -38,6 +45,10 @@ public class UserService {
     private static final String USERS_CACHE = "users";
 
     private final UserRepository userRepository;
+    
+    private final EnderecoRepository enderecoRepository;
+    
+    private final PessoaRepository pessoaRepository;
 
     private final PasswordEncoder passwordEncoder;
 
@@ -45,11 +56,14 @@ public class UserService {
 
     private final CacheManager cacheManager;
 
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, AuthorityRepository authorityRepository, CacheManager cacheManager) {
+    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, AuthorityRepository authorityRepository, 
+    					CacheManager cacheManager, EnderecoRepository enderecoRepository, PessoaRepository pessoaRepository) {
         this.userRepository = userRepository;
         this.passwordEncoder = passwordEncoder;
         this.authorityRepository = authorityRepository;
         this.cacheManager = cacheManager;
+        this.enderecoRepository = enderecoRepository;
+        this.pessoaRepository = pessoaRepository;
     }
 
     public Optional<User> activateRegistration(String key) {
@@ -93,25 +107,45 @@ public class UserService {
     public User registerUser(ManagedUserVM userDTO) {
 
         User newUser = new User();
+        Pessoa pessoa = new Pessoa();
+        Endereco endereco = new Endereco();
         Authority authority = authorityRepository.findOne(AuthoritiesConstants.USER);
         Set<Authority> authorities = new HashSet<>();
         String encryptedPassword = passwordEncoder.encode(userDTO.getPassword());
+       
+        // Dados relacionados a entidade criada pelo jhispter chamada de user(usuário)
         newUser.setLogin(userDTO.getLogin());
-        // new user gets initially a generated password
         newUser.setPassword(encryptedPassword);
         newUser.setFirstName(userDTO.getFirstName());
         newUser.setLastName(userDTO.getLastName());
         newUser.setEmail(userDTO.getEmail());
         newUser.setImageUrl(userDTO.getImageUrl());
         newUser.setLangKey(userDTO.getLangKey());
-        // new user is not active
         newUser.setActivated(false);
-        // new user gets registration key
         newUser.setActivationKey(RandomUtil.generateActivationKey());
         authorities.add(authority);
         newUser.setAuthorities(authorities);
-        userRepository.save(newUser);
-        log.debug("Created Information for User: {}", newUser);
+        newUser = userRepository.save(newUser);
+        
+        //Dados relacionados a entidade de pessoa
+        pessoa.setUser(newUser);
+        pessoa.setAltura(userDTO.getAltura());
+        pessoa.setCelular(userDTO.getCelular());
+        pessoa.setDataNascimento(userDTO.getDataNascimento());
+        pessoa.setSexo(userDTO.getSexo());
+        pessoa.setPeso(userDTO.getPeso());
+        
+        //Dados relacionados a entidade de endereco
+        endereco.setCep(userDTO.getCep());
+        endereco.setComplemento(userDTO.getComplemento());
+        endereco.setEndereco(userDTO.getEndereco());
+        endereco.setNumero(userDTO.getNumero());
+        endereco = enderecoRepository.save(endereco);
+        
+        pessoa.setEndereco(endereco);
+        pessoaRepository.save(pessoa);
+        
+        log.debug("Created Information for User: {}", pessoa);
         return newUser;
     }
 

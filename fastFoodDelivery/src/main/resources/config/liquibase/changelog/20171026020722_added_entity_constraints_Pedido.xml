@@ -49,6 +49,6 @@
                                  constraintName="fk_pedido_status_id"
                                  referencedColumnNames="id"
                                  referencedTableName="status"/>
-        
+                                 
     </changeSet>
 </databaseChangeLog>

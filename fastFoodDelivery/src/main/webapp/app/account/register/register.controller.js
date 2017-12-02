@@ -15,20 +15,18 @@
         vm.error = null;
         vm.errorUserExists = null;
         vm.login = LoginService.open;
-        vm.datePickerOpenStatus = {};
-        vm.openCalendar = openCalendar;
         vm.register = register;
-        vm.registerAccount = {};
+        vm.openCalendar = openCalendar;
+        vm.datePickerOpenStatus = {};
+        vm.registerAccount = {
+        		email: 'teste@gmail.com',
+        		password: '123456'
+        };
+        vm.confirmPassword = '123456';
         vm.success = null;
 
         $timeout(function (){angular.element('#login').focus();});
         
-        vm.datePickerOpenStatus.horarioDeRetirada = false;
-
-        function openCalendar (date) {
-            vm.datePickerOpenStatus[date] = true;
-        }
-
         function register () {
             if (vm.registerAccount.password !== vm.confirmPassword) {
                 vm.doNotMatch = 'ERROR';
@@ -52,6 +50,12 @@
                     }
                 });
             }
+        }
+        
+        vm.datePickerOpenStatus.datanascimento = false;
+
+        function openCalendar (date) {
+            vm.datePickerOpenStatus[date] = true;
         }
     }
 })();

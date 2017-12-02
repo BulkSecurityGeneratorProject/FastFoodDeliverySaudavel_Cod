@@ -37,8 +37,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @SpringBootTest(classes = FastFoodDeliveryApp.class)
 public class EnderecoResourceIntTest {
 
-    private static final Integer DEFAULT_CEP = 1;
-    private static final Integer UPDATED_CEP = 2;
+    private static final String DEFAULT_CEP = "AAAAAAAAAA";
+    private static final String UPDATED_CEP = "BBBBBBBBBB";
 
     private static final String DEFAULT_ENDERECO = "AAAAAAAAAA";
     private static final String UPDATED_ENDERECO = "BBBBBBBBBB";
