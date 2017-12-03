@@ -34,6 +34,7 @@
         vm.cartoes = Cartao.query();
         vm.enderecos = Endereco.query();
         vm.itensTotalizados = [];
+        vm.totalValoresNutricionais = [];
 
         // geral
         vm.pedido = {
@@ -95,6 +96,8 @@
 
             atualizarItensTotalizados();
 
+            atualizarValoresNutricionais();
+
         }
 
         function excluirAlimentoEscolhido(index) {
@@ -108,6 +111,8 @@
             vm.alimentoEscolhido.bebida = {};
 
             atualizarItensTotalizados();
+
+            atualizarValoresNutricionais();
 
         }
 
@@ -143,6 +148,55 @@
             item.total = totalBebidas;
 
             vm.itensTotalizados.push(item);
+
+        }
+
+        function atualizarValoresNutricionais() {
+
+            var valorNutricionalTotalizado = {
+                totalCalorias: 0,
+                totalProteinas: 0,
+                totalCarboidratos: 0,
+                totalAcucares: 0,
+                totalGordurasTotais: 0,
+                totalGordurasSaturadas: 0,
+                totalSodio: 0
+            };
+
+            vm.pedido.alimentos.forEach(function (alimentoSelecionado) {
+
+                var valorNutricional = alimentoSelecionado.alimento.valorNutricional;
+
+                somarValorNutrucional(valorNutricionalTotalizado, valorNutricional);
+
+            });
+
+            vm.pedido.bebidas.forEach(function (bebidaSelecionada) {
+
+                var valorNutricional = bebidaSelecionada.valorNutricional;
+
+                somarValorNutrucional(valorNutricionalTotalizado, valorNutricional);
+
+            });
+
+            vm.totalValoresNutricionais = [];
+            vm.totalValoresNutricionais.push(valorNutricionalTotalizado);
+
+            console.log(vm.totalValoresNutricionais)
+
+        }
+
+        function somarValorNutrucional(valorNutricionalTotalizado, valorNutricional) {
+
+            valorNutricionalTotalizado.totalCalorias += valorNutricional.caloria;
+            valorNutricionalTotalizado.totalProteinas += valorNutricional.proteina;
+            valorNutricionalTotalizado.totalCarboidratos += valorNutricional.carboidrato;
+            valorNutricionalTotalizado.totalAcucares += valorNutricional.acucar;
+            valorNutricionalTotalizado.totalGordurasTotais += valorNutricional.gordurasTotais;
+            valorNutricionalTotalizado.totalGordurasSaturadas += valorNutricional.gordurasSaturadas;
+            valorNutricionalTotalizado.totalSodio += valorNutricional.sodio;
+
+            return valorNutricionalTotalizado;
 
         }
 
