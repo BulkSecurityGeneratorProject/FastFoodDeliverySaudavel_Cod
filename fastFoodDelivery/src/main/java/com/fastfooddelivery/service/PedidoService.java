@@ -10,12 +10,14 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.event.TransactionalEventListener;
 
 import com.fastfooddelivery.domain.Pedido;
 import com.fastfooddelivery.domain.Pessoa;
 import com.fastfooddelivery.domain.User;
 import com.fastfooddelivery.repository.PedidoRepository;
 import com.fastfooddelivery.repository.PessoaRepository;
+import com.fastfooddelivery.repository.UserRepository;
 
 /**
  * Service class for managing users.
@@ -29,11 +31,14 @@ public class PedidoService {
     private final PessoaRepository pessoaRepository;
     
     private final PedidoRepository pedidoRepository;
+    
+    private final UserRepository userRepository;
 
-    public PedidoService(PessoaRepository pessoaRepository, PedidoRepository pedidoRepository) {
+    public PedidoService(PessoaRepository pessoaRepository, PedidoRepository pedidoRepository, UserRepository userRepository) {
         
     	this.pedidoRepository = pedidoRepository;
         this.pessoaRepository = pessoaRepository;
+        this.userRepository = userRepository;
     }
 
     @Transactional(readOnly = true)
@@ -52,8 +57,24 @@ public class PedidoService {
     	
     }
     
-    @Transactional(readOnly = true)
+    @Transactional
     public Pedido salvarPedido(Pedido pedido){
+    	
+    	Optional<User> usuario = Optional.empty();
+    	Optional<Pessoa> pessoa = Optional.empty();
+    	
+    	usuario = userRepository.findById(pedido.getPessoa().getId());
+    	
+    	if(usuario.isPresent()) {
+    		pessoa = pessoaRepository.findOneByUser(usuario.get());
+    	}
+    	
+    	if(pessoa.isPresent()) {
+    		pessoa.get().setEndereco(pedido.getPessoa().getEndereco());
+    		pessoa.get().setCartao(pedido.getPessoa().getCartao());
+    		pedido.setPessoa(pessoa.get());
+    	}
+    	
     	return pedidoRepository.save(pedido);
     	
     }

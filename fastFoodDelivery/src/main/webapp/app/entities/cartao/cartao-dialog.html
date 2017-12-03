@@ -4,23 +4,23 @@
     <div class="modal-header">
         <button type="button" class="close" data-dismiss="modal" aria-hidden="true"
                 ng-click="vm.clear()">&times;</button>
-        <h4 class="modal-title" id="myCartaoLabel" data-translate="fastFoodDeliveryApp.cartao.home.createOrEditLabel">Create or edit a Cartao</h4>
+        <h4 class="modal-title" id="myCartaoLabel">Criar ou editar o cartÃ£o</h4>
     </div>
     <div class="modal-body">
         <jhi-alert-error></jhi-alert-error>
         <div class="form-group" ng-show="vm.cartao.id">
-            <label for="id" data-translate="global.field.id">ID</label>
+            <label for="id">ID</label>
             <input type="text" class="form-control" id="id" name="id"
                     ng-model="vm.cartao.id" readonly />
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="fastFoodDeliveryApp.cartao.numero" for="field_numero">Número</label>
-            <input type="number" class="form-control" name="numero" id="field_numero"
+            <label class="control-label" for="field_numero">NÃºmero</label>
+            <input type="number" class="form-control" name="numero" id="field_numero" ng-maxlength=16
                     ng-model="vm.cartao.numero"
                     />
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="fastFoodDeliveryApp.cartao.dataVencimento" for="field_dataVencimento">Data Vencimento</label>
+            <label class="control-label">Data de vencimento</label>
                 <div class="input-group">
                     <input id="field_dataVencimento" type="text" class="form-control" name="dataVencimento" uib-datepicker-popup="{{dateformat}}" ng-model="vm.cartao.dataVencimento" is-open="vm.datePickerOpenStatus.dataVencimento"
                     />
@@ -30,13 +30,13 @@
                 </div>
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="fastFoodDeliveryApp.cartao.cvv" for="field_cvv">Cvv</label>
+            <label class="control-label">Cvv</label>
             <input type="number" class="form-control" name="cvv" id="field_cvv"
                     ng-model="vm.cartao.cvv"
                     />
         </div>
         <div class="form-group">
-            <label class="control-label" data-translate="fastFoodDeliveryApp.cartao.cartaoCol" for="field_cartaoCol">Cartão</label>
+            <label class="control-label">CartÃ£o</label>
             <input type="text" class="form-control" name="cartaoCol" id="field_cartaoCol"
                     ng-model="vm.cartao.cartaoCol"
                     />
@@ -45,10 +45,10 @@
     </div>
     <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="vm.clear()">
-            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span data-translate="entity.action.cancel">Cancel</span>
+            <span class="glyphicon glyphicon-ban-circle"></span>&nbsp;<span>Cancelar</span>
         </button>
         <button type="submit" ng-disabled="editForm.$invalid || vm.isSaving" class="btn btn-primary">
-            <span class="glyphicon glyphicon-save"></span>&nbsp;<span data-translate="entity.action.save">Save</span>
+            <span class="glyphicon glyphicon-save"></span>&nbsp;<span>Salvar</span>
         </button>
     </div>
 </form>

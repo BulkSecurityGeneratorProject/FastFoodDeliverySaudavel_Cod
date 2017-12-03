@@ -5,11 +5,12 @@
         .module('fastFoodDeliveryApp')
         .controller('RealizacaoPedidoController', PedidoController);
 
-    PedidoController.$inject = ['$state', 'Pedido', 'ParseLinks', 'AlertService', 'Refeicao', 'TipoAlimento', 'Alimento', 'Preparo', 'Tempero', 'Bebida', 'Cartao', 'Endereco', 'Doce'];
+    PedidoController.$inject = ['$state', 'Pedido', 'ParseLinks', 'AlertService', 'Refeicao', 'TipoAlimento', 'Alimento', 'Preparo', 'Tempero', 'Bebida', 'Cartao', 'Endereco', 'Doce', 'FormaDeEntrega', 'Principal'];
 
-    function PedidoController($state, Pedido, ParseLinks, AlertService, Refeicao, TipoAlimento, Alimento, Preparo, Tempero, Bebida, Cartao, Endereco, Doce) {
+    function PedidoController($state, Pedido, ParseLinks, AlertService, Refeicao, TipoAlimento, Alimento, Preparo, Tempero, Bebida, Cartao, Endereco, Doce, FormaDeEntrega, Principal) {
 
         var vm = this;
+        vm.settingsAccount = null;
         vm.selecionarRefeicao = selecionarRefeicao;
         vm.consultarAlimentos = consultarAlimentos;
         vm.adicionarAlimentoEscolhido = adicionarAlimentoEscolhido;
@@ -33,6 +34,7 @@
         // aba: pagamento e entrega
         vm.cartoes = Cartao.query();
         vm.enderecos = Endereco.query();
+        vm.formaDeEntregas = FormaDeEntrega.query();
         vm.itensTotalizados = [];
 
         // geral
@@ -56,9 +58,6 @@
             
             refeicao.selecionada = !refeicao.selecionada;
 
-            // TODO ajustar cadastro de bebidas
-            // vm.tiposAlimento = refeicao.tiposAlimento;
-
             vm.alimentoEscolhido.refeicao = refeicao;
             
             vm.alimentoEscolhido.tipoAlimento = refeicao;
@@ -67,6 +66,11 @@
             
             consultarAlimentos();
 
+        }
+        
+        function consultarCartoes() {
+        	vm.cartoes = Cartao.query();
+        	console.log(vm.cartoes);
         }
 
         function consultarAlimentos() {
@@ -145,9 +149,28 @@
             vm.itensTotalizados.push(item);
 
         }
+        
+        var copyAccount = function (account) {
+            return {
+                activated: account.activated,
+                email: account.email,
+                firstName: account.firstName,
+                langKey: account.langKey,
+                lastName: account.lastName,
+                login: account.login,
+                id: account.id
+            };
+        };
+
 
         function enviarPedido () {
 
+        	Principal.identity().then(function(account) {
+        		console.log(account);
+        		vm.settingsAccount = copyAccount(account);
+        		vm.pedido.pessoa.id = vm.settingsAccount.id;
+        	});
+        	
             vm.isSaving = true;
 
             Pedido.save(vm.pedido, onSaveSuccess, onSaveError);

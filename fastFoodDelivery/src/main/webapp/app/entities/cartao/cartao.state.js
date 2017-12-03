@@ -139,6 +139,37 @@
                 });
             }]
         })
+        .state('cartao.realizacao-pedido', {
+        	parent: 'realizacao-pedido',
+        	url: '/cartao/new',
+        	data: {
+        		authorities: ['ROLE_USER']
+        	},
+        	onEnter: ['$stateParams', '$state', '$uibModal', function($stateParams, $state, $uibModal) {
+        		$uibModal.open({
+        			templateUrl: 'app/entities/cartao/cartao-dialog.html',
+        			controller: 'CartaoDialogController',
+        			controllerAs: 'vm',
+        			backdrop: 'static',
+        			size: 'lg',
+        			resolve: {
+        				entity: function () {
+        					return {
+        						numero: null,
+        						dataVencimento: null,
+        						cvv: null,
+        						cartaoCol: null,
+        						id: null
+        					};
+        				}
+        			}
+        		}).result.then(function() {
+        			$state.go('realizacao-pedido', null, { reload: '' });
+        		}, function() {
+        			$state.go('realizacao-pedido');
+        		});
+        	}]
+        })
         .state('cartao.edit', {
             parent: 'cartao',
             url: '/{id}/edit',

@@ -187,72 +187,114 @@
                     <uib-tab index="3" heading="4. Resumo">
                         <h2><small>Revise as suas informações</small></h2>
                         </br>
-                        </br>
-						
-						<div class="table-responsive">
-	                        <table class="table table-striped table-hover">
-	                            <thead>
-	                                <tr>
-	                                    <th>Tipo</th>
-                                        <th>Alimento</th>
-                                        <th>Gramas</th>
-                                        <th>Calorias por Kg</th>
-                                        <th>Total calorias</th>
-	                                </tr>
-	                            </thead>
-	                            <tbody ng-repeat="alimento in vm.pedido.alimentos track by $index">
-	                                <tr ng-repeat="bebida in vm.pedido.bebidas track by $index">
-	                                    <td>teste</td>
-	                                    <td>teste</td>
-	                                    <td>teste</td>
-	                                    <td>teste</td>
-	                                    <td>teste</td>
-	                                </tr>
-	                            </tbody>
-	                        </table>
-	                        <table class="table table-striped table-hover">
-	                            <thead>
-	                                <tr>
-	                                    <th>Bebida</th>
-	                                    <th>Doce</th>
-	                                    <th>Capacidade</th>
-	                                    <th>Quantidade</th>
-	                                </tr>
-	                            </thead>
-	                            <tbody ng-repeat="alimento in vm.pedido.alimentos track by $index">
-	                                <tr ng-repeat="bebida in vm.pedido.bebidas track by $index">
-	                                    <td>teste</td>
-	                                    <td>teste</td>
-	                                    <td>teste</td>
-	                                    <td>teste</td>
-	                                </tr>
-	                            </tbody>
-	                        </table>
-	                        <table class="table table-striped table-hover">
-	                            <thead>
-	                                <tr>
-	                                    <th>Total de calorias</th>
-	                                    <th>Total de proteínas</th>
-	                                    <th>Total de carboidrato</th>
-	                                    <th>Total de açúcares</th>
-	                                    <th>Total de gorduras totais</th>
-	                                    <th>Total de gorduras saturadas</th>
-	                                    <th>Total de sódio</th>
-	                                </tr>
-	                            </thead>
-	                            <tbody ng-repeat="alimento in vm.pedido.alimentos track by $index">
-	                                <tr ng-repeat="bebida in vm.pedido.bebidas track by $index">
-	                                    <td>{{alimento.alimento.valorNutricional.caloria + bebida.valorNutricional.caloria}}</td>
-	                                    <td>{{alimento.alimento.valorNutricional.proteina + bebida.valorNutricional.proteina}}</td>
-	                                    <td>{{alimento.alimento.valorNutricional.carboidrato + bebida.valorNutricional.carboidrato}}</td>
-	                                    <td>{{alimento.alimento.valorNutricional.acucar + bebida.valorNutricional.acucar}}</td>
-	                                    <td>{{alimento.alimento.valorNutricional.gordurasTotais + bebida.valorNutricional.gordurasTotais}}</td>
-	                                    <td>{{alimento.alimento.valorNutricional.gordurasSaturadas + bebida.valorNutricional.gordurasSaturadas}}</td>
-	                                    <td>{{alimento.alimento.valorNutricional.sodio + bebida.valorNutricional.sodio}}</td>
-	                                </tr>
-	                            </tbody>
-	                        </table>
-                 		</div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Alimentos</h3>
+                            </div>
+                            <div class="panel-body">
+                                <table class="table table-striped table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Tipo</th>
+                                            <th>Alimento</th>
+                                            <th>Gramas</th>
+                                            <th>Calorias</th>
+                                            <th>Proteínas</th>
+                                            <th>Carboidrato</th>
+                                            <th>Açúcares</th>
+                                            <th>Gorduras totais</th>
+                                            <th>Gorduras saturadas</th>
+                                            <th>Sódio</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="alimentoSelecionado in vm.pedido.alimentos">
+                                            <td>{{alimentoSelecionado.tipoAlimento.tipoAlimento}}</td>
+                                            <td>{{alimentoSelecionado.alimento.alimentoCol}}</td>
+                                            <td>{{alimentoSelecionado.alimento.valorNutricional.caloria}}</td>
+                                            <td>{{alimentoSelecionado.alimento.valorNutricional.proteina}}</td>
+                                            <td>{{alimentoSelecionado.alimento.valorNutricional.carboidrato}}</td>
+                                            <td>{{alimentoSelecionado.alimento.valorNutricional.acucar}}</td>
+                                            <td>{{alimentoSelecionado.alimento.valorNutricional.gordurasTotais}}</td>
+                                            <td>{{alimentoSelecionado.alimento.valorNutricional.gordurasSaturadas}}</td>
+                                            <td>{{alimentoSelecionado.alimento.valorNutricional.gordurasSaturadas}}</td>
+                                            <td>{{alimentoSelecionado.alimento.valorNutricional.sodio}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Bebidas</h3>
+                            </div>
+                            <div class="panel-body">
+                                <table class="table table-striped table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Bebida</th>
+                                            <th>Doce</th>
+                                            <th>Capacidade</th>
+                                            <th>Calorias</th>
+                                            <th>Proteínas</th>
+                                            <th>Carboidrato</th>
+                                            <th>Açúcares</th>
+                                            <th>Gorduras totais</th>
+                                            <th>Gorduras saturadas</th>
+                                            <th>Sódio</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="bebidaSelecionada in vm.pedido.bebidas">
+                                            <td>{{bebidaSelecionada.bebida}}</td>
+                                            <td>{{bebidaSelecionada.doce.doce}}</td>
+                                            <td>{{bebidaSelecionada.capacidade}}</td>
+                                            <td>{{bebidaSelecionada.valorNutricional.proteina}}</td>
+                                            <td>{{bebidaSelecionada.valorNutricional.carboidrato}}</td>
+                                            <td>{{bebidaSelecionada.valorNutricional.acucar}}</td>
+                                            <td>{{bebidaSelecionada.valorNutricional.gordurasTotais}}</td>
+                                            <td>{{bebidaSelecionada.valorNutricional.gordurasSaturadas}}</td>
+                                            <td>{{bebidaSelecionada.valorNutricional.gordurasSaturadas}}</td>
+                                            <td>{{bebidaSelecionada.valorNutricional.sodio}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="panel panel-default">
+                            <div class="panel-heading">
+                                <h3 class="panel-title">Total</h3>
+                            </div>
+                            <div class="panel-body">
+                                <table class="table table-striped table-hover">
+                                    <thead>
+                                        <tr>
+                                            <th>Total de calorias</th>
+                                            <th>Total de proteínas</th>
+                                            <th>Total de carboidrato</th>
+                                            <th>Total de açúcares</th>
+                                            <th>Total de gorduras totais</th>
+                                            <th>Total de gorduras saturadas</th>
+                                            <th>Total de sódio</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr ng-repeat="valorNutricionalTotalizado in vm.totalValoresNutricionais">
+                                            <td>{{valorNutricionalTotalizado.totalCalorias}}</td>
+                                            <td>{{valorNutricionalTotalizado.totalProteinas}}</td>
+                                            <td>{{valorNutricionalTotalizado.totalCarboidratos}}</td>
+                                            <td>{{valorNutricionalTotalizado.totalAcucares}}</td>
+                                            <td>{{valorNutricionalTotalizado.totalGordurasTotais}}</td>
+                                            <td>{{valorNutricionalTotalizado.totalGordurasSaturadas}}</td>
+                                            <td>{{valorNutricionalTotalizado.totalSodio}}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
                     </uib-tab>
 
                     <uib-tab index="4" heading="5. Pagamento e entrega">
@@ -292,15 +334,13 @@
 
                                     <div class="col-md-3">
 
-                                        <select class="form-control">
-                                            <option>Selecione</option>
-                                            <option>Em casa</option>
-                                            <option>Na Loja</option>
+                                        <select class="form-control" name="formaDeEntrega" ng-model="vm.pedido.formaDeEntrega" ng-options="formaDeEntrega as formaDeEntrega.descricao for formaDeEntrega in vm.formaDeEntregas track by formaDeEntrega.id">
+                                            <option value="">Selecione</option>
                                         </select>
 
                                     </div>
                                     <div class="col-md-3">
-										<button class="btn btn-primary" ui-sref="cartao.new">
+										<button class="btn btn-primary" ui-sref="cartao.realizacao-pedido">
 						                    <span class="glyphicon glyphicon-plus"></span>
 						                    <span>Incluir cartão</span>
 						                </button>
@@ -313,7 +353,7 @@
 
                                     <div class="col-md-6">
 
-                                        <select class="form-control" name="cartao" ng-model="vm.pedido.cartao" ng-options="cartao as cartao.numero for cartao in vm.cartoes track by cartao.id">
+                                        <select class="form-control" name="cartao" ng-model="vm.pedido.pessoa.cartao" ng-options="cartao as cartao.numero for cartao in vm.cartoes track by cartao.id" ng-focus="vm.consultarCartoes()">
                                             <option value="">Cartão de crédito</option>
                                         </select>
 
@@ -321,7 +361,7 @@
 
                                     <div class="col-md-6">
 
-                                        <select class="form-control" name="endereco" ng-model="vm.pedido.endereco" ng-options="endereco as endereco.endereco for endereco in vm.enderecos track by endereco.id">
+                                        <select class="form-control" name="endereco" ng-model="vm.pedido.pessoa.endereco" ng-options="endereco as endereco.endereco for endereco in vm.enderecos track by endereco.id">
                                             <option value="">Endereço</option>
                                         </select>
 
