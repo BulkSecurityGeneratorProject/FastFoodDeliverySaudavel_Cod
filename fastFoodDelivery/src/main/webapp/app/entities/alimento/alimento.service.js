@@ -20,7 +20,12 @@
                     return data;
                 }
             },
-            'update': { method:'PUT' }
+            'update': { method:'PUT' },
+            'getAllAlimentosByTipoAlimento': {
+                method:'GET',
+                url: 'api/alimentos/tipoAlimento/:idTipoAlimento',
+                isArray: true
+            }
         });
     }
 })();
