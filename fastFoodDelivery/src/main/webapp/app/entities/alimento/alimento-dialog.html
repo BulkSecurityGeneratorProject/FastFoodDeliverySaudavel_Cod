@@ -22,11 +22,11 @@
 
         <div class="form-group">
             <label data-translate="fastFoodDeliveryApp.alimento.preparo" for="field_preparo">Preparo</label>
-            <select class="form-control" id="field_preparo" multiple name="preparo" ng-model="vm.alimento.preparos" ng-options="preparo as preparo.id for preparo in vm.preparos track by preparo.id"></select>
+            <select class="form-control" id="field_preparo" multiple name="preparo" ng-model="vm.alimento.preparos" ng-options="preparo as preparo.preparo for preparo in vm.preparos track by preparo.id"></select>
         </div>
         <div class="form-group">
             <label data-translate="fastFoodDeliveryApp.alimento.tempero" for="field_tempero">Tempero</label>
-            <select class="form-control" id="field_tempero" multiple name="tempero" ng-model="vm.alimento.temperos" ng-options="tempero as tempero.id for tempero in vm.temperos track by tempero.id"></select>
+            <select class="form-control" id="field_tempero" multiple name="tempero" ng-model="vm.alimento.temperos" ng-options="tempero as tempero.tempero for tempero in vm.temperos track by tempero.id"></select>
         </div>
         <div class="form-group">
             <label data-translate="fastFoodDeliveryApp.alimento.valorNutricional" for="field_valorNutricional">Valor Nutricional</label>
@@ -36,13 +36,13 @@
         </div>
         <div class="form-group">
             <label data-translate="fastFoodDeliveryApp.alimento.tipoAlimento" for="field_tipoAlimento">Tipo Alimento</label>
-            <select class="form-control" id="field_tipoAlimento" name="tipoAlimento" ng-model="vm.alimento.tipoAlimento" ng-options="tipoAlimento as tipoAlimento.id for tipoAlimento in vm.tipoalimentos track by tipoAlimento.id">
+            <select class="form-control" id="field_tipoAlimento" name="tipoAlimento" ng-model="vm.alimento.tipoAlimento" ng-options="tipoAlimento as tipoAlimento.tipoAlimento for tipoAlimento in vm.tipoalimentos track by tipoAlimento.id">
                 <option value=""></option>
             </select>
         </div>
         <div class="form-group">
             <label data-translate="fastFoodDeliveryApp.alimento.valorRefeicao" for="field_valorRefeicao">Valor Refeicao</label>
-            <select class="form-control" id="field_valorRefeicao" name="valorRefeicao" ng-model="vm.alimento.valorRefeicao" ng-options="valorRefeicao as valorRefeicao.id for valorRefeicao in vm.valorrefeicaos track by valorRefeicao.id">
+            <select class="form-control" id="field_valorRefeicao" name="valorRefeicao" ng-model="vm.alimento.valorRefeicao" ng-options="valorRefeicao as valorRefeicao.valor for valorRefeicao in vm.valorrefeicaos track by valorRefeicao.id">
                 <option value=""></option>
             </select>
         </div>

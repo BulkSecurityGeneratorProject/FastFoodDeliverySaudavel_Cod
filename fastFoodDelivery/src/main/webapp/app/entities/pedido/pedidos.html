@@ -32,8 +32,9 @@
                     <td>{{pedido.horarioDeRetirada | date:'medium'}}</td>
                     <td>{{pedido.valorTotal}}</td>
                     <td>
-                        <a ui-sref="forma-de-entrega-detail({id:pedido.formaDeEntrega.id})">{{pedido.formaDeEntrega.id}}</a>
+                        <a ui-sref="forma-de-entrega-detail({id:pedido.formaDeEntrega.id})">{{pedido.formaDeEntrega.descricao}}</a>
                     </td>
+                    <td>{{pedido.status.descricao}}</td>
                     <td class="text-right">
                         <div class="btn-group flex-btn-group-container">
                             <button type="submit"

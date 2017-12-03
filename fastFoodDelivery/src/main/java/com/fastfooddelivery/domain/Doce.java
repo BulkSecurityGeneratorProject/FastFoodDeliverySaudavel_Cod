@@ -5,7 +5,9 @@ import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
 
 /**
  * A Doce.
@@ -24,6 +26,9 @@ public class Doce implements Serializable {
 
     @Column(name = "doce")
     private String doce;
+    
+    @ManyToMany(mappedBy = "doces", cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.DETACH, CascadeType.REMOVE, CascadeType.REFRESH})
+    private Set<Bebida> bebidas = new HashSet<>();
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -46,6 +51,14 @@ public class Doce implements Serializable {
     public void setDoce(String doce) {
         this.doce = doce;
     }
+    
+    public Set<Bebida> getBebidas() {
+		return bebidas;
+	}
+    
+    public void setBebidas(Set<Bebida> bebidas) {
+		this.bebidas = bebidas;
+	}
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override

@@ -1,0 +1,31 @@
+<div>
+    <div class="table-responsive">
+        <table class="jh-table table table-striped">
+            <thead>
+                <tr jh-sort="vm.predicate" ascending="vm.reverse" callback="vm.transition()">
+                    <th jh-sort-by="id"><span>Nº Pedido</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="horarioDeRetirada"><span>Horario De Retirada</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="valorTotal"><span>Valor Total</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="formaDeEntrega.id"><span>Forma De Entrega</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th jh-sort-by="status.id"><span>Situação</span> <span class="glyphicon glyphicon-sort"></span></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="pedido in vm.pedidos track by pedido.id">
+                    <td>{{pedido.id}}</a></td>
+                    <td>{{pedido.horarioDeRetirada | date:'medium'}}</td>
+                    <td>{{pedido.valorTotal}}</td>
+                    <td>{{pedido.formaDeEntrega.descricao}}</td>
+                    <td>{{pedido.status.descricao}}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+<!--     <div class="text-center"> -->
+<!--         <jhi-item-count page="vm.page" total="vm.queryCount" items-per-page="vm.itemsPerPage"></jhi-item-count> -->
+<!--     </div> -->
+<!--     <uib-pager total-items="vm.totalItems" ng-model="vm.page" ng-change="vm.transition()"></uib-pager> -->
+</div>
+
+</div>
