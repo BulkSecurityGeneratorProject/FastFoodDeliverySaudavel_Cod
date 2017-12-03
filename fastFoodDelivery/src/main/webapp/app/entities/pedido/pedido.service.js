@@ -21,7 +21,12 @@
                     return data;
                 }
             },
-            'update': { method:'PUT' }
+            'update': { method:'PUT' },
+            'getAllPedidosByUsuario': {
+                method:'GET',
+                url: 'api/pedidos/usuario/:idUsuario',
+                isArray: true
+            } 
         });
     }
 })();

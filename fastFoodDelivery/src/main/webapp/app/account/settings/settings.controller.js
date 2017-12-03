@@ -30,6 +30,7 @@
         };
 
         Principal.identity().then(function(account) {
+        	console.log(account);
             vm.settingsAccount = copyAccount(account);
         });
 

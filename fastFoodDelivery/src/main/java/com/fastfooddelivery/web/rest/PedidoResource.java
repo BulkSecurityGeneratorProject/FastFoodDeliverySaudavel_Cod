@@ -1,15 +1,10 @@
 package com.fastfooddelivery.web.rest;
 
-import com.codahale.metrics.annotation.Timed;
-import com.fastfooddelivery.domain.Alimento;
-import com.fastfooddelivery.domain.Pedido;
-import com.fastfooddelivery.repository.AlimentoRepository;
-import com.fastfooddelivery.repository.PedidoRepository;
-import com.fastfooddelivery.web.rest.errors.BadRequestAlertException;
-import com.fastfooddelivery.web.rest.util.HeaderUtil;
-import com.fastfooddelivery.web.rest.util.PaginationUtil;
-import io.github.jhipster.web.util.ResponseUtil;
-import io.swagger.annotations.ApiParam;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.util.List;
+import java.util.Optional;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -26,10 +21,18 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.net.URI;
-import java.net.URISyntaxException;
-import java.util.List;
-import java.util.Optional;
+import com.codahale.metrics.annotation.Timed;
+import com.fastfooddelivery.domain.Alimento;
+import com.fastfooddelivery.domain.Pedido;
+import com.fastfooddelivery.domain.User;
+import com.fastfooddelivery.repository.AlimentoRepository;
+import com.fastfooddelivery.service.PedidoService;
+import com.fastfooddelivery.web.rest.errors.BadRequestAlertException;
+import com.fastfooddelivery.web.rest.util.HeaderUtil;
+import com.fastfooddelivery.web.rest.util.PaginationUtil;
+
+import io.github.jhipster.web.util.ResponseUtil;
+import io.swagger.annotations.ApiParam;
 
 /**
  * REST controller for managing Pedido.
@@ -42,13 +45,13 @@ public class PedidoResource {
 
     private static final String ENTITY_NAME = "pedido";
     
-    private final PedidoRepository pedidoRepository;
-
 	private final AlimentoRepository alimentoRepository;
+	
+	private final PedidoService pedidoService;
 
-    public PedidoResource(PedidoRepository pedidoRepository, AlimentoRepository alimentoRepository) {
-        this.pedidoRepository = pedidoRepository;
+    public PedidoResource(AlimentoRepository alimentoRepository, PedidoService pedidoService) {
         this.alimentoRepository = alimentoRepository;
+        this.pedidoService = pedidoService;
     }
 
     /**
@@ -71,7 +74,7 @@ public class PedidoResource {
         pedido.getAlimentos().clear();
         pedido.getAlimentos().add(alimento);
 
-        Pedido result = pedidoRepository.save(pedido);
+        Pedido result = pedidoService.salvarPedido(pedido);
         return ResponseEntity.created(new URI("/api/pedidos/" + result.getId()))
             .headers(HeaderUtil.createEntityCreationAlert(ENTITY_NAME, result.getId().toString()))
             .body(result);
@@ -93,7 +96,7 @@ public class PedidoResource {
         if (pedido.getId() == null) {
             return createPedido(pedido);
         }
-        Pedido result = pedidoRepository.save(pedido);
+        Pedido result = pedidoService.salvarPedido(pedido);
         return ResponseEntity.ok()
             .headers(HeaderUtil.createEntityUpdateAlert(ENTITY_NAME, pedido.getId().toString()))
             .body(result);
@@ -109,9 +112,28 @@ public class PedidoResource {
     @Timed
     public ResponseEntity<List<Pedido>> getAllPedidos(@ApiParam Pageable pageable) {
     	log.debug("REST request to get a page of Pedidos");
-        Page<Pedido> page = pedidoRepository.findAll(pageable);
+        Page<Pedido> page = pedidoService.getAllPedidos(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/pedidos");
         return new ResponseEntity<>(page.getContent(), headers, HttpStatus.OK);
+    }
+    
+    /**
+     * GET  /alimentos/tipoAlimento/:idTipoAlimento: get all the alimentos by tipo.
+     *
+     * @param idTipoAlimento
+     * @return the ResponseEntity with status 200 (OK) and the list of alimentos in body
+     */
+    @GetMapping("/pedidos/usuario/{idUsuario}")
+    @Timed
+    public ResponseEntity<List<Pedido>> getAllPedidosByUsuario(@PathVariable Long idUsuario) {
+        log.debug("REST request to get a list of Pedidos by usuario");
+
+        User user = new User();
+        user.setId(idUsuario);
+
+        List<Pedido> pedidos = pedidoService.consultarPedidosPorIdUsuario(user);
+
+        return new ResponseEntity<>(pedidos, HttpStatus.OK);
     }
 
     /**
@@ -124,7 +146,7 @@ public class PedidoResource {
     @Timed
     public ResponseEntity<Pedido> getPedido(@PathVariable Long id) {
         log.debug("REST request to get Pedido : {}", id);
-        Pedido pedido = pedidoRepository.findOne(id);
+        Pedido pedido = pedidoService.getPedido(id);
         return ResponseUtil.wrapOrNotFound(Optional.ofNullable(pedido));
     }
 
@@ -138,7 +160,7 @@ public class PedidoResource {
     @Timed
     public ResponseEntity<Void> deletePedido(@PathVariable Long id) {
         log.debug("REST request to delete Pedido : {}", id);
-        pedidoRepository.delete(id);
+        pedidoService.deletePedido(id);
         return ResponseEntity.ok().headers(HeaderUtil.createEntityDeletionAlert(ENTITY_NAME, id.toString())).build();
     }
     

@@ -9,6 +9,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.fastfooddelivery.domain.Pedido;
+import com.fastfooddelivery.domain.Pessoa;
 
 /**
  * Spring Data JPA repository for the Pedido entity.
@@ -21,5 +22,7 @@ public interface PedidoRepository extends JpaRepository<Pedido, Long>, JpaSpecif
 
     @Query("select pedido from Pedido pedido left join fetch pedido.bebidas left join fetch pedido.alimentos where pedido.id =:id")
     Pedido findOneWithEagerRelationships(@Param("id") Long id);
+    
+    List<Pedido> findAllByPessoa(Pessoa pessoa);
 
 }

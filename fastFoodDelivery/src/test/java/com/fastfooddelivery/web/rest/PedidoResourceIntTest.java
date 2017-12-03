@@ -16,7 +16,6 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 
-import com.fastfooddelivery.repository.AlimentoRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -33,7 +32,9 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.fastfooddelivery.FastFoodDeliveryApp;
 import com.fastfooddelivery.domain.Pedido;
+import com.fastfooddelivery.repository.AlimentoRepository;
 import com.fastfooddelivery.repository.PedidoRepository;
+import com.fastfooddelivery.service.PedidoService;
 import com.fastfooddelivery.web.rest.errors.ExceptionTranslator;
 
 /**
@@ -51,6 +52,9 @@ public class PedidoResourceIntTest {
     private static final String DEFAULT_VALOR_TOTAL = "AAAAAAAAAA";
     private static final String UPDATED_VALOR_TOTAL = "BBBBBBBBBB";
 
+    @Autowired
+    private PedidoService pedidoService;
+    
     @Autowired
     private PedidoRepository pedidoRepository;
 
@@ -76,7 +80,7 @@ public class PedidoResourceIntTest {
     @Before
     public void setup() {
         MockitoAnnotations.initMocks(this);
-        final PedidoResource pedidoResource = new PedidoResource(pedidoRepository, alimentoRepository);
+        final PedidoResource pedidoResource = new PedidoResource(alimentoRepository, pedidoService);
         this.restPedidoMockMvc = MockMvcBuilders.standaloneSetup(pedidoResource)
             .setCustomArgumentResolvers(pageableArgumentResolver)
             .setControllerAdvice(exceptionTranslator)
