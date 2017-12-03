@@ -167,7 +167,9 @@
 
                 var valorNutricional = alimentoSelecionado.alimento.valorNutricional;
 
-                somarValorNutrucional(valorNutricionalTotalizado, valorNutricional);
+                var caloria = alimentoSelecionado.preparo.tempoPreparo * valorNutricional.caloria;
+
+                somarValorNutrucional(valorNutricionalTotalizado, valorNutricional, caloria);
 
             });
 
@@ -175,20 +177,20 @@
 
                 var valorNutricional = bebidaSelecionada.valorNutricional;
 
-                somarValorNutrucional(valorNutricionalTotalizado, valorNutricional);
+                var caloria = valorNutricional.caloria;
+
+                somarValorNutrucional(valorNutricionalTotalizado, valorNutricional, caloria);
 
             });
 
             vm.totalValoresNutricionais = [];
             vm.totalValoresNutricionais.push(valorNutricionalTotalizado);
 
-            console.log(vm.totalValoresNutricionais)
-
         }
 
-        function somarValorNutrucional(valorNutricionalTotalizado, valorNutricional) {
+        function somarValorNutrucional(valorNutricionalTotalizado, valorNutricional, caloria) {
 
-            valorNutricionalTotalizado.totalCalorias += valorNutricional.caloria;
+            valorNutricionalTotalizado.totalCalorias += caloria;
             valorNutricionalTotalizado.totalProteinas += valorNutricional.proteina;
             valorNutricionalTotalizado.totalCarboidratos += valorNutricional.carboidrato;
             valorNutricionalTotalizado.totalAcucares += valorNutricional.acucar;
