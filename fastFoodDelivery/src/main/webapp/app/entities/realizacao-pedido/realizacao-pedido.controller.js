@@ -5,12 +5,11 @@
         .module('fastFoodDeliveryApp')
         .controller('RealizacaoPedidoController', PedidoController);
 
-    PedidoController.$inject = ['$state', 'Pedido', 'ParseLinks', 'AlertService', 'Refeicao', 'TipoAlimento', 'Alimento', 'Preparo', 'Tempero', 'Bebida', 'Cartao', 'Endereco', 'Doce', 'FormaDeEntrega', 'Principal'];
+    PedidoController.$inject = ['$state', 'Pedido', 'ParseLinks', 'AlertService', 'Refeicao', 'TipoAlimento', 'Alimento', 'Preparo', 'Tempero', 'Bebida', 'Cartao', 'Endereco', 'Doce', 'FormaDeEntrega'];
 
-    function PedidoController($state, Pedido, ParseLinks, AlertService, Refeicao, TipoAlimento, Alimento, Preparo, Tempero, Bebida, Cartao, Endereco, Doce, FormaDeEntrega, Principal) {
+    function PedidoController($state, Pedido, ParseLinks, AlertService, Refeicao, TipoAlimento, Alimento, Preparo, Tempero, Bebida, Cartao, Endereco, Doce, FormaDeEntrega) {
 
         var vm = this;
-        vm.settingsAccount = null;
         vm.selecionarRefeicao = selecionarRefeicao;
         vm.consultarAlimentos = consultarAlimentos;
         vm.adicionarAlimentoEscolhido = adicionarAlimentoEscolhido;
@@ -36,6 +35,7 @@
         vm.enderecos = Endereco.query();
         vm.formaDeEntregas = FormaDeEntrega.query();
         vm.itensTotalizados = [];
+        vm.totalValoresNutricionais = [];
 
         // geral
         vm.pedido = {
@@ -58,6 +58,9 @@
             
             refeicao.selecionada = !refeicao.selecionada;
 
+            // TODO ajustar cadastro de bebidas
+            // vm.tiposAlimento = refeicao.tiposAlimento;
+
             vm.alimentoEscolhido.refeicao = refeicao;
             
             vm.alimentoEscolhido.tipoAlimento = refeicao;
@@ -66,11 +69,6 @@
             
             consultarAlimentos();
 
-        }
-        
-        function consultarCartoes() {
-        	vm.cartoes = Cartao.query();
-        	console.log(vm.cartoes);
         }
 
         function consultarAlimentos() {
@@ -99,6 +97,8 @@
 
             atualizarItensTotalizados();
 
+            atualizarValoresNutricionais();
+
         }
 
         function excluirAlimentoEscolhido(index) {
@@ -112,6 +112,8 @@
             vm.alimentoEscolhido.bebida = {};
 
             atualizarItensTotalizados();
+
+            atualizarValoresNutricionais();
 
         }
 
@@ -149,7 +151,56 @@
             vm.itensTotalizados.push(item);
 
         }
-        
+
+        function atualizarValoresNutricionais() {
+
+            var valorNutricionalTotalizado = {
+                totalCalorias: 0,
+                totalProteinas: 0,
+                totalCarboidratos: 0,
+                totalAcucares: 0,
+                totalGordurasTotais: 0,
+                totalGordurasSaturadas: 0,
+                totalSodio: 0
+            };
+
+            vm.pedido.alimentos.forEach(function (alimentoSelecionado) {
+
+                var valorNutricional = alimentoSelecionado.alimento.valorNutricional;
+
+                somarValorNutrucional(valorNutricionalTotalizado, valorNutricional);
+
+            });
+
+            vm.pedido.bebidas.forEach(function (bebidaSelecionada) {
+
+                var valorNutricional = bebidaSelecionada.valorNutricional;
+
+                somarValorNutrucional(valorNutricionalTotalizado, valorNutricional);
+
+            });
+
+            vm.totalValoresNutricionais = [];
+            vm.totalValoresNutricionais.push(valorNutricionalTotalizado);
+
+            console.log(vm.totalValoresNutricionais)
+
+        }
+
+        function somarValorNutrucional(valorNutricionalTotalizado, valorNutricional) {
+
+            valorNutricionalTotalizado.totalCalorias += valorNutricional.caloria;
+            valorNutricionalTotalizado.totalProteinas += valorNutricional.proteina;
+            valorNutricionalTotalizado.totalCarboidratos += valorNutricional.carboidrato;
+            valorNutricionalTotalizado.totalAcucares += valorNutricional.acucar;
+            valorNutricionalTotalizado.totalGordurasTotais += valorNutricional.gordurasTotais;
+            valorNutricionalTotalizado.totalGordurasSaturadas += valorNutricional.gordurasSaturadas;
+            valorNutricionalTotalizado.totalSodio += valorNutricional.sodio;
+
+            return valorNutricionalTotalizado;
+
+        }
+
         var copyAccount = function (account) {
             return {
                 activated: account.activated,
