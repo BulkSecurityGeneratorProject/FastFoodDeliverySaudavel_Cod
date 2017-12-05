@@ -102,7 +102,11 @@
         }
 
         function excluirAlimentoEscolhido(index) {
+
             vm.pedido.alimentos.splice(index, 1);
+
+            atualizarItensTotalizados();
+
         }
 
         function adicionarBebidaEscolhida() {
@@ -118,7 +122,11 @@
         }
 
         function excluirBebidaEscolhida(index) {
+
             vm.pedido.bebidas.splice(index, 1);
+
+            atualizarItensTotalizados();
+
         }
         
         function atualizarItensTotalizados() {
@@ -128,14 +136,22 @@
             var totalAlimentos = 0;
             var totalBebidas = 0;
 
+            vm.pedido.alimentos.forEach(function (alimentoSelecionado) {
+
+                var valorAlimento = (alimentoSelecionado.valorEmGramas * alimentoSelecionado.alimento.valorRefeicao.valor) / 1000;
+
+                totalAlimentos += valorAlimento;
+
+            });
+
             var item = {};
             item.nome = 'Alimentos';
             item.quantidade = vm.pedido.alimentos.length;
-            item.total = totalAlimentos;
+            item.total = totalAlimentos.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 
             vm.itensTotalizados.push(item);
 
-            vm.bebidas.forEach(function (bebida) {
+            vm.pedido.bebidas.forEach(function (bebida) {
 
                 var valorBebida = bebida.valorRefeicao.valor / bebida.capacidade;
 
@@ -146,7 +162,7 @@
             var item = {};
             item.nome = 'Bebidas';
             item.quantidade = vm.pedido.bebidas.length;
-            item.total = totalBebidas;
+            item.total = totalBebidas.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 
             vm.itensTotalizados.push(item);
 
@@ -182,8 +198,6 @@
 
             vm.totalValoresNutricionais = [];
             vm.totalValoresNutricionais.push(valorNutricionalTotalizado);
-
-            console.log(vm.totalValoresNutricionais)
 
         }
 
